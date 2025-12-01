@@ -4,8 +4,8 @@
 :root {
   --bg-dark: #304330;
   --bg-card: #18191c;
-  --text-main: #e0e0e0;
-  --text-muted: #949494;
+  --text-main: #ffffff;
+  --text-muted: #949ea3;
   --accent: #FFA500;
   --accent-glow: rgba(255, 165, 0, 0.4);
   --border-light: rgba(255, 255, 255, 0.08);
@@ -57,9 +57,9 @@ body {
   transition: background 0.3s;
 }
 
-.nav-toggle-btn:hover {
+/* .nav-toggle-btn:hover {
   background: rgba(255, 165, 0, 0.1);
-}
+} */
 
 .hamburger-line {
   width: 24px;
@@ -78,30 +78,19 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
+  /* margin: ; */
   /* overflow: hidden; Removed to allow better mobile scrolling */
-  padding: 80px 0; /* Add padding for when content stacks on mobile */
+  /* padding: 70px 0; Add padding for when content stacks on mobile */
 }
 
-/* Abstract Background Glow */
-.glow-bg {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255,165,0,0.15) 0%, rgba(0,0,0,0) 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* Hero Split Layout */
 .center-content {
   z-index: 2;
-  padding: 0 40px;
+  padding: 0 10px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  /* align-items: center; */
+  /* justify-content: space-between; */
   gap: 60px;
   max-width: 1400px;
   width: 100%;
@@ -123,7 +112,7 @@ body {
 
 /* Typography */
 .title {
-  font-size: 4.5rem; /* Slightly smaller to fit side-by-side */
+  font-size: 7rem; /* Slightly smaller to fit side-by-side */
   font-weight: 700;
   letter-spacing: -3px;
   margin: 0;
@@ -141,8 +130,8 @@ body {
 
 .tagline {
   font-family: var(--font-code);
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 900;
   margin-top: 15px;
   color: var(--text-muted);
 }
@@ -171,7 +160,7 @@ body {
 .btn {
   padding: 16px 32px;
   font-family: var(--font-code);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   border-radius: 4px;
   cursor: pointer;
@@ -242,7 +231,7 @@ body {
   background: rgba(255, 165, 0, 0.1);
   color: var(--accent);
   font-family: var(--font-code);
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 4px 8px;
   border-radius: 4px;
 }
@@ -258,7 +247,7 @@ body {
   color: var(--text-muted);
   padding: 6px 12px;
   border-radius: 4px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-family: var(--font-code);
   border: 1px solid var(--border-light);
   transition: 0.2s;
@@ -291,8 +280,8 @@ body {
 }
 
 .mouse {
-  width: 30px;
-  height: 50px;
+  width: 40px;
+  height: 80px;
   border: 2px solid var(--text-muted);
   border-radius: 20px;
   position: relative;
@@ -300,14 +289,14 @@ body {
 }
 
 .wheel {
-  width: 4px;
-  height: 8px;
+  width: 10px;
+  height: 15px;
   background: var(--accent);
   position: absolute;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 2px;
+  border-radius: 20px;
   animation: scrollWheel 1.5s infinite;
 }
 
@@ -330,7 +319,7 @@ body {
 
 .section-tag {
   font-family: var(--font-code);
-  font-size: 0.8rem;
+  font-size: 3rem;
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -393,7 +382,7 @@ body {
   top: 0; left: 0; right: 0; bottom: 0;
   border-radius: 12px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(135deg, rgb(255, 255, 255), transparent);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -459,23 +448,25 @@ body {
 }
 
 .step-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
-.step-card p { font-size: 0.9rem; color: var(--text-muted); }
+.step-card p { font-size: 1rem; color: var(--text-muted); }
 
 /* --- PREP SECTION --- */
 .prep-section { margin-bottom: 50px; }
 
 .prep-box {
-  background: linear-gradient(180deg, rgba(255,165,0,0.05) 0%, rgba(0,0,0,0) 100%);
-  border: 1px solid var(--border-light);
+  background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0,0,0,0) 100%);
+  /* border: 1px solid var(--border-light); */
   padding: 50px;
   border-radius: 16px;
   text-align: center;
+  font-size: 2rem;
 }
 
 .prep-intro {
   max-width: 600px;
-  margin: 0 auto 40px;
+  margin: 0 auto 20px;
   color: var(--text-muted);
+  font-size: 1.5rem;
 }
 
 .checklist-container {
@@ -491,7 +482,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
 .check-icon {
@@ -503,7 +494,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
