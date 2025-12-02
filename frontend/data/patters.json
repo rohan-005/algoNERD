@@ -1,0 +1,1787 @@
+[
+  {
+    "question_title": "Square Star Pattern",
+    "question_description": "Given an integer N, print a solid N x N square made of stars (*). Each row contains N stars separated by a space.",
+    "question_level": "Level 1",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "nested-loops", "pattern", "stars"],
+
+    "question_theory": "This is one of the simplest patterns. We need N rows and N columns. Nested loops are used: the outer loop repeats rows; the inner loop prints N stars in each row.",
+    "question_concept": "Use a loop for rows and, inside it, another loop for columns. For every column iteration print a star and after finishing one row, move to the next line.",
+    "question_explanation": "Read N. Run an outer loop from 0 to N-1 for rows. Inside it, run an inner loop from 0 to N-1 and print '* '. After the inner loop finishes, print a newline. This makes a square.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n; // read size of square",
+        "",
+        "    // outer loop -> rows",
+        "    for (int i = 0; i < n; i++) {",
+        "        // inner loop -> columns",
+        "        for (int j = 0; j < n; j++) {",
+        "            cout << \"* \"; // print star",
+        "        }",
+        "        cout << endl; // move to next row",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n); // read size",
+        "",
+        "    for (int i = 0; i < n; i++) { // rows",
+        "        for (int j = 0; j < n; j++) { // columns",
+        "            printf(\"* \");",
+        "        }",
+        "        printf(\"\\n\"); // next line",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())  # read size",
+        "",
+        "for i in range(n):          # rows",
+        "    for j in range(n):      # columns",
+        "        print('*', end=' ')",
+        "    print()                  # move to next line"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt(); // read size",
+        "",
+        "        for (int i = 0; i < n; i++) {           // rows",
+        "            for (int j = 0; j < n; j++) {       // columns",
+        "                System.out.print(\"* \");",
+        "            }",
+        "            System.out.println();              // next line",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "// Simple function version. Call printSquare(5) etc.",
+        "function printSquare(n) {",
+        "  for (let i = 0; i < n; i++) {      // rows",
+        "    let row = \"\";",
+        "    for (let j = 0; j < n; j++) {    // columns",
+        "      row += \"* \";",
+        "    }",
+        "    console.log(row);",
+        "  }",
+        "}",
+        "",
+        "// Example:",
+        "// printSquare(4);"
+      ]
+    },
+
+    "solution_explanation": "Every pattern solution here uses two loops. The outer loop controls how many lines are printed. The inner loop controls how many stars are printed in each line. Because both loops run N times, the total stars printed are N * N arranged as a square.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "* * *\n* * *\n* * *",
+        "explanation": "N = 3 → 3 rows. Each row prints 3 stars."
+      },
+      {
+        "input": "1",
+        "output": "*",
+        "explanation": "N = 1 → Only one star in a 1x1 square."
+      }
+    ],
+    "dry_run_explanation": "Take N = 2. i = 0 → inner loop j = 0,1 prints '* * '. Newline. i = 1 → again j = 0,1 prints '* * '. Newline. Final output is a 2x2 star square."
+  },
+
+  {
+    "question_title": "Right Angled Triangle Star Pattern",
+    "question_description": "Given N, print a right-angled triangle of stars with N rows. First row has 1 star, second has 2, and so on.",
+    "question_level": "Level 1",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "nested-loops", "triangle", "stars"],
+
+    "question_theory": "This pattern increases the number of stars each row. It helps understand how to connect row number with how many times inner loop runs.",
+    "question_concept": "Use the row index to decide how many stars to print. Row 1 prints 1 star, row 2 prints 2, etc.",
+    "question_explanation": "Outer loop goes from 1 to N for each row. Inner loop runs from 1 to current row index and prints that many stars.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    for (int i = 1; i <= n; i++) { // row number",
+        "        for (int j = 1; j <= i; j++) {",
+        "            cout << \"* \";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int j = 1; j <= i; j++) {",
+        "            printf(\"* \");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "for i in range(1, n + 1):",
+        "    for j in range(1, i + 1):",
+        "        print('*', end=' ')",
+        "    print()"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int j = 1; j <= i; j++) {",
+        "                System.out.print(\"* \");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function rightTriangle(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let row = \"\";",
+        "    for (let j = 1; j <= i; j++) {",
+        "      row += \"* \";",
+        "    }",
+        "    console.log(row);",
+        "  }",
+        "}",
+        "",
+        "// rightTriangle(4);"
+      ]
+    },
+
+    "solution_explanation": "Notice that the inner loop limit is not N but i (the current row). This creates the increasing count: 1, 2, 3, ..., N.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "*\n* *\n* * *",
+        "explanation": "Row 1: 1 star, row 2: 2 stars, row 3: 3 stars."
+      }
+    ],
+    "dry_run_explanation": "If N = 3: i=1 → print 1 star; i=2 → print 2 stars; i=3 → print 3 stars. A right-angled triangle appears."
+  },
+
+  {
+    "question_title": "Downward Triangle Star Pattern",
+    "question_description": "Given N, print a triangle of stars where the first row has N stars and each next row has one star less.",
+    "question_level": "Level 1",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "triangle", "stars"],
+
+    "question_theory": "This is the reverse of the right-angled triangle. It teaches how to decrease the inner loop range.",
+    "question_concept": "Start with N stars in first row and reduce the count by 1 each row.",
+    "question_explanation": "Outer loop runs from N down to 1. Inner loop prints i stars for each row.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    for (int i = n; i >= 1; i--) {",
+        "        for (int j = 1; j <= i; j++) {",
+        "            cout << \"* \";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = n; i >= 1; i--) {",
+        "        for (int j = 1; j <= i; j++) {",
+        "            printf(\"* \");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "for i in range(n, 0, -1):",
+        "    for j in range(1, i + 1):",
+        "        print('*', end=' ')",
+        "    print()"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = n; i >= 1; i--) {",
+        "            for (int j = 1; j <= i; j++) {",
+        "                System.out.print(\"* \");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function downwardTriangle(n) {",
+        "  for (let i = n; i >= 1; i--) {",
+        "    let row = \"\";",
+        "    for (let j = 1; j <= i; j++) {",
+        "      row += \"* \";",
+        "    }",
+        "    console.log(row);",
+        "  }",
+        "}",
+        "",
+        "// downwardTriangle(4);"
+      ]
+    },
+
+    "solution_explanation": "Decreasing the row size is done by decreasing i every loop. The inner loop limit is i so the star count shrinks.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "4",
+        "output": "* * * *\n* * *\n* *\n*",
+        "explanation": "Rows: 4, 3, 2, 1 stars."
+      }
+    ],
+    "dry_run_explanation": "For N = 3: i=3 → 3 stars; i=2 → 2 stars; i=1 → 1 star. Triangle reversed."
+  },
+
+  {
+    "question_title": "Pyramid Star Pattern",
+    "question_description": "Given N, print a centered pyramid of stars with N rows. First row has 1 star, then 3, 5, ... stars.",
+    "question_level": "Level 2",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "nested-loops", "pyramid", "spacing"],
+
+    "question_theory": "Centered patterns need spaces before stars. For row i, we print some spaces and then some stars. This introduces the idea of controlling both spaces and stars.",
+    "question_concept": "For each row, print (N - row) spaces, then (2 * row - 1) stars.",
+    "question_explanation": "Use three logical parts in each row: 1) leading spaces 2) stars 3) newline. Spaces make the pyramid centered.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        // print spaces",
+        "        for (int s = 1; s <= n - i; s++) {",
+        "            cout << \" \";",
+        "        }",
+        "        // print stars",
+        "        for (int j = 1; j <= 2 * i - 1; j++) {",
+        "            cout << \"*\";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s <= n - i; s++) {",
+        "            printf(\" \");",
+        "        }",
+        "        for (int j = 1; j <= 2 * i - 1; j++) {",
+        "            printf(\"*\");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "for i in range(1, n + 1):",
+        "    spaces = ' ' * (n - i)",
+        "    stars = '*' * (2 * i - 1)",
+        "    print(spaces + stars)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int s = 1; s <= n - i; s++) {",
+        "                System.out.print(\" \");",
+        "            }",
+        "            for (int j = 1; j <= 2 * i - 1; j++) {",
+        "                System.out.print(\"*\");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function pyramid(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let spaces = \"\";",
+        "    for (let s = 1; s <= n - i; s++) spaces += \" \";",
+        "    let stars = \"\";",
+        "    for (let j = 1; j <= 2 * i - 1; j++) stars += \"*\";",
+        "    console.log(spaces + stars);",
+        "  }",
+        "}",
+        "",
+        "// pyramid(4);"
+      ]
+    },
+
+    "solution_explanation": "By controlling spaces and stars separately, you create a symmetric pyramid. The pattern (2*i - 1) gives 1,3,5,... stars.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "  *\n ***\n*****",
+        "explanation": "Row1: 2 spaces + 1 star; Row2: 1 space + 3 stars; Row3: 0 spaces + 5 stars."
+      }
+    ],
+    "dry_run_explanation": "For N=3 and i=2: spaces = 3-2 = 1, stars = 2*2-1 = 3 → line: ' ***'."
+  },
+
+  {
+    "question_title": "Inverted Pyramid Star Pattern",
+    "question_description": "Given N, print an inverted centered pyramid of stars. First row has (2*N - 1) stars, and stars decrease by 2 each row.",
+    "question_level": "Level 2",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "pyramid", "spacing", "stars"],
+
+    "question_theory": "This reverses the normal pyramid. The idea of spaces and stars is the same, but now stars decrease with rows.",
+    "question_concept": "For row i (starting from 1 at top), print (i-1) spaces and (2*(N-i+1)-1) stars.",
+    "question_explanation": "Start from the biggest row (top) and keep reducing the number of stars while increasing leading spaces.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        // spaces increase each row",
+        "        for (int s = 1; s < i; s++) {",
+        "            cout << \" \";",
+        "        }",
+        "        // stars decrease each row",
+        "        int stars = 2 * (n - i + 1) - 1;",
+        "        for (int j = 1; j <= stars; j++) {",
+        "            cout << \"*\";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s < i; s++) {",
+        "            printf(\" \");",
+        "        }",
+        "        int stars = 2 * (n - i + 1) - 1;",
+        "        for (int j = 1; j <= stars; j++) {",
+        "            printf(\"*\");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "for i in range(1, n + 1):",
+        "    spaces = ' ' * (i - 1)",
+        "    stars = '*' * (2 * (n - i + 1) - 1)",
+        "    print(spaces + stars)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int s = 1; s < i; s++) {",
+        "                System.out.print(\" \");",
+        "            }",
+        "            int stars = 2 * (n - i + 1) - 1;",
+        "            for (int j = 1; j <= stars; j++) {",
+        "                System.out.print(\"*\");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function invertedPyramid(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let spaces = \"\";",
+        "    for (let s = 1; s < i; s++) spaces += \" \";",
+        "    let starsCount = 2 * (n - i + 1) - 1;",
+        "    let stars = \"\";",
+        "    for (let j = 1; j <= starsCount; j++) stars += \"*\";",
+        "    console.log(spaces + stars);",
+        "  }",
+        "}",
+        "",
+        "// invertedPyramid(4);"
+      ]
+    },
+
+    "solution_explanation": "Everything is symmetric to the normal pyramid but reversed: spaces increase and stars count decreases each row.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "*****\n ***\n  *",
+        "explanation": "Row1: 0 spaces, 5 stars; Row2: 1 space, 3 stars; Row3: 2 spaces, 1 star."
+      }
+    ],
+    "dry_run_explanation": "When N=3, i=2 → spaces = 1, stars = 2*(3-2+1)-1 = 3, so row is ' ***'."
+  },
+
+  {
+    "question_title": "Diamond Star Pattern",
+    "question_description": "Given N, print a symmetric diamond pattern of stars using 2*N - 1 rows.",
+    "question_level": "Level 3",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "diamond", "pyramid", "stars"],
+
+    "question_theory": "Diamond is a combination of a pyramid and an inverted pyramid. It strengthens thinking in two phases: top and bottom.",
+    "question_concept": "First build the top pyramid for rows 1..N, then build the bottom inverted pyramid for rows N-1..1.",
+    "question_explanation": "Use the same logic as pyramid for the top. For the bottom, just run the loop in reverse and print spaces and stars in the same way but decreasing.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    // upper half including middle row",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s <= n - i; s++) cout << \" \";",
+        "        for (int j = 1; j <= 2 * i - 1; j++) cout << \"*\";",
+        "        cout << endl;",
+        "    }",
+        "",
+        "    // lower half (without middle row)",
+        "    for (int i = n - 1; i >= 1; i--) {",
+        "        for (int s = 1; s <= n - i; s++) cout << \" \";",
+        "        for (int j = 1; j <= 2 * i - 1; j++) cout << \"*\";",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s <= n - i; s++) printf(\" \");",
+        "        for (int j = 1; j <= 2 * i - 1; j++) printf(\"*\");",
+        "        printf(\"\\n\");",
+        "    }",
+        "",
+        "    for (int i = n - 1; i >= 1; i--) {",
+        "        for (int s = 1; s <= n - i; s++) printf(\" \");",
+        "        for (int j = 1; j <= 2 * i - 1; j++) printf(\"*\");",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "# upper half",
+        "for i in range(1, n + 1):",
+        "    print(' ' * (n - i) + '*' * (2 * i - 1))",
+        "",
+        "# lower half",
+        "for i in range(n - 1, 0, -1):",
+        "    print(' ' * (n - i) + '*' * (2 * i - 1))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int s = 1; s <= n - i; s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= 2 * i - 1; j++) System.out.print(\"*\");",
+        "            System.out.println();",
+        "        }",
+        "",
+        "        for (int i = n - 1; i >= 1; i--) {",
+        "            for (int s = 1; s <= n - i; s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= 2 * i - 1; j++) System.out.print(\"*\");",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function diamond(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let line = \"\";",
+        "    for (let s = 1; s <= n - i; s++) line += \" \";",
+        "    for (let j = 1; j <= 2 * i - 1; j++) line += \"*\";",
+        "    console.log(line);",
+        "  }",
+        "  for (let i = n - 1; i >= 1; i--) {",
+        "    let line = \"\";",
+        "    for (let s = 1; s <= n - i; s++) line += \" \";",
+        "    for (let j = 1; j <= 2 * i - 1; j++) line += \"*\";",
+        "    console.log(line);",
+        "  }",
+        "}",
+        "",
+        "// diamond(3);"
+      ]
+    },
+
+    "solution_explanation": "You already know how to create a pyramid and an inverted pyramid. Diamond is built by putting them together, making sure the middle row is not repeated twice.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "  *\n ***\n*****\n ***\n  *",
+        "explanation": "Top 3 rows form a pyramid; bottom 2 rows form the reverse without repeating the middle."
+      }
+    ],
+    "dry_run_explanation": "For N=3: i=1,2,3 makes top; then i=2,1 makes bottom. The spaces and stars work exactly like pyramid/inverted pyramid."
+  },
+
+  {
+    "question_title": "Hollow Square Star Pattern",
+    "question_description": "Given N, print a hollow square of stars. Only the border is made of stars; inside is empty space.",
+    "question_level": "Level 2",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "conditionals", "hollow", "square"],
+
+    "question_theory": "Hollow patterns add conditions. You must decide when to print star and when to print space.",
+    "question_concept": "If we are in the first row, last row, first column, or last column → print star. Otherwise print space.",
+    "question_explanation": "Use two loops to go through each cell (i,j). Use if statement to check if it lies on the border.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    for (int i = 0; i < n; i++) {",
+        "        for (int j = 0; j < n; j++) {",
+        "            if (i == 0 || i == n - 1 || j == 0 || j == n - 1)",
+        "                cout << \"* \";",
+        "            else",
+        "                cout << \"  \"; // two spaces for alignment",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 0; i < n; i++) {",
+        "        for (int j = 0; j < n; j++) {",
+        "            if (i == 0 || i == n - 1 || j == 0 || j == n - 1)",
+        "                printf(\"* \");",
+        "            else",
+        "                printf(\"  \");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "for i in range(n):",
+        "    for j in range(n):",
+        "        if i == 0 or i == n - 1 or j == 0 or j == n - 1:",
+        "            print('*', end=' ')",
+        "        else:",
+        "            print(' ', end=' ')",
+        "    print()"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = 0; i < n; i++) {",
+        "            for (int j = 0; j < n; j++) {",
+        "                if (i == 0 || i == n - 1 || j == 0 || j == n - 1)",
+        "                    System.out.print(\"* \");",
+        "                else",
+        "                    System.out.print(\"  \");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function hollowSquare(n) {",
+        "  for (let i = 0; i < n; i++) {",
+        "    let row = \"\";",
+        "    for (let j = 0; j < n; j++) {",
+        "      if (i === 0 || i === n - 1 || j === 0 || j === n - 1) row += \"* \";",
+        "      else row += \"  \";",
+        "    }",
+        "    console.log(row);",
+        "  }",
+        "}",
+        "",
+        "// hollowSquare(5);"
+      ]
+    },
+
+    "solution_explanation": "We turned the simple square into hollow by adding a condition. This is a common idea for many hollow patterns.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "4",
+        "output": "* * * *\n*     *\n*     *\n* * * *",
+        "explanation": "Only borders are stars; inner cells are spaces."
+      }
+    ],
+    "dry_run_explanation": "For N = 3: cells (0,0),(0,1),(0,2),(1,0),(1,2),(2,0),(2,1),(2,2) are border → stars; only (1,1) is inside → space."
+  },
+
+  {
+    "question_title": "Hollow Pyramid Star Pattern",
+    "question_description": "Given N, print a hollow pyramid where only the border and the base are stars.",
+    "question_level": "Level 3",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "pyramid", "hollow", "stars"],
+
+    "question_theory": "Similar to hollow square, but now our shape is a triangle. We only print stars at the sides (left and right) and the last row.",
+    "question_concept": "Inside each row, print a star at first and last position of the star area or if it's the last row; otherwise print space.",
+    "question_explanation": "For each row, we print spaces on the left. Then we iterate over the positions where stars could be and decide if each should be star or space.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        // leading spaces",
+        "        for (int s = 1; s <= n - i; s++) cout << \" \";",
+        "",
+        "        // star positions in this row = 2*i - 1",
+        "        for (int j = 1; j <= 2 * i - 1; j++) {",
+        "            if (i == n || j == 1 || j == 2 * i - 1)",
+        "                cout << \"*\";",
+        "            else",
+        "                cout << \" \";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s <= n - i; s++) printf(\" \");",
+        "        for (int j = 1; j <= 2 * i - 1; j++) {",
+        "            if (i == n || j == 1 || j == 2 * i - 1)",
+        "                printf(\"*\");",
+        "            else",
+        "                printf(\" \");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "for i in range(1, n + 1):",
+        "    line = ' ' * (n - i)",
+        "    for j in range(1, 2 * i):",
+        "        if i == n or j == 1 or j == 2 * i - 1:",
+        "            line += '*'",
+        "        else:",
+        "            line += ' '",
+        "    print(line)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int s = 1; s <= n - i; s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= 2 * i - 1; j++) {",
+        "                if (i == n || j == 1 || j == 2 * i - 1)",
+        "                    System.out.print(\"*\");",
+        "                else",
+        "                    System.out.print(\" \");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function hollowPyramid(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let line = \"\";",
+        "    for (let s = 1; s <= n - i; s++) line += \" \";",
+        "    for (let j = 1; j <= 2 * i - 1; j++) {",
+        "      if (i === n || j === 1 || j === 2 * i - 1) line += \"*\";",
+        "      else line += \" \";",
+        "    }",
+        "    console.log(line);",
+        "  }",
+        "}",
+        "",
+        "// hollowPyramid(4);"
+      ]
+    },
+
+    "solution_explanation": "The big idea: print solid base (i == n), and for all other rows print stars only at the left and right borders of the pyramid.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "4",
+        "output": "   *\n  * *\n *   *\n*******",
+        "explanation": "Borders and base only; inner area of upper rows is empty."
+      }
+    ],
+    "dry_run_explanation": "For N=4 and row i=2: spaces = 2; positions j=1..3. j=1 and j=3 are borders → stars; middle is space → row '  * *'."
+  },
+
+  {
+    "question_title": "Cross Star Pattern (Plus Sign)",
+    "question_description": "Given N (odd), print a plus-shaped cross using stars in an N x N grid. The middle row and middle column are stars.",
+    "question_level": "Level 2",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "2D-grid", "cross", "conditionals"],
+
+    "question_theory": "We treat the screen like a 2D grid of cells. The cross is formed when either row index or column index equals the middle index.",
+    "question_concept": "Middle index is N/2 (for 0-based indexing). If i==mid or j==mid → print star, else space.",
+    "question_explanation": "Use two nested loops for i (rows) and j (columns). Check if the current cell is on the central row or column.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n; // assume n is odd",
+        "",
+        "    int mid = n / 2;",
+        "    for (int i = 0; i < n; i++) {",
+        "        for (int j = 0; j < n; j++) {",
+        "            if (i == mid || j == mid)",
+        "                cout << \"* \";",
+        "            else",
+        "                cout << \"  \";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "    int mid = n / 2;",
+        "",
+        "    for (int i = 0; i < n; i++) {",
+        "        for (int j = 0; j < n; j++) {",
+        "            if (i == mid || j == mid)",
+        "                printf(\"* \");",
+        "            else",
+        "                printf(\"  \");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "mid = n // 2",
+        "",
+        "for i in range(n):",
+        "    for j in range(n):",
+        "        if i == mid or j == mid:",
+        "            print('*', end=' ')",
+        "        else:",
+        "            print(' ', end=' ')",
+        "    print()"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int mid = n / 2;",
+        "",
+        "        for (int i = 0; i < n; i++) {",
+        "            for (int j = 0; j < n; j++) {",
+        "                if (i == mid || j == mid)",
+        "                    System.out.print(\"* \");",
+        "                else",
+        "                    System.out.print(\"  \");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function crossPattern(n) {",
+        "  let mid = Math.floor(n / 2);",
+        "  for (let i = 0; i < n; i++) {",
+        "    let row = \"\";",
+        "    for (let j = 0; j < n; j++) {",
+        "      if (i === mid || j === mid) row += \"* \";",
+        "      else row += \"  \";",
+        "    }",
+        "    console.log(row);",
+        "  }",
+        "}",
+        "",
+        "// crossPattern(5);"
+      ]
+    },
+
+    "solution_explanation": "Thinking in (row, column) form is very powerful. Any cell where i==mid or j==mid lies on the plus sign.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5",
+        "output": "        *        \n        *        \n* * * * * * * * *\n        *        \n        *        ",
+        "explanation": "Row and column index equal 2 (0-based) form the plus sign. (Spacing can vary depending on how you print.)"
+      }
+    ],
+    "dry_run_explanation": "n=5, mid=2. At cell (2,0) i==2 → star; at (0,2) j==2 → star; at (1,1) none equals 2 → space."
+  },
+
+  {
+    "question_title": "Butterfly Star Pattern",
+    "question_description": "Given N, print a butterfly pattern made of two mirrored right triangles in the top and bottom.",
+    "question_level": "Level 3",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "mirroring", "butterfly", "stars"],
+
+    "question_theory": "Butterfly is formed by two triangles on the left and right. There is a gap of spaces in the middle that shrinks and grows.",
+    "question_concept": "Top half: increase stars on both sides, middle spaces shrink. Bottom half: reverse it.",
+    "question_explanation": "For each row in top half, print i stars, then 2*(N-i) spaces, then i stars. Bottom half is the reverse from i=N down to 1.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    // top half",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int j = 1; j <= i; j++) cout << \"*\";",
+        "        for (int s = 1; s <= 2 * (n - i); s++) cout << \" \";",
+        "        for (int j = 1; j <= i; j++) cout << \"*\";",
+        "        cout << endl;",
+        "    }",
+        "    // bottom half",
+        "    for (int i = n; i >= 1; i--) {",
+        "        for (int j = 1; j <= i; j++) cout << \"*\";",
+        "        for (int s = 1; s <= 2 * (n - i); s++) cout << \" \";",
+        "        for (int j = 1; j <= i; j++) cout << \"*\";",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int j = 1; j <= i; j++) printf(\"*\");",
+        "        for (int s = 1; s <= 2 * (n - i); s++) printf(\" \");",
+        "        for (int j = 1; j <= i; j++) printf(\"*\");",
+        "        printf(\"\\n\");",
+        "    }",
+        "    for (int i = n; i >= 1; i--) {",
+        "        for (int j = 1; j <= i; j++) printf(\"*\");",
+        "        for (int s = 1; s <= 2 * (n - i); s++) printf(\" \");",
+        "        for (int j = 1; j <= i; j++) printf(\"*\");",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "# top half",
+        "for i in range(1, n + 1):",
+        "    left = '*' * i",
+        "    spaces = ' ' * (2 * (n - i))",
+        "    right = '*' * i",
+        "    print(left + spaces + right)",
+        "",
+        "# bottom half",
+        "for i in range(n, 0, -1):",
+        "    left = '*' * i",
+        "    spaces = ' ' * (2 * (n - i))",
+        "    right = '*' * i",
+        "    print(left + spaces + right)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int j = 1; j <= i; j++) System.out.print(\"*\");",
+        "            for (int s = 1; s <= 2 * (n - i); s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= i; j++) System.out.print(\"*\");",
+        "            System.out.println();",
+        "        }",
+        "        for (int i = n; i >= 1; i--) {",
+        "            for (int j = 1; j <= i; j++) System.out.print(\"*\");",
+        "            for (int s = 1; s <= 2 * (n - i); s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= i; j++) System.out.print(\"*\");",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function butterfly(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let left = \"\";",
+        "    for (let j = 1; j <= i; j++) left += \"*\";",
+        "    let spaces = \"\";",
+        "    for (let s = 1; s <= 2 * (n - i); s++) spaces += \" \";",
+        "    let right = left;",
+        "    console.log(left + spaces + right);",
+        "  }",
+        "  for (let i = n; i >= 1; i--) {",
+        "    let left = \"\";",
+        "    for (let j = 1; j <= i; j++) left += \"*\";",
+        "    let spaces = \"\";",
+        "    for (let s = 1; s <= 2 * (n - i); s++) spaces += \" \";",
+        "    let right = left;",
+        "    console.log(left + spaces + right);",
+        "  }",
+        "}",
+        "",
+        "// butterfly(4);"
+      ]
+    },
+
+    "solution_explanation": "Think of it as two right triangles that move away and then come back together. Mastering this pattern helps with many advanced ones.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "*    *\n**  **\n******\n******\n**  **\n*    *",
+        "explanation": "Stars grow and inner spaces shrink in top half, then reverse in bottom half."
+      }
+    ],
+    "dry_run_explanation": "For N=3, top i=1: 1 star + 4 spaces + 1 star; i=2: 2 stars + 2 spaces + 2 stars; i=3: 3 stars + 0 spaces + 3 stars. Bottom half mirrors this."
+  },
+
+  {
+    "question_title": "Hollow Diamond Star Pattern",
+    "question_description": "Given N, print a hollow diamond of stars using 2*N - 1 rows. Only the border of the diamond is made of stars.",
+    "question_level": "Level 3",
+    "question_category": "Pattern Printing",
+    "question_tags": ["loops", "hollow", "diamond", "stars"],
+
+    "question_theory": "This combines diamond and hollow concepts. You must handle both spaces and inner hollow area.",
+    "question_concept": "Like solid diamond, but in each row only the first and last star positions are printed (except the middle single star rows).",
+    "question_explanation": "For top half, calculate positions between stars and print star only when j==1 or j==last position. For bottom half do the same in reverse.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "",
+        "    // upper half",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s <= n - i; s++) cout << \" \";",
+        "        for (int j = 1; j <= 2 * i - 1; j++) {",
+        "            if (j == 1 || j == 2 * i - 1)",
+        "                cout << \"*\";",
+        "            else",
+        "                cout << \" \";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    // lower half",
+        "    for (int i = n - 1; i >= 1; i--) {",
+        "        for (int s = 1; s <= n - i; s++) cout << \" \";",
+        "        for (int j = 1; j <= 2 * i - 1; j++) {",
+        "            if (j == 1 || j == 2 * i - 1)",
+        "                cout << \"*\";",
+        "            else",
+        "                cout << \" \";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s <= n - i; s++) printf(\" \");",
+        "        for (int j = 1; j <= 2 * i - 1; j++) {",
+        "            if (j == 1 || j == 2 * i - 1)",
+        "                printf(\"*\");",
+        "            else",
+        "                printf(\" \");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    for (int i = n - 1; i >= 1; i--) {",
+        "        for (int s = 1; s <= n - i; s++) printf(\" \");",
+        "        for (int j = 1; j <= 2 * i - 1; j++) {",
+        "            if (j == 1 || j == 2 * i - 1)",
+        "                printf(\"*\");",
+        "            else",
+        "                printf(\" \");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "# upper half",
+        "for i in range(1, n + 1):",
+        "    line = ' ' * (n - i)",
+        "    for j in range(1, 2 * i):",
+        "        if j == 1 or j == 2 * i - 1:",
+        "            line += '*'",
+        "        else:",
+        "            line += ' '",
+        "    print(line)",
+        "",
+        "# lower half",
+        "for i in range(n - 1, 0, -1):",
+        "    line = ' ' * (n - i)",
+        "    for j in range(1, 2 * i):",
+        "        if j == 1 or j == 2 * i - 1:",
+        "            line += '*'",
+        "        else:",
+        "            line += ' '",
+        "    print(line)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int s = 1; s <= n - i; s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= 2 * i - 1; j++) {",
+        "                if (j == 1 || j == 2 * i - 1)",
+        "                    System.out.print(\"*\");",
+        "                else",
+        "                    System.out.print(\" \");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "        for (int i = n - 1; i >= 1; i--) {",
+        "            for (int s = 1; s <= n - i; s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= 2 * i - 1; j++) {",
+        "                if (j == 1 || j == 2 * i - 1)",
+        "                    System.out.print(\"*\");",
+        "                else",
+        "                    System.out.print(\" \");",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function hollowDiamond(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let line = \"\";",
+        "    for (let s = 1; s <= n - i; s++) line += \" \";",
+        "    for (let j = 1; j <= 2 * i - 1; j++) {",
+        "      if (j === 1 || j === 2 * i - 1) line += \"*\";",
+        "      else line += \" \";",
+        "    }",
+        "    console.log(line);",
+        "  }",
+        "  for (let i = n - 1; i >= 1; i--) {",
+        "    let line = \"\";",
+        "    for (let s = 1; s <= n - i; s++) line += \" \";",
+        "    for (let j = 1; j <= 2 * i - 1; j++) {",
+        "      if (j === 1 || j === 2 * i - 1) line += \"*\";",
+        "      else line += \" \";",
+        "    }",
+        "    console.log(line);",
+        "  }",
+        "}",
+        "",
+        "// hollowDiamond(4);"
+      ]
+    },
+
+    "solution_explanation": "Solid diamond logic + hollow border logic = hollow diamond. Only first and last star positions are printed in each row.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "  *\n * *\n*   *\n * *\n  *",
+        "explanation": "Borders of the diamond are stars; inside is hollow space."
+      }
+    ],
+    "dry_run_explanation": "For N=3, i=2 (upper half): spaces=1; positions j=1..3. j=1 and 3 are borders → stars; j=2 is inside → space."
+  },
+
+  {
+    "question_title": "Number Pyramid Pattern",
+    "question_description": "Given N, print a pyramid where each row i contains the number i repeated in a centered pyramid form.",
+    "question_level": "Level 2",
+    "question_category": "Pattern Printing",
+    "question_tags": ["numbers", "pyramid", "loops"],
+
+    "question_theory": "Same shape as star pyramid but with numbers instead of stars. Good for linking row number with value printed.",
+    "question_concept": "Replace '*' with the current row number i while keeping the same space logic.",
+    "question_explanation": "Use spaces for centering and repeat the row number (2*i-1) times for each row.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s <= n - i; s++) cout << \" \";",
+        "        for (int j = 1; j <= 2 * i - 1; j++) cout << i;",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int s = 1; s <= n - i; s++) printf(\" \");",
+        "        for (int j = 1; j <= 2 * i - 1; j++) printf(\"%d\", i);",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "for i in range(1, n + 1):",
+        "    print(' ' * (n - i) + str(i) * (2 * i - 1))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int s = 1; s <= n - i; s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= 2 * i - 1; j++) System.out.print(i);",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function numberPyramid(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let spaces = \"\";",
+        "    for (let s = 1; s <= n - i; s++) spaces += \" \";",
+        "    let nums = \"\";",
+        "    for (let j = 1; j <= 2 * i - 1; j++) nums += String(i);",
+        "    console.log(spaces + nums);",
+        "  }",
+        "}",
+        "",
+        "// numberPyramid(4);"
+      ]
+    },
+
+    "solution_explanation": "Notice how we reuse the logic from star pyramid and simply change the character printed. Reusing logic is key in programming.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "  1\n 222\n33333",
+        "explanation": "Row1 has one '1', row2 has three '2's, row3 has five '3's."
+      }
+    ],
+    "dry_run_explanation": "For N=3, i=2: spaces=1; numbers printed=2,2,2 → ' 222'."
+  },
+
+  {
+    "question_title": "Floyd's Triangle Pattern",
+    "question_description": "Given N, print Floyd's triangle with N rows. Start from 1 and keep increasing numbers row by row.",
+    "question_level": "Level 2",
+    "question_category": "Pattern Printing",
+    "question_tags": ["numbers", "triangle", "increment"],
+
+    "question_theory": "Floyd's triangle is a famous number pattern where numbers continue from previous rows. It introduces the idea of maintaining a running counter.",
+    "question_concept": "Use a variable 'num' starting at 1, print it and increment after every print.",
+    "question_explanation": "Outer loop decides number of rows. Inner loop decides numbers per row. 'num' remembers where we left off.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "    int num = 1;",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int j = 1; j <= i; j++) {",
+        "            cout << num << \" \";",
+        "            num++;",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "    int num = 1;",
+        "    for (int i = 1; i <= n; i++) {",
+        "        for (int j = 1; j <= i; j++) {",
+        "            printf(\"%d \", num);",
+        "            num++;",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "num = 1",
+        "",
+        "for i in range(1, n + 1):",
+        "    for j in range(1, i + 1):",
+        "        print(num, end=' ')",
+        "        num += 1",
+        "    print()"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int num = 1;",
+        "        for (int i = 1; i <= n; i++) {",
+        "            for (int j = 1; j <= i; j++) {",
+        "                System.out.print(num + \" \");",
+        "                num++;",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function floydTriangle(n) {",
+        "  let num = 1;",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let row = \"\";",
+        "    for (let j = 1; j <= i; j++) {",
+        "      row += num + \" \";",
+        "      num++;",
+        "    }",
+        "    console.log(row);",
+        "  }",
+        "}",
+        "",
+        "// floydTriangle(4);"
+      ]
+    },
+
+    "solution_explanation": "This pattern introduces a new idea: the inner loop does not reset the printed value back to 1. Instead, we use a variable that keeps increasing across all rows.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "4",
+        "output": "1\n2 3\n4 5 6\n7 8 9 10",
+        "explanation": "Numbers continue in sequence across rows."
+      }
+    ],
+    "dry_run_explanation": "For N=3: num starts at 1. Row1 prints 1. Row2 prints 2 and 3. Row3 prints 4,5,6. num is always incremented by one."
+  },
+
+  {
+    "question_title": "Alphabet Pyramid Pattern",
+    "question_description": "Given N (1 to 26), print a pyramid where row i uses the ith uppercase alphabet letter.",
+    "question_level": "Level 2",
+    "question_category": "Pattern Printing",
+    "question_tags": ["alphabets", "pyramid", "loops"],
+
+    "question_theory": "Similar to number pyramid, but we convert row number to alphabet using ASCII or character operations.",
+    "question_concept": "Character for row i is 'A' + i - 1. Use same space and repetition logic as number pyramid.",
+    "question_explanation": "Calculate the letter for the row once, then print it multiple times centered as a pyramid.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "    for (int i = 1; i <= n; i++) {",
+        "        char ch = 'A' + i - 1;",
+        "        for (int s = 1; s <= n - i; s++) cout << \" \";",
+        "        for (int j = 1; j <= 2 * i - 1; j++) cout << ch;",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "    for (int i = 1; i <= n; i++) {",
+        "        char ch = 'A' + i - 1;",
+        "        for (int s = 1; s <= n - i; s++) printf(\" \");",
+        "        for (int j = 1; j <= 2 * i - 1; j++) printf(\"%c\", ch);",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "for i in range(1, n + 1):",
+        "    ch = chr(ord('A') + i - 1)",
+        "    print(' ' * (n - i) + ch * (2 * i - 1))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        for (int i = 1; i <= n; i++) {",
+        "            char ch = (char)('A' + i - 1);",
+        "            for (int s = 1; s <= n - i; s++) System.out.print(\" \");",
+        "            for (int j = 1; j <= 2 * i - 1; j++) System.out.print(ch);",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function alphabetPyramid(n) {",
+        "  for (let i = 1; i <= n; i++) {",
+        "    let ch = String.fromCharCode('A'.charCodeAt(0) + i - 1);",
+        "    let spaces = \"\";",
+        "    for (let s = 1; s <= n - i; s++) spaces += \" \";",
+        "    let letters = \"\";",
+        "    for (let j = 1; j <= 2 * i - 1; j++) letters += ch;",
+        "    console.log(spaces + letters);",
+        "  }",
+        "}",
+        "",
+        "// alphabetPyramid(4);"
+      ]
+    },
+
+    "solution_explanation": "You learn to work with characters and ASCII. Once you know how to get 'A', 'B', 'C' from numbers, you can reuse all your pyramid pattern knowledge.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3",
+        "output": "  A\n BBB\nCCCCC",
+        "explanation": "Row1 uses A, row2 uses B, row3 uses C; printed in pyramid style."
+      }
+    ],
+    "dry_run_explanation": "For N=3, i=2 → ch='A'+1='B'; spaces=1; letters printed=3 times → ' BBB'."
+  },
+
+  {
+    "question_title": "Pascal's Triangle Pattern",
+    "question_description": "Given N, print N rows of Pascal's Triangle. Each number is the sum of the two numbers directly above it.",
+    "question_level": "Level 3",
+    "question_category": "Pattern Printing",
+    "question_tags": ["numbers", "math", "combinatorics", "triangle"],
+
+    "question_theory": "Pascal's Triangle is a famous mathematical pattern where each value is a binomial coefficient (nCk). It’s useful in combinatorics and probability. Each row starts and ends with 1, and every inner value is the sum of the two values above it.",
+    "question_concept": "You can generate each row using the formula for nCk or by using the relation: next_value = current_value * (row_index - column_index) / (column_index + 1).",
+    "question_explanation": "For row i (0-based), there are i+1 values. Start val = 1 and print it. For each next position in the row, update val using the formula and print it. Repeat for all rows up to N.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n; // number of rows",
+        "",
+        "    for (int i = 0; i < n; i++) {",
+        "        int val = 1; // first value in each row is 1 (nC0)",
+        "        // optional spaces for centering",
+        "        for (int s = 0; s < n - i - 1; s++) cout << \" \";",
+        "",
+        "        for (int j = 0; j <= i; j++) {",
+        "            cout << val << \" \";",
+        "            // compute next binomial coefficient",
+        "            val = val * (i - j) / (j + 1);",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n); // number of rows",
+        "",
+        "    for (int i = 0; i < n; i++) {",
+        "        int val = 1;",
+        "        for (int s = 0; s < n - i - 1; s++) printf(\" \");",
+        "        for (int j = 0; j <= i; j++) {",
+        "            printf(\"%d \", val);",
+        "            val = val * (i - j) / (j + 1);",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())  # number of rows",
+        "",
+        "for i in range(n):",
+        "    val = 1  # first value",
+        "    # optional spaces for centering",
+        "    print(' ' * (n - i - 1), end='')",
+        "    for j in range(i + 1):",
+        "        print(val, end=' ')",
+        "        val = val * (i - j) // (j + 1)",
+        "    print()"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt(); // number of rows",
+        "",
+        "        for (int i = 0; i < n; i++) {",
+        "            int val = 1;",
+        "            for (int s = 0; s < n - i - 1; s++) System.out.print(\" \");",
+        "            for (int j = 0; j <= i; j++) {",
+        "                System.out.print(val + \" \");",
+        "                val = val * (i - j) / (j + 1);",
+        "            }",
+        "            System.out.println();",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function pascalTriangle(n) {",
+        "  for (let i = 0; i < n; i++) {",
+        "    let val = 1;",
+        "    let line = \"\";",
+        "    for (let s = 0; s < n - i - 1; s++) line += \" \";",
+        "    for (let j = 0; j <= i; j++) {",
+        "      line += val + \" \";",
+        "      val = (val * (i - j)) / (j + 1);",
+        "    }",
+        "    console.log(line);",
+        "  }",
+        "}",
+        "",
+        "// pascalTriangle(5);"
+      ]
+    },
+
+    "solution_explanation": "We avoid computing factorials directly. Instead, we use a running value for each row and update it using the binomial coefficient relation. This is more efficient and avoids overflow for small N.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "4",
+        "output": "   1\n  1 1\n 1 2 1\n1 3 3 1",
+        "explanation": "Each inner number is the sum of the two numbers above it: 2 = 1+1, 3 = 1+2, etc."
+      }
+    ],
+    "dry_run_explanation": "For N=4, row i=2 (0-based): val starts as 1 → prints 1; update: val = 1 * (2-0)/(0+1) = 2 → prints 2; update: val = 2 * (2-1)/(1+1) = 1 → prints 1. Row becomes '1 2 1'."
+  },
+
+  {
+    "question_title": "Zig-Zag Star Pattern (3 Rows)",
+    "question_description": "Given N, print stars in a 3-row zig-zag pattern over N columns.",
+    "question_level": "Level 3",
+    "question_category": "Pattern Printing",
+    "question_tags": ["zigzag", "rows", "columns", "math-condition"],
+
+    "question_theory": "Zig-zag patterns use a mathematical condition on row and column indices. For the classic 3-row zig-zag, stars appear in a wave-like pattern across columns.",
+    "question_concept": "For 3 rows (0,1,2), a star appears at (i,j) if (i + j) % 4 == 0 or (i == 1 and j % 2 == 0). This creates a repeating zig-zag pattern.",
+    "question_explanation": "We fix row count as 3 and loop columns from 0 to N-1. For each cell (i,j), check the zig-zag condition. If it's true, print '*', otherwise print space.",
+
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n; // number of columns",
+        "",
+        "    for (int i = 0; i < 3; i++) {           // fixed 3 rows",
+        "        for (int j = 0; j < n; j++) {       // columns",
+        "            if ((i + j) % 4 == 0 || (i == 1 && j % 2 == 0))",
+        "                cout << \"*\";",
+        "            else",
+        "                cout << \" \";",
+        "        }",
+        "        cout << endl;",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "c": [
+        "#include <stdio.h>",
+        "",
+        "int main() {",
+        "    int n;",
+        "    scanf(\"%d\", &n);",
+        "",
+        "    for (int i = 0; i < 3; i++) {",
+        "        for (int j = 0; j < n; j++) {",
+        "            if ((i + j) % 4 == 0 || (i == 1 && j % 2 == 0))",
+        "                printf(\"*\");",
+        "            else",
+        "                printf(\" \");",
+        "        }",
+        "        printf(\"\\n\");",
+        "    }",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())  # number of columns",
+        "",
+        "for i in range(3):",
+        "    line = ''",
+        "    for j in range(n):",
+        "        if (i + j) % 4 == 0 or (i == 1 and j % 2 == 0):",
+        "            line += '*'",
+        "        else:",
+        "            line += ' '",
+        "    print(line)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt(); // number of columns",
+        "",
+        "        for (int i = 0; i < 3; i++) {",
+        "            StringBuilder line = new StringBuilder();",
+        "            for (int j = 0; j < n; j++) {",
+        "                if ((i + j) % 4 == 0 || (i == 1 && j % 2 == 0))",
+        "                    line.append('*');",
+        "                else",
+        "                    line.append(' ');",
+        "            }",
+        "            System.out.println(line.toString());",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "javascript": [
+        "function zigZag(n) {",
+        "  for (let i = 0; i < 3; i++) {",
+        "    let line = \"\";",
+        "    for (let j = 0; j < n; j++) {",
+        "      if ((i + j) % 4 === 0 || (i === 1 && j % 2 === 0)) line += \"*\";",
+        "      else line += \" \";",
+        "    }",
+        "    console.log(line);",
+        "  }",
+        "}",
+        "",
+        "// zigZag(9);"
+      ]
+    },
+
+    "solution_explanation": "Instead of manually drawing shapes row-by-row, we derive a mathematical condition that repeats every few columns. This is powerful for many pattern questions.",
+    "dummy_test_cases_explanation": [
+      {
+        "input": "9",
+        "output": "*   *   *\n  * * *  \n *   *   *",
+        "explanation": "Stars appear in a zig-zag shape across 3 rows. Exact spacing depends on fixed condition and N."
+      }
+    ],
+    "dry_run_explanation": "For n=7: on row 0, j=0,4 → (0+0)%4==0 and (0+4)%4==0 → stars; row1, j=2,6 → (1+2)%4==3 but (i==1 and j%2==0) → star; row2 mirrors row0 with shifted columns."
+  }
+]

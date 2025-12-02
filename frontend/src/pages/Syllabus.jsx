@@ -70,7 +70,7 @@ export default function Syllabus() {
 
   const menuItems = [
     { label: "Home", link: "/" },
-    { label: "Why", link: "#why" },
+    { label: "Why", link: "/#why" },
     { label: "Curriculum", link: "/curriculum" },
     { label: "How it Works", link: "#how-it-works" },
   ];

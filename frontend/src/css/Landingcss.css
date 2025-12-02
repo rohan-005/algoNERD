@@ -57,6 +57,7 @@ body {
   justify-content: center;
   border-radius: 50%;
   transition: background 0.3s;
+  overflow: hidden;
 }
 
 /* .nav-toggle-btn:hover {

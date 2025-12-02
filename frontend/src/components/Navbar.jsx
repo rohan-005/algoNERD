@@ -109,7 +109,7 @@ export default function StaggeredMenu({ items, socialItems }) {
                     variants={itemVariants}
                   >
                     <a
-                      href={social.link}
+                      onClick={()=>{social.link}}
                       target="_blank"
                       rel="noreferrer"
                       style={{
