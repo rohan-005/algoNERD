@@ -1,0 +1,760 @@
+[
+    {
+  "id": 701,
+  "category_id": 7,
+  "question_title": "Implement Stack Using Array",
+  "question_description": "Implement a stack data structure using an array with basic stack operations: push, pop, peek, and isEmpty.",
+  "question_level": "Level 1",
+  "question_category": "Stack",
+  "question_tags": ["stack", "array", "data-structure"],
+  "question_theory": [
+    "A stack is a linear data structure based on the LIFO (Last In First Out) principle.",
+    "The last inserted element is the first one to be removed.",
+    "Stack operations include push (insert), pop (remove), peek (view top element), and isEmpty.",
+    "We maintain an index variable `top` that tracks the last pushed element.",
+    "Stack overflow occurs when pushing into a full stack, underflow occurs when popping from an empty stack."
+  ],
+  "question_concept": [
+    "Initialize top = -1.",
+    "To push: check if stack is full, else increment top and store value.",
+    "To pop: check if stack is empty, else return value at top and decrement top.",
+    "To peek: return the element at top without removing it.",
+    "To check empty: return true if top == -1."
+  ],
+  "question_explanation": [
+    "A stack using array provides O(1) time complexity for all operations.",
+    "No need to allocate or free memory dynamically every time.",
+    "Only a fixed-size constraint exists based on array capacity."
+  ],
+  "solution": {
+    "cpp": [
+      "#include <iostream>",
+      "using namespace std;",
+      "",
+      "#define MAX 1000",
+      "",
+      "class Stack {",
+      "    int top;",
+      "public:",
+      "    int arr[MAX];",
+      "",
+      "    Stack() { top = -1; }",
+      "",
+      "    bool push(int x) {",
+      "        if (top >= MAX - 1) return false;",
+      "        arr[++top] = x;",
+      "        return true;",
+      "    }",
+      "",
+      "    int pop() {",
+      "        if (top < 0) return -1;",
+      "        return arr[top--];",
+      "    }",
+      "",
+      "    int peek() {",
+      "        if (top < 0) return -1;",
+      "        return arr[top];",
+      "    }",
+      "",
+      "    bool isEmpty() { return top < 0; }",
+      "};",
+      "",
+      "int main() {",
+      "    Stack s;",
+      "    s.push(5);",
+      "    s.push(10);",
+      "    cout << s.pop() << endl;",
+      "    cout << s.peek() << endl;",
+      "    return 0;",
+      "}"
+    ],
+    "python": [
+      "class Stack:",
+      "    def __init__(self, size=1000):",
+      "        self.stack = [0] * size",
+      "        self.top = -1",
+      "",
+      "    def push(self, x):",
+      "        if self.top == len(self.stack) - 1:",
+      "            return False",
+      "        self.top += 1",
+      "        self.stack[self.top] = x",
+      "        return True",
+      "",
+      "    def pop(self):",
+      "        if self.top == -1:",
+      "            return -1",
+      "        val = self.stack[self.top]",
+      "        self.top -= 1",
+      "        return val",
+      "",
+      "    def peek(self):",
+      "        if self.top == -1:",
+      "            return -1",
+      "        return self.stack[self.top]",
+      "",
+      "    def isEmpty(self):",
+      "        return self.top == -1"
+    ],
+    "java": [
+      "import java.util.*;",
+      "",
+      "class StackArray {",
+      "    int MAX = 1000;",
+      "    int top;",
+      "    int arr[] = new int[MAX];",
+      "",
+      "    StackArray() { top = -1; }",
+      "",
+      "    boolean push(int x) {",
+      "        if (top >= MAX - 1) return false;",
+      "        arr[++top] = x;",
+      "        return true;",
+      "    }",
+      "",
+      "    int pop() {",
+      "        if (top < 0) return -1;",
+      "        return arr[top--];",
+      "    }",
+      "",
+      "    int peek() {",
+      "        if (top < 0) return -1;",
+      "        return arr[top];",
+      "    }",
+      "",
+      "    boolean isEmpty() {",
+      "        return top < 0;",
+      "    }",
+      "}",
+      "",
+      "public class Main {",
+      "    public static void main(String[] args) {",
+      "        StackArray s = new StackArray();",
+      "        s.push(5);",
+      "        s.push(10);",
+      "        System.out.println(s.pop());",
+      "        System.out.println(s.peek());",
+      "    }",
+      "}"
+    ]
+  },
+  "solution_explanation": [
+    "Stack operations happen at the top only.",
+    "No data shifting is needed, making it efficient.",
+    "Array-based stack gives O(1) performance for all operations."
+  ],
+  "dummy_test_cases_explanation": [
+    {
+      "input": "push 5, push 10, pop, peek",
+      "output": "pop -> 10 , peek -> 5",
+      "explanation": "LIFO order maintained."
+    }
+  ],
+  "tests_industry_standard": [
+    {
+      "input": "push 3, pop",
+      "expected_output": "3",
+      "explanation": "Single push then pop gives inserted element."
+    },
+    {
+      "input": "pop (empty stack)",
+      "expected_output": "-1",
+      "explanation": "Underflow condition check."
+    }
+  ],
+  "dry_run_explanation": [
+    "Initial: top = -1",
+    "push(5) → top = 0, arr[0] = 5",
+    "push(10) → top = 1, arr[1] = 10",
+    "pop() returns arr[1] = 10, top = 0"
+  ]
+},
+{
+  "id": 702,
+  "category_id": 7,
+  "question_title": "Next Greater Element",
+  "question_description": "For each element in the array, find the next greater element to its right. If there is no greater element, use -1.",
+  "question_level": "Level 2",
+  "question_category": "Stack",
+  "question_tags": ["stack", "monotonic-stack", "array"],
+  "question_theory": [
+    "The Next Greater Element (NGE) problem is efficiently solved using a monotonic decreasing stack.",
+    "We traverse the array from right to left.",
+    "For each element, we pop all smaller elements from the stack as they cannot be the next greater.",
+    "If stack becomes empty, no greater element exists so return -1.",
+    "Otherwise, the top of the stack is the next greater element.",
+    "Finally push the current element into the stack."
+  ],
+  "question_concept": [
+    "Start iterating from the last element.",
+    "Maintain a stack that stores potential next greater elements.",
+    "Pop elements until you find a greater one.",
+    "Record answer for current element.",
+    "Push the current element into stack.",
+    "This ensures O(N) total complexity due to each element being pushed and popped at most once."
+  ],
+  "question_explanation": [
+    "Using stack ensures linear time complexity as compared to naive O(N²) approach.",
+    "We avoid checking all future elements one by one.",
+    "Monotonic nature ensures efficient processing."
+  ],
+  "solution": {
+    "cpp": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "",
+      "int main() {",
+      "    int n;",
+      "    cin >> n;",
+      "    vector<int> arr(n), result(n);",
+      "    for(int i = 0; i < n; i++) cin >> arr[i];",
+      "",
+      "    stack<int> st;",
+      "",
+      "    for(int i = n - 1; i >= 0; i--) {",
+      "        while(!st.empty() && st.top() <= arr[i])",
+      "            st.pop();",
+      "",
+      "        result[i] = st.empty() ? -1 : st.top();",
+      "",
+      "        st.push(arr[i]);",
+      "    }",
+      "",
+      "    for(int x : result) cout << x << \" \";",
+      "    return 0;",
+      "}"
+    ],
+    "python": [
+      "n = int(input())",
+      "arr = list(map(int, input().split()))",
+      "",
+      "result = [-1] * n",
+      "stack = []",
+      "",
+      "for i in range(n-1, -1, -1):",
+      "    while stack and stack[-1] <= arr[i]:",
+      "        stack.pop()",
+      "    result[i] = stack[-1] if stack else -1",
+      "    stack.append(arr[i])",
+      "",
+      "print(*result)"
+    ],
+    "java": [
+      "import java.util.*;",
+      "",
+      "public class Main {",
+      "    public static void main(String[] args) {",
+      "        Scanner sc = new Scanner(System.in);",
+      "        int n = sc.nextInt();",
+      "        int[] arr = new int[n];",
+      "        for(int i = 0; i < n; i++) arr[i] = sc.nextInt();",
+      "",
+      "        int[] result = new int[n];",
+      "        Stack<Integer> st = new Stack<>();",
+      "",
+      "        for(int i = n-1; i >= 0; i--) {",
+      "            while(!st.isEmpty() && st.peek() <= arr[i])",
+      "                st.pop();",
+      "",
+      "            result[i] = st.isEmpty() ? -1 : st.peek();",
+      "",
+      "            st.push(arr[i]);",
+      "        }",
+      "",
+      "        for(int x : result) System.out.print(x + \" \");",
+      "    }",
+      "}"
+    ]
+  },
+  "solution_explanation": [
+    "Stack efficiently keeps track of elements still waiting for a greater value.",
+    "Each element is processed once → O(N) time.",
+    "Space complexity: O(N) for stack and result array."
+  ],
+  "dummy_test_cases_explanation": [
+    {
+      "input": "4\n4 5 2 25",
+      "output": "5 25 25 -1",
+      "explanation": "For each element, scan right to find the next bigger one."
+    }
+  ],
+  "tests_industry_standard": [
+    {
+      "input": "6\n1 3 2 4 5 0",
+      "expected_output": "3 4 4 5 -1 -1",
+      "explanation": "Handles multiple increases and drops."
+    },
+    {
+      "input": "5\n9 8 7 3 2",
+      "expected_output": "-1 -1 -1 -1 -1",
+      "explanation": "No element has a greater one to its right."
+    }
+  ],
+  "dry_run_explanation": [
+    "arr = [4, 5, 2, 25]",
+    "Step (i = 3): No element right → -1",
+    "Step (i = 2): Next greater is 25",
+    "Step (i = 1): Next greater is 25",
+    "Step (i = 0): Next greater is 5"
+  ]
+},
+{
+  "id": 703,
+  "category_id": 7,
+  "question_title": "Min Stack",
+  "question_description": "Design a stack that supports push, pop, peek, and retrieving the minimum element in constant time.",
+  "question_level": "Level 2",
+  "question_category": "Stack",
+  "question_tags": ["stack", "min-stack", "design", "data-structure"],
+  "question_theory": [
+    "A Min Stack is a special stack that supports getMin() in O(1) time.",
+    "A normal stack cannot retrieve the minimum element efficiently without scanning all elements.",
+    "To solve this, we maintain two stacks:",
+    " - Main Stack → Stores actual elements",
+    " - Min Stack → Stores minimum values up to current level",
+    "Whenever a smaller or equal value is pushed into the main stack, we also push it into the min stack.",
+    "Whenever we pop, if the popped value is equal to the top of the min stack, we pop from min stack as well."
+  ],
+  "question_concept": [
+    "Use two stacks named s and mn.",
+    "Push operation:",
+    " - Push into s",
+    " - If mn is empty or new value <= mn.top(), also push into mn",
+    "Pop operation:",
+    " - Pop from s",
+    " - If popped value equals mn.top(), pop mn too",
+    "GetMin operation:",
+    " - Return mn.top()"
+  ],
+  "question_explanation": [
+    "All operations take only O(1) time.",
+    "Min Stack memory grows only when new minimums occur."
+  ],
+  "solution": {
+    "cpp": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "",
+      "class MinStack {",
+      "    stack<int> s, mn;",
+      "public:",
+      "    void push(int x) {",
+      "        s.push(x);",
+      "        if(mn.empty() || x <= mn.top())",
+      "            mn.push(x);",
+      "    }",
+      "",
+      "    void pop() {",
+      "        if(s.top() == mn.top())",
+      "            mn.pop();",
+      "        s.pop();",
+      "    }",
+      "",
+      "    int top() {",
+      "        return s.top();",
+      "    }",
+      "",
+      "    int getMin() {",
+      "        return mn.top();",
+      "    }",
+      "};",
+      "",
+      "int main(){",
+      "    MinStack s;",
+      "    s.push(3);",
+      "    s.push(5);",
+      "    cout << s.getMin() << endl;",
+      "    s.push(2);",
+      "    cout << s.getMin() << endl;",
+      "    return 0;",
+      "}"
+    ],
+    "python": [
+      "class MinStack:",
+      "    def __init__(self):",
+      "        self.s = []",
+      "        self.mn = []",
+      "",
+      "    def push(self, x):",
+      "        self.s.append(x)",
+      "        if not self.mn or x <= self.mn[-1]:",
+      "            self.mn.append(x)",
+      "",
+      "    def pop(self):",
+      "        if self.s and self.s[-1] == self.mn[-1]:",
+      "            self.mn.pop()",
+      "        self.s.pop()",
+      "",
+      "    def top(self):",
+      "        return self.s[-1]",
+      "",
+      "    def getMin(self):",
+      "        return self.mn[-1]"
+    ],
+    "java": [
+      "import java.util.*;",
+      "",
+      "class MinStack {",
+      "    Stack<Integer> s = new Stack<>();",
+      "    Stack<Integer> mn = new Stack<>();",
+      "",
+      "    void push(int x) {",
+      "        s.push(x);",
+      "        if(mn.isEmpty() || x <= mn.peek())",
+      "            mn.push(x);",
+      "    }",
+      "",
+      "    void pop() {",
+      "        if(s.peek().equals(mn.peek()))",
+      "            mn.pop();",
+      "        s.pop();",
+      "    }",
+      "",
+      "    int top() { return s.peek(); }",
+      "",
+      "    int getMin() { return mn.peek(); }",
+      "}",
+      "",
+      "public class Main {",
+      "    public static void main(String[] args) {",
+      "        MinStack s = new MinStack();",
+      "        s.push(3);",
+      "        s.push(5);",
+      "        System.out.println(s.getMin());",
+      "        s.push(2);",
+      "        System.out.println(s.getMin());",
+      "    }",
+      "}"
+    ]
+  },
+  "solution_explanation": [
+    "Two stacks ensure minimum tracking efficiently.",
+    "Even if many same minimums exist, duplicates are stored in min stack.",
+    "Time Complexity: O(1) for all operations",
+    "Space Complexity: O(N) due to extra stack"
+  ],
+  "dummy_test_cases_explanation": [
+    {
+      "input": "push 3, push 5, getMin",
+      "output": "3",
+      "explanation": "Initial minimum"
+    }
+  ],
+  "tests_industry_standard": [
+    {
+      "input": "push 4, push 4, push 2, pop, getMin",
+      "expected_output": "4",
+      "explanation": "Handles duplicate minimum values correctly"
+    },
+    {
+      "input": "push 8, push 6, push 9, getMin, pop, getMin",
+      "expected_output": "6 6",
+      "explanation": "Minimum remains unchanged after pop"
+    }
+  ],
+  "dry_run_explanation": [
+    "Stack operations:",
+    "push(3) → mn = [3]",
+    "push(5) → mn = [3]",
+    "push(2) → mn = [3,2]",
+    "getMin() = 2",
+    "pop() removes 2 → mn=[3]",
+    "getMin() = 3"
+  ]
+},
+{
+  "id": 704,
+  "category_id": 7,
+  "question_title": "Evaluate Postfix Expression",
+  "question_description": "Evaluate a postfix expression using a stack and return the final result.",
+  "question_level": "Level 2",
+  "question_category": "Stack",
+  "question_tags": ["stack", "expression-evaluation", "postfix"],
+  "question_theory": [
+    "A postfix expression (Reverse Polish Notation) is evaluated from left to right.",
+    "When an operand is encountered → push onto stack.",
+    "When an operator is encountered:",
+    "  - Pop the top two elements",
+    "  - Apply the operator",
+    "  - Push the result back into the stack",
+    "The final value in the stack is the result of the expression."
+  ],
+  "question_concept": [
+    "Operators appear AFTER operands.",
+    "No need for parentheses or operator precedence rules.",
+    "Stack simplifies execution flow."
+  ],
+  "question_explanation": [
+    "Each operator processes two recently pushed operands, maintaining correctness through LIFO.",
+    "Stack ensures O(n) complexity in one pass."
+  ],
+  "solution": {
+    "cpp": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "",
+      "int main() {",
+      "    string s;",
+      "    cin >> s;",
+      "    stack<int> st;",
+      "",
+      "    for(char c : s) {",
+      "        if(isdigit(c)) {",
+      "            st.push(c - '0');",
+      "        } else {",
+      "            int b = st.top(); st.pop();",
+      "            int a = st.top(); st.pop();",
+      "",
+      "            switch(c) {",
+      "                case '+': st.push(a + b); break;",
+      "                case '-': st.push(a - b); break;",
+      "                case '*': st.push(a * b); break;",
+      "                case '/': st.push(a / b); break;",
+      "            }",
+      "        }",
+      "    }",
+      "",
+      "    cout << st.top();",
+      "    return 0;",
+      "}"
+    ],
+    "python": [
+      "expression = input().strip()",
+      "stack = []",
+      "",
+      "for c in expression:",
+      "    if c.isdigit():",
+      "        stack.append(int(c))",
+      "    else:",
+      "        b = stack.pop()",
+      "        a = stack.pop()",
+      "        if c == '+': stack.append(a + b)",
+      "        elif c == '-': stack.append(a - b)",
+      "        elif c == '*': stack.append(a * b)",
+      "        elif c == '/': stack.append(a // b)",
+      "",
+      "print(stack[-1])"
+    ],
+    "java": [
+      "import java.util.*;",
+      "",
+      "public class Main {",
+      "    public static void main(String[] args) {",
+      "        Scanner sc = new Scanner(System.in);",
+      "        String s = sc.next();",
+      "        Stack<Integer> st = new Stack<>();",
+      "",
+      "        for(char c : s.toCharArray()) {",
+      "            if(Character.isDigit(c)) {",
+      "                st.push(c - '0');",
+      "            } else {",
+      "                int b = st.pop();",
+      "                int a = st.pop();",
+      "",
+      "                switch(c) {",
+      "                    case '+': st.push(a + b); break;",
+      "                    case '-': st.push(a - b); break;",
+      "                    case '*': st.push(a * b); break;",
+      "                    case '/': st.push(a / b); break;",
+      "                }",
+      "            }",
+      "        }",
+      "",
+      "        System.out.print(st.peek());",
+      "    }",
+      "}"
+    ]
+  },
+  "solution_explanation": [
+    "Stack evaluates operators in correct order without reordering.",
+    "Final answer remains at top of stack.",
+    "Handles +, -, *, / operations efficiently."
+  ],
+  "dummy_test_cases_explanation": [
+    {
+      "input": "231*+9-",
+      "output": "-4",
+      "explanation": "Step: 2 + (3*1) = 5; 5 - 9 = -4"
+    }
+  ],
+  "tests_industry_standard": [
+    {
+      "input": "53+82-*",
+      "expected_output": "48",
+      "explanation": "(5 + 3) * (8 - 2) = 48"
+    },
+    {
+      "input": "92/3-",
+      "expected_output": "1",
+      "explanation": "(9 / 2) = 4 (integer division), 4 - 3 = 1"
+    }
+  ],
+  "dry_run_explanation": [
+    "Expression: 5 3 + 8 2 - *",
+    "Push 5, Push 3 → operator + → push(8)",
+    "Push 8, Push 2 → operator - → push(6)",
+    "Operator * → 8 * 6 = 48 → final result"
+  ]
+},
+{
+  "id": 705,
+  "category_id": 7,
+  "question_title": "Balanced Parentheses",
+  "question_description": "Check whether a string containing parentheses, brackets, and braces is balanced using a stack.",
+  "question_level": "Level 1",
+  "question_category": "Stack",
+  "question_tags": ["stack", "string", "parentheses", "validation"],
+  "question_theory": [
+    "Balanced parentheses mean every opening bracket has a correct closing bracket in the correct order.",
+    "A stack helps match brackets due to LIFO nature.",
+    "When an opening bracket appears: push to stack.",
+    "When a closing bracket appears:",
+    "  - If stack is empty -> unbalanced.",
+    "  - If top of stack is not matching type -> unbalanced.",
+    "At the end, if stack is empty -> balanced, else unbalanced."
+  ],
+  "question_concept": [
+    "Allowed pairs: (), {}, [].",
+    "Push opening brackets into the stack.",
+    "For closing brackets, pop and validate the pair.",
+    "If at any point validation fails, the string is unbalanced.",
+    "At the end, if the stack is empty, the string is balanced."
+  ],
+  "question_explanation": [
+    "The stack always stores unmatched opening brackets.",
+    "When we see a closing bracket, we check if it matches the latest opening bracket.",
+    "If there is any mismatch or if brackets remain in the stack after processing, the string is not balanced."
+  ],
+  "solution": {
+    "cpp": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "",
+      "bool isValid(string s) {",
+      "    stack<char> st;",
+      "    for (char c : s) {",
+      "        if (c == '(' || c == '{' || c == '[') {",
+      "            st.push(c);",
+      "        } else {",
+      "            if (st.empty()) return false;",
+      "            char t = st.top();",
+      "            st.pop();",
+      "            if ((c == ')' && t != '(') ||",
+      "                (c == '}' && t != '{') ||",
+      "                (c == ']' && t != '[')) {",
+      "                return false;",
+      "            }",
+      "        }",
+      "    }",
+      "    return st.empty();",
+      "}",
+      "",
+      "int main() {",
+      "    string s;",
+      "    cin >> s;",
+      "    if (isValid(s)) {",
+      "        cout << \"YES\";",
+      "    } else {",
+      "        cout << \"NO\";",
+      "    }",
+      "    return 0;",
+      "}"
+    ],
+    "python": [
+      "s = input().strip()",
+      "stack = []",
+      "pairs = {')': '(', '}': '{', ']': '['}",
+      "",
+      "balanced = True",
+      "for c in s:",
+      "    if c in '([{':",
+      "        stack.append(c)",
+      "    else:",
+      "        if not stack or pairs.get(c) != stack.pop():",
+      "            balanced = False",
+      "            break",
+      "",
+      "if balanced and not stack:",
+      "    print(\"YES\")",
+      "else:",
+      "    print(\"NO\")"
+    ],
+    "java": [
+      "import java.util.*;",
+      "",
+      "public class Main {",
+      "    public static void main(String[] args) {",
+      "        Scanner sc = new Scanner(System.in);",
+      "        String s = sc.next();",
+      "        Stack<Character> st = new Stack<>();",
+      "",
+      "        for (char c : s.toCharArray()) {",
+      "            if (c == '(' || c == '{' || c == '[') {",
+      "                st.push(c);",
+      "            } else {",
+      "                if (st.isEmpty()) {",
+      "                    System.out.println(\"NO\");",
+      "                    return;",
+      "                }",
+      "                char t = st.pop();",
+      "                if ((c == ')' && t != '(') ||",
+      "                    (c == '}' && t != '{') ||",
+      "                    (c == ']' && t != '[')) {",
+      "                    System.out.println(\"NO\");",
+      "                    return;",
+      "                }",
+      "            }",
+      "        }",
+      "",
+      "        if (st.isEmpty()) {",
+      "            System.out.println(\"YES\");",
+      "        } else {",
+      "            System.out.println(\"NO\");",
+      "        }",
+      "    }",
+      "}"
+    ]
+  },
+  "solution_explanation": [
+    "The most recent unmatched opening bracket must match the current closing bracket, which is why a stack is ideal.",
+    "If a closing bracket appears when the stack is empty, it means there is no corresponding opening bracket.",
+    "If the stack is not empty at the end, there are unmatched opening brackets.",
+    "Thus, a string is balanced if and only if we never find a mismatch and the stack is empty at the end."
+  ],
+  "dummy_test_cases_explanation": [
+    {
+      "input": "{}()[]",
+      "output": "YES",
+      "explanation": "All types of brackets are present and correctly balanced without nesting."
+    }
+  ],
+  "tests_industry_standard": [
+    {
+      "input": "{[()]}",
+      "expected_output": "YES",
+      "explanation": "Every opening bracket has a matching closing bracket in correct order."
+    },
+    {
+      "input": "{[(])}",
+      "expected_output": "NO",
+      "explanation": "The order of brackets is incorrect: '(' is closed by ']' instead of ')'."
+    },
+    {
+      "input": "((()))]",
+      "expected_output": "NO",
+      "explanation": "There is an extra closing bracket without a matching opening bracket."
+    }
+  ],
+  "dry_run_explanation": [
+    "Consider s = \"{[()]}\":",
+    "Start with an empty stack.",
+    "Read '{' -> push '{' (stack: ['{']).",
+    "Read '[' -> push '[' (stack: ['{', '[']).",
+    "Read '(' -> push '(' (stack: ['{', '[', '(']).",
+    "Read ')' -> top is '(' -> valid pair -> pop '(' (stack: ['{', '[']).",
+    "Read ']' -> top is '[' -> valid pair -> pop '[' (stack: ['{']).",
+    "Read '}' -> top is '{' -> valid pair -> pop '{' (stack: []).",
+    "End of string and stack is empty -> string is balanced."
+  ]
+}
+]

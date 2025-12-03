@@ -1,0 +1,566 @@
+[
+  {
+    "id": 1001,
+    "category_id": 10,
+    "question_title": "Graph BFS Traversal",
+    "question_description": "Given a graph represented as an adjacency list and a starting node, perform Breadth-First Search (BFS) traversal and print the visiting order.",
+    "question_level": "Level 2",
+    "question_category": "Graph",
+    "question_tags": ["bfs", "graph", "traversal"],
+    "question_theory": [
+      "BFS visits nodes level by level from a given starting node.",
+      "It uses a Queue data structure to store nodes to explore next.",
+      "BFS guarantees minimum number of edges from the start node.",
+      "Useful in shortest path algorithms for unweighted graphs."
+    ],
+    "question_concept": [
+      "Take adjacency list and starting node as input.",
+      "Create a visited array to track visited nodes.",
+      "Push the starting node into queue and mark it visited.",
+      "Pop from queue, print node, push its unvisited neighbors."
+    ],
+    "question_explanation": [
+      "A queue is the key component for BFS traversal.",
+      "We process each node by exploring all its neighbors first.",
+      "Once a neighbor is visited, it should be marked immediately."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <bits/stdc++.h>",
+        "using namespace std;",
+        "int main() {",
+        "    int n, e, start;",
+        "    cin >> n >> e >> start;",
+        "    vector<vector<int>> adj(n);",
+        "    for(int i = 0; i < e; i++) {",
+        "        int u, v;",
+        "        cin >> u >> v;",
+        "        adj[u].push_back(v);",
+        "        adj[v].push_back(u);",
+        "    }",
+        "    vector<int> vis(n, 0);",
+        "    queue<int> q;",
+        "    q.push(start);",
+        "    vis[start] = 1;",
+        "    while(!q.empty()) {",
+        "        int node = q.front(); q.pop();",
+        "        cout << node << \" \";",
+        "        for(int x : adj[node]) {",
+        "            if(!vis[x]) {",
+        "                vis[x] = 1;",
+        "                q.push(x);",
+        "            }",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "python": [
+        "from collections import deque",
+        "n, e, start = map(int, input().split())",
+        "adj = [[] for _ in range(n)]",
+        "for _ in range(e):",
+        "    u, v = map(int, input().split())",
+        "    adj[u].append(v)",
+        "    adj[v].append(u)",
+        "vis = [False] * n",
+        "q = deque([start])",
+        "vis[start] = True",
+        "while q:",
+        "    node = q.popleft()",
+        "    print(node, end=' ')",
+        "    for x in adj[node]:",
+        "        if not vis[x]:",
+        "            vis[x] = True",
+        "            q.append(x)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt(), e = sc.nextInt(), start = sc.nextInt();",
+        "        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();",
+        "        for(int i = 0; i < n; i++) adj.add(new ArrayList<>());",
+        "        for(int i = 0; i < e; i++) {",
+        "            int u = sc.nextInt(), v = sc.nextInt();",
+        "            adj.get(u).add(v);",
+        "            adj.get(v).add(u);",
+        "        }",
+        "        boolean[] vis = new boolean[n];",
+        "        Queue<Integer> q = new LinkedList<>();",
+        "        q.add(start); vis[start] = true;",
+        "        while(!q.isEmpty()) {",
+        "            int node = q.poll();",
+        "            System.out.print(node + \" \");",
+        "            for(int x : adj.get(node))",
+        "                if(!vis[x]) { vis[x] = true; q.add(x);} ",
+        "        }",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "BFS uses queue to maintain order.",
+      "Each vertex is visited exactly once: O(V + E).",
+      "Good for shortest path in unweighted graphs."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5 4 0\n0 1\n1 2\n0 3\n3 4",
+        "output": "0 1 3 2 4",
+        "explanation": "Nodes are visited level-wise from 0."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "1 0 0",
+        "expected_output": "0",
+        "explanation": "Single node graph."
+      }
+    ],
+    "dry_run_explanation": [
+      "Graph: 0–1, 1–2, 0–3, 3–4",
+      "Start = 0",
+      "Queue evolution: [0] → [1,3] → [3,2] → [2,4] → [4]",
+      "Output: 0 1 3 2 4"
+    ]
+  },
+
+  {
+    "id": 1002,
+    "category_id": 10,
+    "question_title": "Graph DFS Traversal",
+    "question_description": "Perform Depth-First Search (DFS) traversal on a graph using recursion from a given starting node.",
+    "question_level": "Level 2",
+    "question_category": "Graph",
+    "question_tags": ["dfs", "recursion", "graph"],
+    "question_theory": [
+      "DFS explores as deep as possible before backtracking.",
+      "Uses recursion or a stack to track stored states.",
+      "Useful for detecting cycles and connected components.",
+      "Works well for pathfinding where deeper exploration matters."
+    ],
+    "question_concept": [
+      "Start DFS on the starting node.",
+      "Mark node as visited before exploring neighbors.",
+      "Recursively visit each unvisited neighbor.",
+      "Backtracking ensures all nodes are covered."
+    ],
+    "question_explanation": [
+      "Recursive stack behaves like stack DS.",
+      "Each call attempts complete traversal from that node.",
+      "Graph must be tracked to prevent revisits."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <bits/stdc++.h>",
+        "using namespace std;",
+        "vector<int> vis;",
+        "vector<vector<int>> adj;",
+        "void dfs(int node){",
+        "    vis[node] = 1;",
+        "    cout << node << \" \";",
+        "    for(int x : adj[node])",
+        "        if(!vis[x]) dfs(x);",
+        "}",
+        "int main(){",
+        "    int n,e,start; cin>>n>>e>>start;",
+        "    adj.assign(n,{}); vis.assign(n,0);",
+        "    while(e--){int u,v;cin>>u>>v;adj[u].push_back(v);adj[v].push_back(u);} ",
+        "    dfs(start);",
+        "}"
+      ],
+      "python": [
+        "n,e,start = map(int,input().split())",
+        "adj=[[] for _ in range(n)]",
+        "for _ in range(e):",
+        "    u,v=map(int,input().split())",
+        "    adj[u].append(v); adj[v].append(u)",
+        "vis=[False]*n",
+        "def dfs(node):",
+        "    vis[node]=True",
+        "    print(node,end=' ')",
+        "    for x in adj[node]:",
+        "        if not vis[x]: dfs(x)",
+        "dfs(start)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "class Main {",
+        "    static boolean[] vis;",
+        "    static ArrayList<ArrayList<Integer>> adj;",
+        "    static void dfs(int node){",
+        "        vis[node] = true;",
+        "        System.out.print(node + \" \");",
+        "        for(int x: adj.get(node))",
+        "            if(!vis[x]) dfs(x);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int n=sc.nextInt(),e=sc.nextInt(),start=sc.nextInt();",
+        "        adj=new ArrayList<>();",
+        "        for(int i=0;i<n;i++) adj.add(new ArrayList<>());",
+        "        for(int i=0;i<e;i++){int u=sc.nextInt(),v=sc.nextInt();adj.get(u).add(v);adj.get(v).add(u);} ",
+        "        vis = new boolean[n];",
+        "        dfs(start);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "DFS uses function call stack → Depth-first behavior",
+      "Time: O(V+E), Space: O(V) recursion depth worst case."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "4 3 0\n0 1\n1 2\n0 3",
+        "output": "0 1 2 3",
+        "explanation": "DFS goes deeper to end before backtracking."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "1 0 0",
+        "expected_output": "0",
+        "explanation": "Single node."
+      }
+    ],
+    "dry_run_explanation": [
+      "Call stack: dfs(0)→dfs(1)→dfs(2), backtrack, dfs(3)",
+      "Output: 0 1 2 3"
+    ]
+  },
+
+  {
+    "id": 1003,
+    "category_id": 10,
+    "question_title": "Cycle Detection in Graph",
+    "question_description": "Detect whether a graph contains a cycle using DFS in an undirected graph.",
+    "question_level": "Level 3",
+    "question_category": "Graph",
+    "question_tags": ["graph", "cycle-detection", "dfs"],
+    "question_theory": [
+      "Cycle exists if we revisit a visited node that is not the parent.",
+      "DFS backtracking helps detect unexplored edges.",
+      "For undirected graph, back edges indicate cycle."
+    ],
+    "question_concept": [
+      "Use DFS from each unvisited node.",
+      "Track parent to differentiate between revisiting and cycle.",
+      "Return true if a cycle is found."
+    ],
+    "question_explanation": [
+      "Detecting a visited neighbor different from parent means cycle loop exists."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <bits/stdc++.h>",
+        "using namespace std;",
+        "vector<int> vis;",
+        "vector<vector<int>> adj;",
+        "bool dfs(int node,int parent){",
+        "    vis[node]=1;",
+        "    for(int x:adj[node]){",
+        "        if(!vis[x]){",
+        "            if(dfs(x,node)) return true;",
+        "        } else if(x!=parent) return true;",
+        "    } return false;",
+        "}",
+        "int main(){",
+        "    int n,e;cin>>n>>e;",
+        "    adj.assign(n,{});vis.assign(n,0);",
+        "    while(e--){int u,v;cin>>u>>v;adj[u].push_back(v);adj[v].push_back(u);} ",
+        "    for(int i=0;i<n;i++)",
+        "        if(!vis[i] && dfs(i,-1)){ cout<<\"Cycle Detected\"; return 0; }",
+        "    cout<<\"No Cycle\";",
+        "}"
+      ],
+      "python": [
+        "n,e=map(int,input().split())",
+        "adj=[[] for _ in range(n)]",
+        "for _ in range(e):",
+        "    u,v=map(int,input().split())",
+        "    adj[u].append(v);adj[v].append(u)",
+        "vis=[False]*n",
+        "def dfs(node,parent):",
+        "    vis[node]=True",
+        "    for x in adj[node]:",
+        "        if not vis[x]:",
+        "            if dfs(x,node): return True",
+        "        elif x!=parent: return True",
+        "    return False",
+        "for i in range(n):",
+        "    if not vis[i] and dfs(i,-1):",
+        "        print(\"Cycle Detected\"); break",
+        "else:",
+        "    print(\"No Cycle\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "class Main{",
+        "    static boolean[] vis;",
+        "    static ArrayList<ArrayList<Integer>> adj;",
+        "    static boolean dfs(int node,int parent){",
+        "        vis[node]=true;",
+        "        for(int x: adj.get(node)){",
+        "            if(!vis[x]){ if(dfs(x,node)) return true; }",
+        "            else if(x!=parent) return true;",
+        "        } return false;",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int n=sc.nextInt(),e=sc.nextInt();",
+        "        adj=new ArrayList<>();",
+        "        for(int i=0;i<n;i++) adj.add(new ArrayList<>());",
+        "        for(int i=0;i<e;i++){int u=sc.nextInt(),v=sc.nextInt();adj.get(u).add(v);adj.get(v).add(u);} ",
+        "        vis=new boolean[n];",
+        "        for(int i=0;i<n;i++)",
+        "            if(!vis[i] && dfs(i,-1)){ System.out.println(\"Cycle Detected\");return;} ",
+        "        System.out.println(\"No Cycle\");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "DFS detects cycle by checking for a visited neighbor that is not parent.",
+      "Works only for undirected graphs with parent tracking."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3 3\n0 1\n1 2\n2 0",
+        "output": "Cycle Detected",
+        "explanation": "This is a simple cycle of length 3."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "3 2\n0 1\n1 2",
+        "expected_output": "No Cycle",
+        "explanation": "Graph is a chain, not cyclic."
+      }
+    ],
+    "dry_run_explanation": [
+      "DFS: 0→1→2→back edge to 0 → cycle found"
+    ]
+  },
+
+  {
+    "id": 1004,
+    "category_id": 10,
+    "question_title": "Number of Islands",
+    "question_description": "Given a grid with '1' as land and '0' as water, count the number of islands using DFS. An island is formed by connected 1s (Vertical + Horizontal).",
+    "question_level": "Level 3",
+    "question_category": "Graph",
+    "question_tags": ["dfs", "grid", "connected-components"],
+    "question_theory": [
+      "This is a classic graph connected components problem.",
+      "Grid acts like a graph: each cell is a node.",
+      "Only up/down/left/right connections allowed.",
+      "DFS marks all connected land cells under one island."
+    ],
+    "question_concept": [
+      "Traverse grid; when a '1' found, island++.",
+      "Run DFS to mark entire island as visited.",
+      "Continue scanning for unvisited lands."
+    ],
+    "question_explanation": [
+      "Every DFS call starting from unvisited land marks one island."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <bits/stdc++.h>",
+        "using namespace std;",
+        "int n,m;",
+        "vector<vector<int>> grid;",
+        "void dfs(int i,int j){",
+        "    if(i<0||j<0||i>=n||j>=m||grid[i][j]==0) return;",
+        "    grid[i][j]=0;",
+        "    dfs(i+1,j); dfs(i-1,j); dfs(i,j+1); dfs(i,j-1);",
+        "}",
+        "int main(){",
+        "    cin>>n>>m;",
+        "    grid.assign(n,vector<int>(m));",
+        "    for(int i=0;i<n;i++) for(int j=0;j<m;j++) cin>>grid[i][j];",
+        "    int count=0;",
+        "    for(int i=0;i<n;i++)",
+        "      for(int j=0;j<m;j++)",
+        "        if(grid[i][j]==1){ count++; dfs(i,j);} ",
+        "    cout<<count;",
+        "}"
+      ],
+      "python": [
+        "n,m = map(int,input().split())",
+        "grid = [list(map(int,input().split())) for _ in range(n)]",
+        "def dfs(i,j):",
+        "    if i<0 or j<0 or i>=n or j>=m or grid[i][j]==0: return",
+        "    grid[i][j]=0",
+        "    dfs(i+1,j); dfs(i-1,j); dfs(i,j+1); dfs(i,j-1)",
+        "count=0",
+        "for i in range(n):",
+        "    for j in range(m):",
+        "        if grid[i][j]==1:",
+        "            count+=1",
+        "            dfs(i,j)",
+        "print(count)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "class Main{",
+        "    static int n,m;",
+        "    static int[][] grid;",
+        "    static void dfs(int i,int j){",
+        "        if(i<0||j<0||i>=n||j>=m||grid[i][j]==0) return;",
+        "        grid[i][j]=0;",
+        "        dfs(i+1,j); dfs(i-1,j); dfs(i,j+1); dfs(i,j-1);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        n=sc.nextInt(); m=sc.nextInt();",
+        "        grid=new int[n][m];",
+        "        for(int i=0;i<n;i++) for(int j=0;j<m;j++) grid[i][j]=sc.nextInt();",
+        "        int count=0;",
+        "        for(int i=0;i<n;i++)",
+        "            for(int j=0;j<m;j++)",
+        "                if(grid[i][j]==1){ count++; dfs(i,j);} ",
+        "        System.out.println(count);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "We convert each visited island cell to 0 so it is not counted again.",
+      "Time: O(N*M); each cell visited once."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3 3\n1 1 0\n0 1 0\n1 0 1",
+        "output": "3",
+        "explanation": "Three islands formed."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "1 1\n0",
+        "expected_output": "0",
+        "explanation": "No land => 0 islands."
+      }
+    ],
+    "dry_run_explanation": [
+      "Visit (0,0)->(0,1)->(1,1) marks first island.",
+      "Then (2,0) and (2,2) are separate."
+    ]
+  },
+
+  {
+    "id": 1005,
+    "category_id": 10,
+    "question_title": "Topological Sort",
+    "question_description": "Perform Topological Sorting using Kahn’s Algorithm (BFS approach) on a Directed Acyclic Graph (DAG).",
+    "question_level": "Level 3",
+    "question_category": "Graph",
+    "question_tags": ["topological-sort", "graph", "bfs"],
+    "question_theory": [
+      "Topological ordering exists only in Directed Acyclic Graphs (DAGs).",
+      "Every directed edge u→v comes before v in ordering.",
+      "Kahn’s algorithm uses in-degree and BFS queue.",
+      "Nodes with in-degree 0 are processed first."
+    ],
+    "question_concept": [
+      "Compute in-degree of all nodes.",
+      "Push nodes with in-degree 0 into queue.",
+      "Remove node, reduce in-degree of neighbors.",
+      "Repeat until queue empty."
+    ],
+    "question_explanation": [
+      "If result does not contain all nodes, cycle exists."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <bits/stdc++.h>",
+        "using namespace std;",
+        "int main(){",
+        "    int n,e;cin>>n>>e;",
+        "    vector<vector<int>> adj(n);",
+        "    vector<int> indeg(n,0);",
+        "    while(e--){int u,v;cin>>u>>v;adj[u].push_back(v);indeg[v]++;}",
+        "    queue<int> q;",
+        "    for(int i=0;i<n;i++) if(indeg[i]==0) q.push(i);",
+        "    vector<int> topo;",
+        "    while(!q.empty()){",
+        "        int node=q.front();q.pop(); topo.push_back(node);",
+        "        for(int x:adj[node]){",
+        "            indeg[x]--; if(indeg[x]==0) q.push(x);",
+        "        }",
+        "    }",
+        "    if(topo.size()!=n) cout<<\"Cycle Exists\";",
+        "    else for(int x:topo) cout<<x<<\" \";",
+        "}"
+      ],
+      "python": [
+        "from collections import deque",
+        "n,e = map(int,input().split())",
+        "adj=[[] for _ in range(n)]",
+        "indeg=[0]*n",
+        "for _ in range(e):",
+        "    u,v=map(int,input().split())",
+        "    adj[u].append(v);indeg[v]+=1",
+        "q = deque([i for i in range(n) if indeg[i]==0])",
+        "res = []",
+        "while q:",
+        "    node = q.popleft(); res.append(node)",
+        "    for x in adj[node]:",
+        "        indeg[x]-=1",
+        "        if indeg[x]==0: q.append(x)",
+        "if len(res)!=n: print(\"Cycle Exists\")",
+        "else: print(*res)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "class Main{",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int n=sc.nextInt(),e=sc.nextInt();",
+        "        ArrayList<ArrayList<Integer>> adj=new ArrayList<>();",
+        "        for(int i=0;i<n;i++) adj.add(new ArrayList<>());",
+        "        int[] indeg=new int[n];",
+        "        for(int i=0;i<e;i++){",
+        "            int u=sc.nextInt(),v=sc.nextInt();",
+        "            adj.get(u).add(v);indeg[v]++;",
+        "        }",
+        "        Queue<Integer> q=new LinkedList<>();",
+        "        for(int i=0;i<n;i++) if(indeg[i]==0) q.add(i);",
+        "        ArrayList<Integer> res=new ArrayList<>();",
+        "        while(!q.isEmpty()){",
+        "            int node=q.poll();res.add(node);",
+        "            for(int x:adj.get(node))",
+        "                if(--indeg[x]==0) q.add(x);",
+        "        }",
+        "        if(res.size()!=n) System.out.println(\"Cycle Exists\");",
+        "        else res.forEach(x->System.out.print(x+\" \"));",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Kahn’s algorithm ensures correct ordering via in-degree logic.",
+      "Time: O(V+E). Works only for DAG."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "6 6\n5 2\n5 0\n4 0\n4 1\n2 3\n3 1",
+        "output": "5 4 2 3 0 1",
+        "explanation": "One valid topological order."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "2 2\n0 1\n1 0",
+        "expected_output": "Cycle Exists",
+        "explanation": "Graph has a cycle so no ordering."
+      }
+    ],
+    "dry_run_explanation": [
+      "Nodes with indegree zero selected first, reducing neighbor indegrees until all processed."
+    ]
+  }
+]

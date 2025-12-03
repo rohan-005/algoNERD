@@ -1,0 +1,1880 @@
+[
+  {
+    "id": 201,
+    "question_title": "Check Prime Number",
+    "question_description": "Given an integer N, determine whether it is a prime number. A prime number is a number greater than 1 that has no positive divisors other than 1 and itself.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["prime", "math", "loops"],
+    "question_theory": [
+      "A prime number is a natural number greater than 1 that has exactly two distinct positive divisors: 1 and itself.",
+      "If a number N is not prime, it must have a divisor d such that 2 <= d <= sqrt(N).",
+      "Checking divisibility only up to sqrt(N) makes the algorithm more efficient than checking up to N.",
+      "If no divisor is found in this range, the number can be safely considered prime.",
+      "This concept is widely used in number theory and optimization of primality-related algorithms."
+    ],
+    "question_concept": [
+      "Read the integer N from input.",
+      "If N is less than or equal to 1, it is not a prime number.",
+      "Iterate i from 2 to sqrt(N) using a loop.",
+      "If at any point N % i == 0, then N is not prime and you can stop checking further.",
+      "If no such i is found, then N is a prime number.",
+      "Print an appropriate message or result indicating whether N is prime or not."
+    ],
+    "question_explanation": [
+      "We first handle the special case where N <= 1, which are never prime.",
+      "Then we test divisibility of N by all integers i in the range [2, sqrt(N)].",
+      "If any such i divides N exactly (remainder 0), N is composite and we can conclude it is not prime.",
+      "If no divisor is found in this reduced range, N must be prime because any factor greater than sqrt(N) would require a corresponding factor less than sqrt(N).",
+      "This approach is much more efficient than checking all numbers up to N.",
+      "Time complexity is approximately O(sqrt(N)), and space complexity is O(1)."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  long long n;",
+        "  cin >> n;",
+        "",
+        "  if (n <= 1) {",
+        "    cout << \"Not Prime\";",
+        "    return 0;",
+        "  }",
+        "",
+        "  bool isPrime = true;",
+        "  for (long long i = 2; i * i <= n; i++) {",
+        "    if (n % i == 0) {",
+        "      isPrime = false;",
+        "      break;",
+        "    }",
+        "  }",
+        "",
+        "  if (isPrime)",
+        "    cout << \"Prime\";",
+        "  else",
+        "    cout << \"Not Prime\";",
+        "",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "if n <= 1:",
+        "    print(\"Not Prime\")",
+        "else:",
+        "    is_prime = True",
+        "    i = 2",
+        "    while i * i <= n:",
+        "        if n % i == 0:",
+        "            is_prime = False",
+        "            break",
+        "        i += 1",
+        "    if is_prime:",
+        "        print(\"Prime\")",
+        "    else:",
+        "        print(\"Not Prime\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long n = sc.nextLong();",
+        "",
+        "    if (n <= 1) {",
+        "      System.out.print(\"Not Prime\");",
+        "      return;",
+        "    }",
+        "",
+        "    boolean isPrime = true;",
+        "    for (long i = 2; i * i <= n; i++) {",
+        "      if (n % i == 0) {",
+        "        isPrime = false;",
+        "        break;",
+        "      }",
+        "    }",
+        "",
+        "    if (isPrime)",
+        "      System.out.print(\"Prime\");",
+        "    else",
+        "      System.out.print(\"Not Prime\");",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "All three implementations first check if n <= 1; if so, the number is not prime by definition.",
+      "Then they loop from 2 up to i * i <= n, which is equivalent to i <= sqrt(n).",
+      "If any i in this range divides n evenly, the number is marked as not prime, and the loop stops early.",
+      "If no such divisor is found, the number remains marked as prime.",
+      "This reduces the number of checks significantly compared to testing all numbers up to n.",
+      "The solution uses only constant extra space and runs in O(sqrt(n)) time."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "7",
+        "output": "Prime",
+        "explanation": "7 is greater than 1 and not divisible by any number in [2, sqrt(7)] = [2]. Therefore, it is prime."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "1",
+        "expected_output": "Not Prime",
+        "explanation": "1 is not a prime number by definition, as it has only one positive divisor."
+      },
+      {
+        "input": "2",
+        "expected_output": "Prime",
+        "explanation": "2 is the smallest and the only even prime number."
+      },
+      {
+        "input": "1000000007",
+        "expected_output": "Prime",
+        "explanation": "A large prime is used to test algorithm efficiency on big inputs."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 10.",
+      "Since n > 1, we enter the loop to check divisors.",
+      "We start with i = 2. Check 10 % 2 == 0, which is true, so we mark n as not prime and break.",
+      "No further checks are needed because we already found a divisor.",
+      "The program prints 'Not Prime'."
+    ]
+  },
+  {
+    "id": 202,
+    "question_title": "Find GCD of Two Numbers",
+    "question_description": "Given two integers A and B, compute their greatest common divisor (GCD) using the Euclidean algorithm.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["gcd", "math", "euclidean-algorithm"],
+    "question_theory": [
+      "The greatest common divisor (GCD) of two numbers A and B is the largest integer that divides both A and B without leaving a remainder.",
+      "The Euclidean algorithm is an efficient method to compute GCD using repeated modulo operations.",
+      "The core idea is: GCD(A, B) = GCD(B, A % B). This is repeated until B becomes 0.",
+      "When B reaches 0, the current value of A is the GCD of the original pair.",
+      "This algorithm runs in logarithmic time relative to the smaller of the two numbers."
+    ],
+    "question_concept": [
+      "Read two integers A and B from input.",
+      "Apply the Euclidean algorithm iteratively: while B is not 0, do A, B = B, A % B.",
+      "Once B becomes 0, A holds the GCD of the original numbers.",
+      "Print the value of A.",
+      "Handle the case where inputs might be in any order (A > B or B > A)."
+    ],
+    "question_explanation": [
+      "Instead of checking all possible divisors, the Euclidean algorithm reduces the problem size using modulo operations.",
+      "Each step transforms (A, B) into (B, A % B), preserving the GCD.",
+      "The process continues until the second number becomes 0.",
+      "The last non-zero value of A is the required GCD.",
+      "This method is efficient even for large values of A and B.",
+      "Time complexity is approximately O(log(min(A, B)))."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  long long a, b;",
+        "  cin >> a >> b;",
+        "",
+        "  while (b != 0) {",
+        "    long long temp = b;",
+        "    b = a % b;",
+        "    a = temp;",
+        "  }",
+        "",
+        "  cout << a;",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "a, b = map(int, input().split())",
+        "",
+        "while b != 0:",
+        "    temp = b",
+        "    b = a % b",
+        "    a = temp",
+        "",
+        "print(a)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long a = sc.nextLong();",
+        "    long b = sc.nextLong();",
+        "",
+        "    while (b != 0) {",
+        "      long temp = b;",
+        "      b = a % b;",
+        "      a = temp;",
+        "    }",
+        "",
+        "    System.out.print(a);",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "All three implementations read two integers A and B from input.",
+      "They then repeatedly apply the Euclidean algorithm: assign temp = b, then set b = a % b, and finally a = temp.",
+      "This preserves the GCD while reducing the size of the numbers involved.",
+      "When b becomes 0, the loop stops and a holds the greatest common divisor.",
+      "The use of only a few variables ensures constant auxiliary space usage.",
+      "This is a classic and optimal method for GCD computation in most practical scenarios."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "36 60",
+        "output": "12",
+        "explanation": "The common divisors of 36 and 60 are 1, 2, 3, 4, 6, 12. The greatest among these is 12."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "10 15",
+        "expected_output": "5",
+        "explanation": "Tests typical small values with a non-trivial GCD."
+      },
+      {
+        "input": "7 13",
+        "expected_output": "1",
+        "explanation": "Tests co-prime numbers where GCD should be 1."
+      },
+      {
+        "input": "1000000000 500000000",
+        "expected_output": "500000000",
+        "explanation": "Tests large numbers and performance of the Euclidean algorithm."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take A = 36, B = 60.",
+      "Step 1: temp = 60, B = 36 % 60 = 36, A = 60.",
+      "Step 2: temp = 36, B = 60 % 36 = 24, A = 36.",
+      "Step 3: temp = 24, B = 36 % 24 = 12, A = 24.",
+      "Step 4: temp = 12, B = 24 % 12 = 0, A = 12.",
+      "Loop stops because B is 0, so GCD is 12."
+    ]
+  },
+  {
+    "id": 203,
+    "question_title": "Find GCD and LCM",
+    "question_description": "Given two integers A and B, compute both their greatest common divisor (GCD) and least common multiple (LCM).",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["gcd", "lcm", "math"],
+    "question_theory": [
+      "The greatest common divisor (GCD) of two numbers is the largest integer that divides both numbers exactly.",
+      "The least common multiple (LCM) of two numbers is the smallest positive integer that is a multiple of both.",
+      "There is a key relationship between GCD and LCM: A × B = GCD(A, B) × LCM(A, B).",
+      "Using this relationship, once GCD is known, LCM can be computed as (A × B) / GCD.",
+      "This avoids direct enumeration of multiples and makes the calculation efficient."
+    ],
+    "question_concept": [
+      "Read two integers A and B from input.",
+      "Store original values of A and B for later LCM calculation.",
+      "Use the Euclidean algorithm to find the GCD of A and B.",
+      "After obtaining GCD, compute LCM using the formula LCM = (originalA * originalB) / GCD.",
+      "Print both GCD and LCM in a single line or in the required format."
+    ],
+    "question_explanation": [
+      "We first compute the GCD using the Euclidean algorithm because it is efficient and reliable.",
+      "The original values of A and B are preserved for use in the LCM formula.",
+      "Once the GCD is known, we avoid expensive operations like listing multiples by using the mathematical relation.",
+      "The division is done after multiplication to ensure that LCM is an integer.",
+      "Time complexity is dominated by the GCD computation, which is O(log(min(A, B)))."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "long long gcd(long long a, long long b) {",
+        "  while (b != 0) {",
+        "    long long temp = b;",
+        "    b = a % b;",
+        "    a = temp;",
+        "  }",
+        "  return a;",
+        "}",
+        "",
+        "int main() {",
+        "  long long a, b;",
+        "  cin >> a >> b;",
+        "",
+        "  long long x = a;",
+        "  long long y = b;",
+        "  long long g = gcd(a, b);",
+        "  long long l = (x / g) * y;",
+        "",
+        "  cout << g << \" \" << l;",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "def gcd(a, b):",
+        "    while b != 0:",
+        "        a, b = b, a % b",
+        "    return a",
+        "",
+        "a, b = map(int, input().split())",
+        "x, y = a, b",
+        "g = gcd(a, b)",
+        "l = (x // g) * y",
+        "print(g, l)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static long gcd(long a, long b) {",
+        "    while (b != 0) {",
+        "      long temp = b;",
+        "      b = a % b;",
+        "      a = temp;",
+        "    }",
+        "    return a;",
+        "  }",
+        "",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long a = sc.nextLong();",
+        "    long b = sc.nextLong();",
+        "",
+        "    long x = a;",
+        "    long y = b;",
+        "    long g = gcd(a, b);",
+        "    long l = (x / g) * y;",
+        "",
+        "    System.out.print(g + \" \" + l);",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Each implementation defines a gcd function that uses the Euclidean algorithm.",
+      "The original inputs are stored separately to avoid losing them during GCD computation.",
+      "After computing GCD, the LCM is calculated as (x / g) * y, which helps avoid overflow compared to x * y / g directly in some cases.",
+      "The result prints GCD first and then LCM separated by a space.",
+      "This approach ensures efficient computation for both small and large integers.",
+      "The auxiliary space usage remains constant, and time complexity is O(log(min(a, b)))."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "12 18",
+        "output": "6 36",
+        "explanation": "GCD(12, 18) = 6. Using LCM formula: LCM = (12 * 18) / 6 = 36."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "4 6",
+        "expected_output": "2 12",
+        "explanation": "Checks a basic case with small numbers."
+      },
+      {
+        "input": "7 13",
+        "expected_output": "1 91",
+        "explanation": "Co-prime numbers have GCD 1, so LCM is their product."
+      },
+      {
+        "input": "100000 250000",
+        "expected_output": "50000 500000",
+        "explanation": "Tests larger numbers to ensure no overflow and correct formula usage."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take A = 12, B = 18.",
+      "GCD part: (12, 18) -> (18, 12) -> (12, 6) -> (6, 0), so GCD is 6.",
+      "Store original values x = 12, y = 18.",
+      "Compute LCM as (x / gcd) * y = (12 / 6) * 18 = 2 * 18 = 36.",
+      "Final output is '6 36'."
+    ]
+  },
+  {
+    "id": 204,
+    "question_title": "Armstrong Number Check",
+    "question_description": "Given an integer N, determine whether it is an Armstrong number (for 3-digit numbers: sum of cubes of its digits is equal to the number itself).",
+    "question_level": "Level 2",
+    "question_category": "Computational Logic",
+    "question_tags": ["digits", "math", "armstrong"],
+    "question_theory": [
+      "An Armstrong number (in the 3-digit sense) is a number that is equal to the sum of the cubes of its digits.",
+      "For example, 153 is an Armstrong number because 1^3 + 5^3 + 3^3 = 153.",
+      "The general definition uses the number of digits as the power, but in many basic problems, we focus on the 3-digit case.",
+      "To check if a number is Armstrong, we repeatedly extract its digits using modulo and division by 10.",
+      "We then sum the appropriate powers of each digit and compare the result with the original number."
+    ],
+    "question_concept": [
+      "Read integer N from input.",
+      "Store the original value of N in a temporary variable.",
+      "Initialize a sum variable to 0.",
+      "Extract each digit of N using N % 10.",
+      "Add the cube of the digit to sum (digit * digit * digit).",
+      "Divide N by 10 to remove the last digit and repeat until N becomes 0.",
+      "After the loop, compare sum with the original number.",
+      "If they are equal, it is an Armstrong number; otherwise, it is not."
+    ],
+    "question_explanation": [
+      "We break the number down into its individual digits starting from the least significant digit.",
+      "Each digit's cube is added to a running sum variable.",
+      "When all digits have been processed, we check if the computed sum equals the original number.",
+      "If they match, the original number satisfies the Armstrong condition.",
+      "This problem strengthens understanding of digit extraction, loops, and arithmetic operations.",
+      "Time complexity is O(d), where d is the number of digits in the number."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  int n;",
+        "  cin >> n;",
+        "",
+        "  int original = n;",
+        "  int sum = 0;",
+        "",
+        "  while (n > 0) {",
+        "    int digit = n % 10;",
+        "    sum += digit * digit * digit;",
+        "    n /= 10;",
+        "  }",
+        "",
+        "  if (sum == original)",
+        "    cout << \"Armstrong\";",
+        "  else",
+        "    cout << \"Not Armstrong\";",
+        "",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "original = n",
+        "sum_cubes = 0",
+        "",
+        "while n > 0:",
+        "    digit = n % 10",
+        "    sum_cubes += digit * digit * digit",
+        "    n //= 10",
+        "",
+        "if sum_cubes == original:",
+        "    print(\"Armstrong\")",
+        "else:",
+        "    print(\"Not Armstrong\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    int n = sc.nextInt();",
+        "",
+        "    int original = n;",
+        "    int sum = 0;",
+        "",
+        "    while (n > 0) {",
+        "      int digit = n % 10;",
+        "      sum += digit * digit * digit;",
+        "      n /= 10;",
+        "    }",
+        "",
+        "    if (sum == original)",
+        "      System.out.print(\"Armstrong\");",
+        "    else",
+        "      System.out.print(\"Not Armstrong\");",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "The code for all three languages starts by storing the original number before modifying it.",
+      "It then uses a loop to extract digits using modulo 10 and adds the cube of each digit to a running total.",
+      "The integer division by 10 gradually reduces the number until it becomes 0.",
+      "Finally, the code compares the computed sum with the original number.",
+      "If they match, the number is printed as 'Armstrong'; otherwise, it is 'Not Armstrong'.",
+      "This technique can be adapted for other powers by adjusting the exponent based on the number of digits."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "153",
+        "output": "Armstrong",
+        "explanation": "1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153, which matches the original number."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "370",
+        "expected_output": "Armstrong",
+        "explanation": "370 is a well-known Armstrong number for the 3-digit case."
+      },
+      {
+        "input": "371",
+        "expected_output": "Armstrong",
+        "explanation": "371 also satisfies the Armstrong property: 3^3 + 7^3 + 1^3 = 371."
+      },
+      {
+        "input": "100",
+        "expected_output": "Not Armstrong",
+        "explanation": "Tests a number that clearly does not satisfy the condition."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 153.",
+      "original = 153, sum = 0.",
+      "First loop: digit = 153 % 10 = 3, sum = 0 + 27 = 27, n = 153 / 10 = 15.",
+      "Second loop: digit = 15 % 10 = 5, sum = 27 + 125 = 152, n = 15 / 10 = 1.",
+      "Third loop: digit = 1 % 10 = 1, sum = 152 + 1 = 153, n = 1 / 10 = 0.",
+      "Loop ends, sum = 153 equals original = 153, so output is 'Armstrong'."
+    ]
+  },
+  {
+    "id": 205,
+    "question_title": "Count Digits of Number",
+    "question_description": "Given a non-negative integer N, count and print the number of digits in N.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["digits", "loops"],
+    "question_theory": [
+      "The number of digits in a positive integer N in base 10 can be counted by repeatedly dividing N by 10 until it becomes 0.",
+      "Each division by 10 removes the least significant digit.",
+      "The number of such divisions tells us how many digits the number contains.",
+      "A special case is when N is 0, which should be considered as a single-digit number.",
+      "Digit counting is a basic operation that appears in many algorithmic problems."
+    ],
+    "question_concept": [
+      "Read integer N from input.",
+      "If N is 0, the count of digits is 1.",
+      "Otherwise, initialize count to 0.",
+      "While N is greater than 0, increment count and divide N by 10.",
+      "After the loop, print the value of count."
+    ],
+    "question_explanation": [
+      "We treat 0 as a special case because the loop method would otherwise give a count of 0 digits.",
+      "For any positive N, we reduce it by repeatedly dividing by 10.",
+      "Each integer division by 10 removes one digit from the number.",
+      "We maintain a counter that increments on each step until N becomes 0.",
+      "The final value of the counter is the number of digits in the original number.",
+      "Time complexity is O(d), where d is the number of digits."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  long long n;",
+        "  cin >> n;",
+        "",
+        "  if (n == 0) {",
+        "    cout << 1;",
+        "    return 0;",
+        "  }",
+        "",
+        "  int count = 0;",
+        "  if (n < 0) n = -n;",
+        "",
+        "  while (n > 0) {",
+        "    count++;",
+        "    n /= 10;",
+        "  }",
+        "",
+        "  cout << count;",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "if n == 0:",
+        "    print(1)",
+        "else:",
+        "    if n < 0:",
+        "        n = -n",
+        "    count = 0",
+        "    while n > 0:",
+        "        count += 1",
+        "        n //= 10",
+        "    print(count)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long n = sc.nextLong();",
+        "",
+        "    if (n == 0) {",
+        "      System.out.print(1);",
+        "      return;",
+        "    }",
+        "",
+        "    if (n < 0) n = -n;",
+        "",
+        "    int count = 0;",
+        "    while (n > 0) {",
+        "      count++;",
+        "      n /= 10;",
+        "    }",
+        "",
+        "    System.out.print(count);",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "All three solutions start by handling the special case where n is 0, immediately returning a digit count of 1.",
+      "For non-zero numbers, negative values are converted to positive so that digit counting works uniformly.",
+      "A loop is used to repeatedly divide the number by 10 while incrementing a counter.",
+      "Once the number becomes 0, the counter holds the total number of digits.",
+      "The solutions avoid using strings, focusing purely on arithmetic operations.",
+      "This makes the method efficient and language-independent in logic."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "12345",
+        "output": "5",
+        "explanation": "The number 12345 has digits 1, 2, 3, 4, and 5, totaling 5 digits."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "0",
+        "expected_output": "1",
+        "explanation": "Edge case: zero is treated as a single-digit number."
+      },
+      {
+        "input": "9",
+        "expected_output": "1",
+        "explanation": "Single-digit positive number should return count 1."
+      },
+      {
+        "input": "1000000000",
+        "expected_output": "10",
+        "explanation": "Checks correct handling of a large 10-digit integer."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 250.",
+      "n is not 0, and not negative, so we skip the special case and sign change.",
+      "Initial count = 0.",
+      "First loop: n = 250 > 0, count = 1, n becomes 25.",
+      "Second loop: n = 25 > 0, count = 2, n becomes 2.",
+      "Third loop: n = 2 > 0, count = 3, n becomes 0.",
+      "Loop ends; final count is 3, which is the number of digits in 250."
+    ]
+  },
+
+  {
+    "id": 206,
+    "question_title": "Sum of Natural Numbers",
+    "question_description": "Given an integer N, compute the sum of the first N natural numbers: 1 + 2 + 3 + ... + N.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["series", "math", "loop"],
+    "question_theory": [
+      "The sum of the first N natural numbers is given by the formula S = N * (N + 1) / 2.",
+      "This formula comes from pairing numbers from the beginning and end of the sequence: (1 + N), (2 + N - 1), and so on.",
+      "Using the formula is more efficient than looping because it uses constant time.",
+      "However, many problems first teach summation using loops for understanding iterative structures.",
+      "Both methods are correct, but the formula-based approach is preferred for large N."
+    ],
+    "question_concept": [
+      "Read the integer N from input.",
+      "If using a loop, initialize sum = 0 and add all integers from 1 to N.",
+      "If using the formula method, directly compute sum = N * (N + 1) / 2.",
+      "Print the final value of sum.",
+      "Ensure the data type can handle the value of the sum for large N."
+    ],
+    "question_explanation": [
+      "The iterative method helps in understanding loops by accumulating values step by step.",
+      "The formula method demonstrates mathematical optimization by reducing work to a simple expression.",
+      "For very large N, the formula-based method avoids potential performance issues from long loops.",
+      "We must also be mindful of integer overflow for very large N, especially in languages without automatic big integer handling.",
+      "Time complexity of the loop version is O(N), while the formula version runs in O(1)."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  long long n;",
+        "  cin >> n;",
+        "",
+        "  long long sum = n * (n + 1) / 2;",
+        "  cout << sum;",
+        "",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "sum_n = n * (n + 1) // 2",
+        "print(sum_n)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long n = sc.nextLong();",
+        "",
+        "    long sum = n * (n + 1) / 2;",
+        "    System.out.print(sum);",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "All three solutions read an integer n and compute the sum using the direct mathematical formula.",
+      "The expression n * (n + 1) / 2 gives the sum of the first n natural numbers.",
+      "In C++ and Java, long long or long is used to handle larger sums without overflow for reasonably large n.",
+      "In Python, integers can grow arbitrarily large, so the same formula works with // for integer division.",
+      "This method avoids explicit loops and runs in constant time.",
+      "The code is simple, compact, and demonstrates the power of using known formulas."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5",
+        "output": "15",
+        "explanation": "The sum 1 + 2 + 3 + 4 + 5 equals 15."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "1",
+        "expected_output": "1",
+        "explanation": "Minimum valid input where the sum is just 1."
+      },
+      {
+        "input": "10",
+        "expected_output": "55",
+        "explanation": "Checks typical small input and verifies formula correctness."
+      },
+      {
+        "input": "100000",
+        "expected_output": "5000050000",
+        "explanation": "Tests performance and range handling for large N."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 5.",
+      "Compute sum = n * (n + 1) / 2 = 5 * 6 / 2.",
+      "First, 5 * 6 = 30.",
+      "Then, 30 / 2 = 15.",
+      "Final result printed is 15, matching the sum 1 + 2 + 3 + 4 + 5."
+    ]
+  },
+  {
+    "id": 207,
+    "question_title": "Perfect Square Check",
+    "question_description": "Given an integer N, determine whether it is a perfect square. A perfect square is an integer that is the square of an integer.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["math", "sqrt", "condition"],
+    "question_theory": [
+      "A perfect square is an integer that can be expressed as k^2 for some integer k.",
+      "For example, 1, 4, 9, 16, and 25 are perfect squares.",
+      "To check if N is a perfect square, we can compute the integer part of sqrt(N) and then square it again.",
+      "If the square of the integer root equals N, then N is a perfect square.",
+      "Care must be taken with negative numbers: they are not perfect squares in the set of real integers."
+    ],
+    "question_concept": [
+      "Read integer N from input.",
+      "If N is negative, it is not a perfect square.",
+      "Compute an integer value r that approximates the square root of N (for example, using built-in sqrt and casting to integer).",
+      "Check if r * r == N or (r + 1) * (r + 1) == N to be safe against floating-point precision issues.",
+      "If condition holds, print that N is a perfect square; otherwise, print that it is not."
+    ],
+    "question_explanation": [
+      "The core idea is to reverse the square operation by taking a square root.",
+      "Because of floating-point rounding, simply squaring the integer-casted result of sqrt(N) may sometimes be off by 1.",
+      "To avoid such errors, we check both r * r and (r + 1) * (r + 1) against N.",
+      "For small constraints, looping from 1 to sqrt(N) and checking i * i == N also works, but is less efficient.",
+      "Time complexity is O(1) when using built-in square root operations, and space complexity is O(1)."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "#include <cmath>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  long long n;",
+        "  cin >> n;",
+        "",
+        "  if (n < 0) {",
+        "    cout << \"Not Perfect Square\";",
+        "    return 0;",
+        "  }",
+        "",
+        "  long long r = (long long)sqrt((long double)n);",
+        "  if (r * r == n || (r + 1) * (r + 1) == n)",
+        "    cout << \"Perfect Square\";",
+        "  else",
+        "    cout << \"Not Perfect Square\";",
+        "",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "import math",
+        "",
+        "n = int(input())",
+        "",
+        "if n < 0:",
+        "    print(\"Not Perfect Square\")",
+        "else:",
+        "    r = int(math.isqrt(n))",
+        "    if r * r == n:",
+        "        print(\"Perfect Square\")",
+        "    else:",
+        "        print(\"Not Perfect Square\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long n = sc.nextLong();",
+        "",
+        "    if (n < 0) {",
+        "      System.out.print(\"Not Perfect Square\");",
+        "      return;",
+        "    }",
+        "",
+        "    long r = (long)Math.sqrt(n);",
+        "    if (r * r == n || (r + 1) * (r + 1) == n)",
+        "      System.out.print(\"Perfect Square\");",
+        "    else",
+        "      System.out.print(\"Not Perfect Square\");",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "The code rejects negative inputs immediately as they cannot be perfect squares in this context.",
+      "For non-negative N, it calculates an integer square root approximation r.",
+      "In C++ and Java, sqrt is used and the result is cast to a long long or long type.",
+      "In Python, math.isqrt gives an exact integer square root without floating-point errors.",
+      "The programs then check if r * r equals n; in C++/Java they also check (r + 1) * (r + 1) to be safe.",
+      "If either matches, the number is identified as a perfect square."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "16",
+        "output": "Perfect Square",
+        "explanation": "4 * 4 = 16, so 16 is a perfect square."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "0",
+        "expected_output": "Perfect Square",
+        "explanation": "0 is considered a perfect square because 0 * 0 = 0."
+      },
+      {
+        "input": "1",
+        "expected_output": "Perfect Square",
+        "explanation": "1 is 1 * 1, a basic perfect square case."
+      },
+      {
+        "input": "18",
+        "expected_output": "Not Perfect Square",
+        "explanation": "No integer squared gives 18."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 25.",
+      "n is non-negative, so we proceed.",
+      "Compute r = floor(sqrt(25)) = 5.",
+      "Check r * r = 5 * 5 = 25, which equals n.",
+      "So, we print 'Perfect Square'."
+    ]
+  },
+  {
+    "id": 208,
+    "question_title": "Factorial Iterative",
+    "question_description": "Given a non-negative integer N, compute N! (N factorial) using an iterative approach.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["factorial", "loops", "math"],
+    "question_theory": [
+      "The factorial of a non-negative integer N, denoted N!, is the product of all positive integers from 1 to N.",
+      "By definition, 0! is equal to 1.",
+      "Factorials grow very quickly, so they can exceed the range of standard integer types for relatively small N.",
+      "An iterative approach multiplies numbers from 1 to N in a loop and accumulates the product.",
+      "Understanding factorial is a foundation for permutations, combinations, and many combinatorial formulas."
+    ],
+    "question_concept": [
+      "Read integer N from input.",
+      "If N is 0 or 1, the factorial is 1.",
+      "Initialize a variable fact = 1.",
+      "Loop i from 2 to N, multiplying fact by i in each step.",
+      "After the loop, print the value of fact.",
+      "Choose an appropriate data type that can handle the resulting factorial for the expected range of N."
+    ],
+    "question_explanation": [
+      "We treat N = 0 and N = 1 as base cases that both result in 1.",
+      "For N > 1, we build the factorial step by step in an iterative loop.",
+      "Each iteration multiplies the current factorial value by the next integer in the sequence.",
+      "This continues until we multiply by N, producing N!.",
+      "If N is large, the result may overflow fixed-width integer types, but within limits this method is reliable.",
+      "Time complexity is O(N) and space complexity is O(1)."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  int n;",
+        "  cin >> n;",
+        "",
+        "  long long fact = 1;",
+        "  for (int i = 2; i <= n; i++) {",
+        "    fact *= i;",
+        "  }",
+        "",
+        "  cout << fact;",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "fact = 1",
+        "for i in range(2, n + 1):",
+        "    fact *= i",
+        "",
+        "print(fact)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    int n = sc.nextInt();",
+        "",
+        "    long fact = 1;",
+        "    for (int i = 2; i <= n; i++) {",
+        "      fact *= i;",
+        "    }",
+        "",
+        "    System.out.print(fact);",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "All implementations start with fact = 1 as the neutral element for multiplication.",
+      "If n is 0 or 1, the loop body will not change fact, leaving it at 1, which is correct.",
+      "For n > 1, each iteration multiplies fact by the current counter i, building up n! step by step.",
+      "C++ and Java use long long or long to allow for a larger range before overflow occurs.",
+      "Python inherently handles big integers, so it can compute larger factorials without overflow.",
+      "This iterative approach is straightforward and commonly used for teaching factorial computation."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "4",
+        "output": "24",
+        "explanation": "4! = 1 * 2 * 3 * 4 = 24."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "0",
+        "expected_output": "1",
+        "explanation": "By definition, 0! is equal to 1."
+      },
+      {
+        "input": "5",
+        "expected_output": "120",
+        "explanation": "5! tests typical factorial logic: 1 * 2 * 3 * 4 * 5 = 120."
+      },
+      {
+        "input": "10",
+        "expected_output": "3628800",
+        "explanation": "Checks bigger factorial and potential overflow issues in smaller data types."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 4.",
+      "Initial fact = 1.",
+      "First loop iteration: i = 2, fact = 1 * 2 = 2.",
+      "Second loop iteration: i = 3, fact = 2 * 3 = 6.",
+      "Third loop iteration: i = 4, fact = 6 * 4 = 24.",
+      "Loop ends; fact = 24 is printed as the result."
+    ]
+  },
+
+  {
+    "id": 209,
+    "question_title": "Palindrome Number Check",
+    "question_description": "Given an integer N, check whether it is a palindrome number. A palindrome number reads the same backward as forward.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["palindrome", "digits", "reverse"],
+    "question_theory": [
+      "A palindrome number remains the same when its digits are reversed.",
+      "Examples of palindrome numbers include 121, 1331, and 7.",
+      "To test if a number is a palindrome, we can reverse its digits and compare it with the original number.",
+      "Reversal is typically done using modulo 10 to extract digits and building the reversed number step by step.",
+      "This concept is frequently used in basic programming problems involving numbers and strings."
+    ],
+    "question_concept": [
+      "Read integer N from input.",
+      "Store the original value of N in a temporary variable.",
+      "Handle negative numbers depending on definition (usually considered not palindrome in this context).",
+      "Initialize reverse = 0.",
+      "Use a loop: extract last digit using N % 10, add it to reverse by reverse = reverse * 10 + digit, then divide N by 10.",
+      "After the loop, compare reverse with the original number.",
+      "If they are equal, it is a palindrome; otherwise, it is not."
+    ],
+    "question_explanation": [
+      "We construct the reversed version of the number using digit extraction.",
+      "Each extracted digit is appended to the reversed number by shifting the current reverse value left by one decimal place (multiply by 10).",
+      "Once all digits are processed, the reversed value is complete.",
+      "Comparing this reversed number with the original reveals whether the number is a palindrome.",
+      "Depending on problem constraints, negative numbers are often treated as non-palindrome.",
+      "Time complexity is O(d), where d is the number of digits."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  long long n;",
+        "  cin >> n;",
+        "",
+        "  if (n < 0) {",
+        "    cout << \"Not Palindrome\";",
+        "    return 0;",
+        "  }",
+        "",
+        "  long long original = n;",
+        "  long long rev = 0;",
+        "",
+        "  while (n > 0) {",
+        "    long long digit = n % 10;",
+        "    rev = rev * 10 + digit;",
+        "    n /= 10;",
+        "  }",
+        "",
+        "  if (rev == original)",
+        "    cout << \"Palindrome\";",
+        "  else",
+        "    cout << \"Not Palindrome\";",
+        "",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "if n < 0:",
+        "    print(\"Not Palindrome\")",
+        "else:",
+        "    original = n",
+        "    rev = 0",
+        "    while n > 0:",
+        "        digit = n % 10",
+        "        rev = rev * 10 + digit",
+        "        n //= 10",
+        "    if rev == original:",
+        "        print(\"Palindrome\")",
+        "    else:",
+        "        print(\"Not Palindrome\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long n = sc.nextLong();",
+        "",
+        "    if (n < 0) {",
+        "      System.out.print(\"Not Palindrome\");",
+        "      return;",
+        "    }",
+        "",
+        "    long original = n;",
+        "    long rev = 0;",
+        "",
+        "    while (n > 0) {",
+        "      long digit = n % 10;",
+        "      rev = rev * 10 + digit;",
+        "      n /= 10;",
+        "    }",
+        "",
+        "    if (rev == original)",
+        "      System.out.print(\"Palindrome\");",
+        "    else",
+        "      System.out.print(\"Not Palindrome\");",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "The implementations handle negative numbers upfront, marking them as not palindrome.",
+      "They preserve the original value of n before starting the reversal.",
+      "The reversal logic uses a standard pattern: extract last digit via n % 10, then build rev = rev * 10 + digit.",
+      "Integer division by 10 removes the last digit from n each iteration until it becomes 0.",
+      "After reversing, the program compares rev to original to determine palindrome status.",
+      "This approach uses only arithmetic operations, avoiding any string conversions."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "121",
+        "output": "Palindrome",
+        "explanation": "Reversing 121 gives 121, so it is a palindrome."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "10",
+        "expected_output": "Not Palindrome",
+        "explanation": "Reversed 10 is 01 which is 1, not equal to original 10."
+      },
+      {
+        "input": "7",
+        "expected_output": "Palindrome",
+        "explanation": "Single-digit numbers are palindromes by definition."
+      },
+      {
+        "input": "-121",
+        "expected_output": "Not Palindrome",
+        "explanation": "Negative numbers are treated as non-palindromes in this implementation."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 121.",
+      "original = 121, rev = 0.",
+      "First loop: digit = 121 % 10 = 1, rev = 0 * 10 + 1 = 1, n = 121 / 10 = 12.",
+      "Second loop: digit = 12 % 10 = 2, rev = 1 * 10 + 2 = 12, n = 12 / 10 = 1.",
+      "Third loop: digit = 1 % 10 = 1, rev = 12 * 10 + 1 = 121, n = 1 / 10 = 0.",
+      "Loop ends with rev = 121, original = 121, so result is 'Palindrome'."
+    ]
+  },
+  {
+    "id": 210,
+    "question_title": "Fibonacci Iterative",
+    "question_description": "Given an integer N, print the first N terms of the Fibonacci sequence using an iterative approach.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["fibonacci", "series", "loops"],
+    "question_theory": [
+      "The Fibonacci sequence is a series of numbers where each term is the sum of the two preceding ones.",
+      "The sequence usually starts with 0 and 1: 0, 1, 1, 2, 3, 5, 8, ...",
+      "Formally, F(0) = 0, F(1) = 1, and F(n) = F(n-1) + F(n-2) for n >= 2.",
+      "An iterative approach maintains the last two Fibonacci numbers and updates them in a loop.",
+      "This avoids the overhead of recursion and is efficient in both time and space."
+    ],
+    "question_concept": [
+      "Read integer N from input.",
+      "Handle small cases: if N <= 0, nothing is printed or handled as per requirement; if N >= 1, print the first term; if N >= 2, print the second term.",
+      "Initialize two variables a = 0 and b = 1 for the first two Fibonacci numbers.",
+      "Use a loop to generate the next terms up to N terms in total.",
+      "Each new term is computed as c = a + b, then update a = b and b = c.",
+      "Print the sequence terms separated by spaces or in the required format."
+    ],
+    "question_explanation": [
+      "We treat the first two Fibonacci terms (0 and 1) as base values.",
+      "For each subsequent term, we rely on the sum of the previous two terms.",
+      "By updating a and b iteratively, we avoid storing the entire sequence unless required.",
+      "This approach is much more efficient than naive recursion, which re-computes many values.",
+      "The time complexity is O(N) and space complexity is O(1) if only constant variables are used.",
+      "Care must be taken with formatting output, especially spaces and newlines."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  int n;",
+        "  cin >> n;",
+        "",
+        "  if (n <= 0) {",
+        "    return 0;",
+        "  }",
+        "",
+        "  long long a = 0, b = 1;",
+        "",
+        "  if (n >= 1) {",
+        "    cout << a;",
+        "  }",
+        "  if (n >= 2) {",
+        "    cout << \" \" << b;",
+        "  }",
+        "",
+        "  for (int i = 3; i <= n; i++) {",
+        "    long long c = a + b;",
+        "    cout << \" \" << c;",
+        "    a = b;",
+        "    b = c;",
+        "  }",
+        "",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "if n <= 0:",
+        "    exit()",
+        "",
+        "a, b = 0, 1",
+        "result = []",
+        "",
+        "if n >= 1:",
+        "    result.append(str(a))",
+        "if n >= 2:",
+        "    result.append(str(b))",
+        "",
+        "for i in range(3, n + 1):",
+        "    c = a + b",
+        "    result.append(str(c))",
+        "    a, b = b, c",
+        "",
+        "print(\" \".join(result))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    int n = sc.nextInt();",
+        "",
+        "    if (n <= 0) {",
+        "      return;",
+        "    }",
+        "",
+        "    long a = 0, b = 1;",
+        "    StringBuilder sb = new StringBuilder();",
+        "",
+        "    if (n >= 1) {",
+        "      sb.append(a);",
+        "    }",
+        "    if (n >= 2) {",
+        "      sb.append(\" \").append(b);",
+        "    }",
+        "",
+        "    for (int i = 3; i <= n; i++) {",
+        "      long c = a + b;",
+        "      sb.append(\" \").append(c);",
+        "      a = b;",
+        "      b = c;",
+        "    }",
+        "",
+        "    System.out.print(sb.toString());",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "The solutions handle edge cases where n is 0 or negative by exiting early.",
+      "For n >= 1, they start with the first Fibonacci number 0; for n >= 2, they also include 1.",
+      "They then iterate from the third term onward, computing each new Fibonacci number as the sum of the previous two.",
+      "The pair (a, b) is updated each time so that they always represent the two most recent Fibonacci numbers.",
+      "Output is printed in a space-separated format, collected into an array or StringBuilder when needed.",
+      "The iterative approach gives linear time complexity and constant extra space."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5",
+        "output": "0 1 1 2 3",
+        "explanation": "The first 5 Fibonacci numbers are 0, 1, 1, 2, 3."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "1",
+        "expected_output": "0",
+        "explanation": "Only the first Fibonacci term is printed."
+      },
+      {
+        "input": "2",
+        "expected_output": "0 1",
+        "explanation": "Checks correct handling of minimal sequence with two terms."
+      },
+      {
+        "input": "10",
+        "expected_output": "0 1 1 2 3 5 8 13 21 34",
+        "explanation": "Ensures the sequence is generated correctly for a larger N."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 5.",
+      "Initialize a = 0, b = 1.",
+      "Output first two terms: '0 1'.",
+      "Iteration 3: c = a + b = 0 + 1 = 1, print '1', update a = 1, b = 1.",
+      "Iteration 4: c = 1 + 1 = 2, print '2', update a = 1, b = 2.",
+      "Iteration 5: c = 1 + 2 = 3, print '3', update a = 2, b = 3.",
+      "Final output sequence: 0 1 1 2 3."
+    ]
+  },
+
+  {
+    "id": 211,
+    "question_title": "Power of 2 Check",
+    "question_description": "Given an integer N, determine whether it is a power of 2. A power of 2 can be written as 2^k for some non-negative integer k.",
+    "question_level": "Level 2",
+    "question_category": "Computational Logic",
+    "question_tags": ["bit-manipulation", "math"],
+    "question_theory": [
+      "A number is a power of 2 if it has exactly one bit set in its binary representation.",
+      "For example, 1 (1), 2 (10), 4 (100), 8 (1000) are all powers of 2.",
+      "A well-known bit trick is that for a positive number N, if N is a power of 2, then N & (N - 1) equals 0.",
+      "This works because subtracting 1 from a power of 2 flips all bits after the single set bit, and the AND operation clears them all.",
+      "This method is efficient and avoids looping or repeated division."
+    ],
+    "question_concept": [
+      "Read integer N from input.",
+      "If N is less than or equal to 0, it is not a power of 2.",
+      "Use the condition (N & (N - 1)) == 0 to check if N is a power of 2.",
+      "If the condition holds, print that it is a power of 2; otherwise, print that it is not.",
+      "Alternatively, repeated division by 2 can also be used but is slower."
+    ],
+    "question_explanation": [
+      "We first discard non-positive values since powers of 2 are positive in this context.",
+      "The bitwise trick N & (N - 1) removes the lowest set bit from N.",
+      "If N is a power of 2, it has only one set bit, so removing it leaves 0.",
+      "If N is not a power of 2, it has more than one set bit, and the result of N & (N - 1) will be non-zero.",
+      "This avoids loops and works in constant time.",
+      "Time complexity is O(1) and space complexity is O(1)."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  long long n;",
+        "  cin >> n;",
+        "",
+        "  if (n > 0 && (n & (n - 1)) == 0)",
+        "    cout << \"Power of 2\";",
+        "  else",
+        "    cout << \"Not Power of 2\";",
+        "",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "if n > 0 and (n & (n - 1)) == 0:",
+        "    print(\"Power of 2\")",
+        "else:",
+        "    print(\"Not Power of 2\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long n = sc.nextLong();",
+        "",
+        "    if (n > 0 && ( (n & (n - 1)) == 0 ))",
+        "      System.out.print(\"Power of 2\");",
+        "    else",
+        "      System.out.print(\"Not Power of 2\");",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "The solutions all use the same core logic: check that n is positive and that n & (n - 1) is zero.",
+      "The positivity check filters out 0 and negative numbers, which are not considered powers of 2 here.",
+      "The bitwise operation ensures that only numbers with a single set bit pass the test.",
+      "This is far more efficient than repeatedly dividing by 2 and checking remainders.",
+      "The approach uses constant time and does not depend on the magnitude of n.",
+      "It showcases how bitwise operations can greatly simplify certain numeric checks."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "8",
+        "output": "Power of 2",
+        "explanation": "8 is 2^3 and its binary representation 1000 has exactly one set bit."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "1",
+        "expected_output": "Power of 2",
+        "explanation": "1 is 2^0, so it is treated as a power of 2."
+      },
+      {
+        "input": "6",
+        "expected_output": "Not Power of 2",
+        "explanation": "6 in binary is 110 with two set bits, so it fails the condition."
+      },
+      {
+        "input": "0",
+        "expected_output": "Not Power of 2",
+        "explanation": "0 is not a positive power of 2 in this definition."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 8.",
+      "Check n > 0: 8 > 0 is true.",
+      "Compute n - 1 = 7; in binary, 8 = 1000, 7 = 0111.",
+      "Compute 8 & 7 = 1000 & 0111 = 0000 which is 0.",
+      "Since the condition (n & (n - 1)) == 0 is true, we print 'Power of 2'."
+    ]
+  },
+  {
+    "id": 212,
+    "question_title": "Prime Factorization",
+    "question_description": "Given an integer N, print its prime factors. A prime factor is a factor that is also a prime number.",
+    "question_level": "Level 2",
+    "question_category": "Computational Logic",
+    "question_tags": ["prime", "factorization", "math"],
+    "question_theory": [
+      "Prime factorization expresses a number N as a product of prime numbers.",
+      "For example, 12 can be written as 2 × 2 × 3, and 60 as 2 × 2 × 3 × 5.",
+      "A common method is to divide N by the smallest possible prime factor repeatedly.",
+      "We usually start from 2 and continue dividing as long as the current factor divides N.",
+      "After handling factor 2, we can check only odd numbers up to sqrt(N) for efficiency. Any remaining N > 1 at the end is also prime."
+    ],
+    "question_concept": [
+      "Read integer N from input.",
+      "Handle negative numbers or zero if needed based on constraints (typically N > 1).",
+      "Repeatedly divide N by 2 while it is even, printing 2 for each division.",
+      "Then, check odd factors from 3 up to sqrt(N), dividing and printing whenever a factor divides N.",
+      "If after this process N is still greater than 1, print N as the last prime factor.",
+      "Output can be space-separated prime factors in non-decreasing order."
+    ],
+    "question_explanation": [
+      "The algorithm first extracts all factors of 2 to simplify N and handle even parts.",
+      "Checking only odd numbers from 3 onward avoids unnecessary work on even non-prime candidates.",
+      "For each candidate factor i, we use a loop to divide N by i as long as N % i == 0.",
+      "Each successful division means that i is a prime factor, and we output it.",
+      "When i exceeds sqrt(N), if the remaining N is greater than 1, then N itself is prime.",
+      "This method runs in approximately O(sqrt(N)) time and efficiently lists all prime factors."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "  long long n;",
+        "  cin >> n;",
+        "",
+        "  if (n <= 1) {",
+        "    return 0;",
+        "  }",
+        "",
+        "  while (n % 2 == 0) {",
+        "    cout << 2 << \" \";",
+        "    n /= 2;",
+        "  }",
+        "",
+        "  for (long long i = 3; i * i <= n; i += 2) {",
+        "    while (n % i == 0) {",
+        "      cout << i << \" \";",
+        "      n /= i;",
+        "    }",
+        "  }",
+        "",
+        "  if (n > 1) {",
+        "    cout << n;",
+        "  }",
+        "",
+        "  return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "",
+        "if n <= 1:",
+        "    exit()",
+        "",
+        "factors = []",
+        "",
+        "while n % 2 == 0:",
+        "    factors.append(\"2\")",
+        "    n //= 2",
+        "",
+        "i = 3",
+        "while i * i <= n:",
+        "    while n % i == 0:",
+        "        factors.append(str(i))",
+        "        n //= i",
+        "    i += 2",
+        "",
+        "if n > 1:",
+        "    factors.append(str(n))",
+        "",
+        "print(\" \".join(factors))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "  public static void main(String[] args) {",
+        "    Scanner sc = new Scanner(System.in);",
+        "    long n = sc.nextLong();",
+        "",
+        "    if (n <= 1) {",
+        "      return;",
+        "    }",
+        "",
+        "    StringBuilder sb = new StringBuilder();",
+        "",
+        "    while (n % 2 == 0) {",
+        "      sb.append(2).append(\" \");",
+        "      n /= 2;",
+        "    }",
+        "",
+        "    for (long i = 3; i * i <= n; i += 2) {",
+        "      while (n % i == 0) {",
+        "        sb.append(i).append(\" \");",
+        "        n /= i;",
+        "      }",
+        "    }",
+        "",
+        "    if (n > 1) {",
+        "      sb.append(n);",
+        "    }",
+        "",
+        "    System.out.print(sb.toString().trim());",
+        "  }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "All implementations start by handling n <= 1 as a trivial case where no prime factors are printed.",
+      "They repeatedly divide out factors of 2 and record each occurrence.",
+      "Then they move on to odd candidate factors starting from 3, stepping by 2 to skip even numbers.",
+      "For each odd i, they divide n as long as n % i == 0, outputting i each time.",
+      "Once i exceeds sqrt(n), any remaining n greater than 1 must be a prime factor and is printed.",
+      "This method avoids redundant checks and efficiently decomposes the number into prime factors."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "12",
+        "output": "2 2 3",
+        "explanation": "12 = 2 × 2 × 3, so its prime factors in non-decreasing order are 2, 2, and 3."
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "13",
+        "expected_output": "13",
+        "explanation": "13 is prime, so its only prime factor is itself."
+      },
+      {
+        "input": "60",
+        "expected_output": "2 2 3 5",
+        "explanation": "Factors of 60 are 2 × 2 × 3 × 5."
+      },
+      {
+        "input": "1",
+        "expected_output": "",
+        "explanation": "1 has no prime factors, so nothing is printed."
+      }
+    ],
+    "dry_run_explanation": [
+      "Take n = 60.",
+      "First, remove factors of 2:",
+      "n = 60, divisible by 2: print 2, n = 30.",
+      "n = 30, divisible by 2: print 2, n = 15.",
+      "n = 15, not divisible by 2, move to odd i = 3.",
+      "15 % 3 == 0: print 3, n = 5.",
+      "i = 3, now i * i = 9 > n = 5, exit loop.",
+      "Since n > 1, print 5.",
+      "Output is '2 2 3 5'."
+    ]
+  },
+    {
+    "id": 213,
+    "category_id": 2,
+    "question_title": "Sum of Digits",
+    "question_description": "Given a number N, find the sum of its digits.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["digits", "math"],
+    "question_theory": [
+      "Sum of digits means adding each individual digit of a number.",
+      "We repeatedly extract the last digit using N % 10 and then remove it using N / 10.",
+      "Continue this until N becomes zero."
+    ],
+    "question_concept": [
+      "Read integer N.",
+      "Initialize sum = 0.",
+      "Run loop until N > 0.",
+      "Extract digit using N % 10.",
+      "Add digit to sum.",
+      "Update N = N / 10."
+    ],
+    "question_explanation": [
+      "This is a basic number manipulation problem.",
+      "We continuously strip the last digit and keep accumulating them.",
+      "Ensure that negative inputs are handled properly if allowed, but here N is assumed positive."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "int main(){ long long n; cin >> n; int s=0;",
+        "while(n>0){ s += n%10; n/=10; }",
+        "cout << s; return 0; }"
+      ],
+      "python": [
+        "n = int(input())",
+        "s = 0",
+        "while n > 0:",
+        "    s += n % 10",
+        "    n //= 10",
+        "print(s)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main {",
+        "public static void main(String[] args){",
+        "Scanner sc = new Scanner(System.in);",
+        "long n = sc.nextLong(); int s = 0;",
+        "while(n > 0){ s += n % 10; n /= 10; }",
+        "System.out.println(s); }}"]
+    },
+    "solution_explanation": [
+      "We iterate once per digit, so complexity is O(d), where d = number of digits.",
+      "Works efficiently even for large numbers."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "1234", "output": "10", "explanation": "1+2+3+4 = 10" }
+    ],
+    "tests_industry_standard": [
+      { "input": "5", "expected_output": "5" },
+      { "input": "9999", "expected_output": "36" }
+    ],
+    "dry_run_explanation": [
+      "Example: N = 321",
+      "Iteration: 1 (sum = 1), 2 (sum = 3), 3 (sum = 6)",
+      "Output: 6"
+    ]
+  },
+  {
+    "id": 214,
+    "category_id": 2,
+    "question_title": "Digital Root",
+    "question_description": "Given a number N, repeatedly sum the digits until a single digit is obtained.",
+    "question_level": "Level 2",
+    "question_category": "Computational Logic",
+    "question_tags": ["digits", "math"],
+    "question_theory": [
+      "Digital root reduces a number to a single digit.",
+      "Example: 987 => 9 + 8 + 7 = 24 => 2 + 4 = 6",
+      "Famous mathematical formula exists: If N == 0 → return 0, else → 1 + (N - 1) % 9"
+    ],
+    "question_concept": [
+      "Read integer N.",
+      "Run sum of digits repeatedly while N > 9.",
+      "Output the final single digit."
+    ],
+    "question_explanation": [
+      "A loop repeatedly replaces N with the sum of its digits.",
+      "Stops when N < 10."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){ long long n; cin >> n;",
+        "while(n > 9){ long long s=0;",
+        "while(n){ s += n%10; n/=10;} n=s; }",
+        "cout<<n; }"
+      ],
+      "python": [
+        "n = int(input())",
+        "while n > 9:",
+        "    s = 0",
+        "    temp = n",
+        "    while temp:",
+        "        s += temp % 10",
+        "        temp //= 10",
+        "    n = s",
+        "print(n)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "public static void main(String[] a){",
+        "Scanner sc=new Scanner(System.in);",
+        "long n=sc.nextLong();",
+        "while(n>9){ long s=0,temp=n;",
+        "while(temp>0){ s+=temp%10; temp/=10;}",
+        "n=s;}",
+        "System.out.println(n);}}"]
+    },
+    "solution_explanation": [
+      "Repeated digit extraction continues until 1-digit remains.",
+      "Worst-case O(d²) operations but typically very fast."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "999", "output": "9", "explanation": "27 -> 9" }
+    ],
+    "tests_industry_standard": [
+      { "input": "12345", "expected_output": "6" }
+    ],
+    "dry_run_explanation": [
+      "N = 86 → 8+6 = 14 → 1+4 = 5"
+    ]
+  },
+  {
+    "id": 215,
+    "category_id": 2,
+    "question_title": "Decimal to Binary Conversion",
+    "question_description": "Convert a given integer N to its binary representation.",
+    "question_level": "Level 1",
+    "question_category": "Computational Logic",
+    "question_tags": ["binary", "conversion"],
+    "question_theory": [
+      "Binary uses base 2 representation.",
+      "Repeated division by 2 gives binary digits from rightmost to leftmost.",
+      "We store remainders and reverse them."
+    ],
+    "question_concept": [
+      "Read integer N.",
+      "While N > 0, store remainder of N % 2.",
+      "Update N = N / 2.",
+      "Reverse collected bits or print in stack order."
+    ],
+    "question_explanation": [
+      "Binary conversion is essential for low-level computation learning.",
+      "We push remainders into a temporary array/string then reverse."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){int n; cin>>n; int a[32],i=0;",
+        "if(n==0){ cout<<0; return 0; }",
+        "while(n>0){ a[i++]=n%2; n/=2;}",
+        "for(int j=i-1;j>=0;j--) cout<<a[j]; }"
+      ],
+      "python": [
+        "n = int(input())",
+        "if n == 0:",
+        "    print(0)",
+        "else:",
+        "    bits = []",
+        "    while n > 0:",
+        "        bits.append(n % 2)",
+        "        n //= 2",
+        "    print(''.join(str(x) for x in bits[::-1]))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "public static void main(String[] args){",
+        "Scanner sc=new Scanner(System.in);",
+        "int n=sc.nextInt();",
+        "if(n==0){ System.out.println(0); return;}",
+        "int[] a=new int[32]; int i=0;",
+        "while(n>0){ a[i++]=n%2; n/=2;} ",
+        "for(int j=i-1;j>=0;j--) System.out.print(a[j]); }}"]
+    },
+    "solution_explanation": [
+      "Loop count depends on bit length: O(log N).",
+      "Space required for remainder storage also O(log N)."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "5", "output": "101" }
+    ],
+    "tests_industry_standard": [
+      { "input": "10", "expected_output": "1010" }
+    ],
+    "dry_run_explanation": [
+      "Example: 7 → remainders = 1,1,1 → reversed output = 111"
+    ]
+  },
+  {
+    "id": 216,
+    "category_id": 2,
+    "question_title": "Trailing Zeros in Factorial",
+    "question_description": "Given N, count the number of trailing zeros in N! (factorial of N).",
+    "question_level": "Level 2",
+    "question_category": "Computational Logic",
+    "question_tags": ["factorial", "math"],
+    "question_theory": [
+      "Trailing zeros come from factors of 10.",
+      "10 = 2 × 5, and factorial has many 2's, so count 5's.",
+      "Count multiples of 5, 25, 125,... until N/x = 0."
+    ],
+    "question_concept": [
+      "Read N.",
+      "Initialize count = 0.",
+      "Loop k = 5; while N/k > 0 add N/k to count and update k *= 5.",
+      "Print count."
+    ],
+    "question_explanation": [
+      "Avoid computing factorial directly — too big!",
+      "Just count contribution of 5-power factors."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){int n;cin>>n;int c=0;",
+        "for(int i=5;n/i>0;i*=5) c+=n/i;",
+        "cout<<c;}"
+      ],
+      "python": [
+        "n=int(input())",
+        "c=0",
+        "i=5",
+        "while n//i>0:",
+        "    c+=n//i",
+        "    i*=5",
+        "print(c)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "public static void main(String[] args){",
+        "Scanner sc=new Scanner(System.in);",
+        "int n=sc.nextInt(); int c=0;",
+        "for(int i=5;n/i>0;i*=5) c+=n/i;",
+        "System.out.println(c);}}"]
+    },
+    "solution_explanation": [
+      "This method uses logarithmic loops: O(log₅ N).",
+      "Very efficient even for large N, e.g., 10⁹."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "5", "output": "1" }
+    ],
+    "tests_industry_standard": [
+      { "input": "100", "expected_output": "24" }
+    ],
+    "dry_run_explanation": [
+      "Example: N = 10 → 10/5 = 2 → result = 2 zeros"
+    ]
+  }
+]

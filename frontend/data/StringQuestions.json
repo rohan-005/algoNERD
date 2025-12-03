@@ -1,0 +1,1076 @@
+[
+  {
+    "id": 301,
+    "category_id": 3,
+    "question_title": "Reverse a String",
+    "question_description": "Given a string S, reverse it without using built-in reverse functions.",
+    "question_level": "Level 1",
+    "question_category": "String Problems",
+    "question_tags": ["reverse", "string"],
+    "question_theory": [
+      "A string is a sequence of characters stored in contiguous memory.",
+      "Reversing a string means swapping characters from both ends moving inward.",
+      "This can be done using a two-pointer approach."
+    ],
+    "question_concept": [
+      "Read string S.",
+      "Maintain two pointers: left = 0 and right = S.length - 1.",
+      "Swap characters at both positions.",
+      "Move pointers inward until left >= right.",
+      "Print reversed string."
+    ],
+    "question_explanation": [
+      "Reversing a string improves understanding of indexing in character arrays.",
+      "This logic works without using extra space."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){",
+        "    string s; cin>>s;",
+        "    int i=0,j=s.size()-1;",
+        "    while(i<j){ char t=s[i]; s[i]=s[j]; s[j]=t; i++; j--; }",
+        "    cout<<s;",
+        "}"
+      ],
+      "python": [
+        "s = input()",
+        "print(s[::-1])  # slicing trick"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        char a[]=s.toCharArray();",
+        "        int i=0,j=a.length-1;",
+        "        while(i<j){ char t=a[i]; a[i]=a[j]; a[j]=t; i++; j--;}",
+        "        System.out.println(new String(a));",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Swapping from both ends ensures O(N) time and O(1) space in C++ and Java.",
+      "Python solution is O(N) but uses slicing internally."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "hello", "output": "olleh" }
+    ],
+    "tests_industry_standard": [
+      { "input": "a", "expected_output": "a" },
+      { "input": "world", "expected_output": "dlrow" }
+    ],
+    "dry_run_explanation": [
+      "S = 'abc' → swap 'a' & 'c' → 'cba'"
+    ]
+  },
+  {
+    "id": 302,
+    "category_id": 3,
+    "question_title": "Check Palindrome String",
+    "question_description": "Given a string S, check whether it reads the same forward and backward.",
+    "question_level": "Level 1",
+    "question_category": "String Problems",
+    "question_tags": ["palindrome", "two-pointers"],
+    "question_theory": [
+      "A palindrome is a string that remains the same even after reversing.",
+      "We can compare characters from both ends to check equality."
+    ],
+    "question_concept": [
+      "Read string S.",
+      "Initialize left = 0, right = S.length - 1.",
+      "Compare characters at both ends while left < right.",
+      "If mismatch found, it is not palindrome.",
+      "Else all characters match → palindrome."
+    ],
+    "question_explanation": [
+      "Palindrome logic uses two-pointer pattern.",
+      "Efficient and does not require extra memory."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){",
+        "    string s; cin>>s;",
+        "    int i=0,j=s.size()-1;",
+        "    while(i<j){",
+        "        if(s[i]!=s[j]){",
+        "            cout<<\"Not Palindrome\";",
+        "            return 0;",
+        "        }",
+        "        i++;",
+        "        j--;",
+        "    }",
+        "    cout<<\"Palindrome\";",
+        "}"
+      ],
+      "python": [
+        "s = input()",
+        "print(\"Palindrome\" if s == s[::-1] else \"Not Palindrome\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        int i=0,j=s.length()-1;",
+        "        while(i<j){",
+        "            if(s.charAt(i)!=s.charAt(j)){",
+        "                System.out.println(\"Not Palindrome\");",
+        "                return;",
+        "            }",
+        "            i++;",
+        "            j--;",
+        "        }",
+        "        System.out.println(\"Palindrome\");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Two-pointer comparison ensures O(N) time",
+      "No extra memory needed except small variables"
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "madam", "output": "Palindrome" }
+    ],
+    "tests_industry_standard": [
+      { "input": "abc", "expected_output": "Not Palindrome" }
+    ],
+    "dry_run_explanation": [
+      "'level' → all matching → Palindrome"
+    ]
+  },
+  {
+    "id": 303,
+    "category_id": 3,
+    "question_title": "Anagram Check",
+    "question_description": "Given two strings S1 and S2, check if they contain the same characters in any order.",
+    "question_level": "Level 2",
+    "question_category": "String Problems",
+    "question_tags": ["anagram"],
+    "question_theory": [
+      "Two strings are anagrams if frequency of each character is the same.",
+      "Sorting both strings and comparing works too but counting is faster.",
+      "ASCII frequency array (256) is used since STL maps are not allowed here (Level 2 basic)."
+    ],
+    "question_concept": [
+      "Read S1 and S2.",
+      "If their lengths differ → return false.",
+      "Create frequency array freq[256] and update using characters of both strings.",
+      "If any frequency remains non-zero → not anagram."
+    ],
+    "question_explanation": [
+      "Avoids sorting (O(N log N)).",
+      "Counting method gives O(N) time."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){",
+        "    string a,b;",
+        "    cin>>a>>b;",
+        "    if(a.size()!=b.size()){",
+        "        cout<<\"Not Anagram\";",
+        "        return 0;",
+        "    }",
+        "    int f[256]={0};",
+        "    for(int i=0;i<a.size();i++){",
+        "        f[(int)a[i]]++;",
+        "        f[(int)b[i]]--;",
+        "    }",
+        "    for(int i=0;i<256;i++){",
+        "        if(f[i]!=0){",
+        "            cout<<\"Not Anagram\";",
+        "            return 0;",
+        "        }",
+        "    }",
+        "    cout<<\"Anagram\";",
+        "}"
+      ],
+      "python": [
+        "a = input()",
+        "b = input()",
+        "if len(a) != len(b):",
+        "    print(\"Not Anagram\")",
+        "else:",
+        "    freq = [0]*256",
+        "    for i in range(len(a)):",
+        "        freq[ord(a[i])] += 1",
+        "        freq[ord(b[i])] -= 1",
+        "    print(\"Anagram\" if all(x == 0 for x in freq) else \"Not Anagram\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String a=sc.next();",
+        "        String b=sc.next();",
+        "        if(a.length()!=b.length()){",
+        "            System.out.println(\"Not Anagram\");",
+        "            return;",
+        "        }",
+        "        int f[]=new int[256];",
+        "        for(int i=0;i<a.length();i++){",
+        "            f[a.charAt(i)]++;",
+        "            f[b.charAt(i)]--;",
+        "        }",
+        "        for(int x:f){",
+        "            if(x!=0){",
+        "                System.out.println(\"Not Anagram\");",
+        "                return;",
+        "            }",
+        "        }",
+        "        System.out.println(\"Anagram\");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Frequency count avoids sorting and provides linear time.",
+      "Space: O(1) → max array size fixed (256)."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "listen\nsilent", "output": "Anagram" }
+    ],
+    "tests_industry_standard": [
+      { "input": "hello\nworld", "expected_output": "Not Anagram" }
+    ],
+    "dry_run_explanation": [
+      "S1 = act, S2 = cat → identical frequency → Anagram"
+    ]
+  },
+    {
+    "id": 304,
+    "category_id": 3,
+    "question_title": "First Non-Repeating Character",
+    "question_description": "Given a string S, find the first character that does not repeat in the string.",
+    "question_level": "Level 2",
+    "question_category": "String Problems",
+    "question_tags": ["string", "hashing"],
+    "question_theory": [
+      "A non-repeating character appears exactly once in the string.",
+      "To identify the first such character, we must track the frequency of each character.",
+      "Using a frequency array is faster than maps here."
+    ],
+    "question_concept": [
+      "Traverse and count frequency of each character.",
+      "Traverse again to find first character with freq = 1.",
+      "If none found → print -1."
+    ],
+    "question_explanation": [
+      "Two-pass approach: O(N) time & O(1) space due to fixed ASCII size."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){",
+        "    string s;",
+        "    cin>>s;",
+        "    int f[256]={0};",
+        "    for(int i=0;i<s.size();i++){",
+        "        f[(int)s[i]]++;",
+        "    }",
+        "    for(int i=0;i<s.size();i++){",
+        "        if(f[(int)s[i]]==1){",
+        "            cout<<s[i];",
+        "            return 0;",
+        "        }",
+        "    }",
+        "    cout<<-1;",
+        "}"
+      ],
+      "python": [
+        "s=input()",
+        "freq=[0]*256",
+        "for ch in s: freq[ord(ch)] += 1",
+        "for ch in s:",
+        "    if freq[ord(ch)] == 1:",
+        "        print(ch)",
+        "        break",
+        "else:",
+        "    print(-1)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[]a){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        int f[]=new int[256];",
+        "        for(int i=0;i<s.length();i++){",
+        "            f[s.charAt(i)]++;",
+        "        }",
+        "        for(int i=0;i<s.length();i++){",
+        "            if(f[s.charAt(i)]==1){",
+        "                System.out.println(s.charAt(i));",
+        "                return;",
+        "            }",
+        "        }",
+        "        System.out.println(-1);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Two scans guarantee earliest position is considered.",
+      "Perfect for interview problems due to simplicity + efficiency."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "aabbcd", "output": "c" }
+    ],
+    "tests_industry_standard": [
+      { "input": "xxyz", "expected_output": "y" }
+    ],
+    "dry_run_explanation": [
+      "S = aabbcd → frequencies: c=1 at index 4 → output c"
+    ]
+  },
+  {
+    "id": 305,
+    "category_id": 3,
+    "question_title": "Count Vowels and Consonants",
+    "question_description": "Count the total number of vowels and consonants in a string S.",
+    "question_level": "Level 1",
+    "question_category": "String Problems",
+    "question_tags": ["string"],
+    "question_theory": [
+      "Vowels: a, e, i, o, u (uppercase included).",
+      "Any alphabet that is not a vowel is a consonant.",
+      "Ignore digits and special characters if present."
+    ],
+    "question_concept": [
+      "Traverse string once.",
+      "Check if each character is alphabet.",
+      "Count vowels and consonants separately."
+    ],
+    "question_explanation": [
+      "Remember to convert uppercase to lowercase or check both cases."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "bool isVowel(char c){",
+        "    c=tolower(c);",
+        "    return c=='a'||c=='e'||c=='i'||c=='o'||c=='u';",
+        "}",
+        "int main(){",
+        "    string s;",
+        "    cin>>s;",
+        "    int v=0,cnt=0;",
+        "    for(char c:s){",
+        "        if(isalpha(c)){",
+        "            if(isVowel(c)){",
+        "                v++;",
+        "            }else{",
+        "                cnt++;",
+        "            }",
+        "        }",
+        "    }",
+        "    cout<<v<<\" \"<<cnt;",
+        "}"
+      ],
+      "python": [
+        "s=input()",
+        "vowels='aeiouAEIOU'",
+        "v=c=0",
+        "for ch in s:",
+        "    if ch.isalpha():",
+        "        if ch in vowels: v+=1",
+        "        else: c+=1",
+        "print(v, c)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static boolean isVowel(char c){",
+        "        return \"aeiouAEIOU\".indexOf(c)!=-1;",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        int v=0,c=0;",
+        "        for(char ch:s.toCharArray()){",
+        "            if(Character.isLetter(ch)){",
+        "                if(isVowel(ch)){",
+        "                    v++;",
+        "                }else{",
+        "                    c++;",
+        "                }",
+        "            }",
+        "        }",
+        "        System.out.println(v+\" \"+c);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Single pass → O(N) time complexity.",
+      "Constant extra space → O(1)."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "hello", "output": "2 3" }
+    ],
+    "tests_industry_standard": [
+      { "input": "aEiOu", "expected_output": "5 0" }
+    ],
+    "dry_run_explanation": [
+      "S: hey → vowels = e,y? no → y consonant → 1 2"
+    ]
+  },
+  {
+    "id": 306,
+    "category_id": 3,
+    "question_title": "Longest Substring Without Repeating Characters",
+    "question_description": "Find the length of the longest substring without any repeating characters.",
+    "question_level": "Level 3",
+    "question_category": "String Problems",
+    "question_tags": ["string", "sliding-window"],
+    "question_theory": [
+      "A sliding window technique adjusts boundaries dynamically.",
+      "Track last occurred index of each character using hashing.",
+      "Time-efficient approach: O(N)."
+    ],
+    "question_concept": [
+      "Use two pointers: start and i.",
+      "Hash map stores index of each character.",
+      "If a repeated character is found and stored index >= start:",
+      "Move start to index + 1 to maintain uniqueness.",
+      "Track and update maximum window length."
+    ],
+    "question_explanation": [
+      "This problem appears frequently in coding interviews.",
+      "Best solved with sliding window + hashing."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "#include<unordered_map>",
+        "using namespace std;",
+        "int main(){",
+        "    string s;",
+        "    cin>>s;",
+        "    unordered_map<char,int> mp;",
+        "    int mx=0,st=0;",
+        "    for(int i=0;i<s.size();i++){",
+        "        if(mp.count(s[i]) && mp[s[i]]>=st){",
+        "            st=mp[s[i]]+1;",
+        "        }",
+        "        mp[s[i]]=i;",
+        "        mx=max(mx,i-st+1);",
+        "    }",
+        "    cout<<mx;",
+        "}"
+      ],
+      "python": [
+        "s=input()",
+        "mp={}",
+        "st=0",
+        "mx=0",
+        "for i,ch in enumerate(s):",
+        "    if ch in mp and mp[ch]>=st:",
+        "        st=mp[ch]+1",
+        "    mp[ch]=i",
+        "    mx=max(mx,i-st+1)",
+        "print(mx)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        HashMap<Character,Integer> mp=new HashMap<>();",
+        "        int st=0,mx=0;",
+        "        for(int i=0;i<s.length();i++){",
+        "            char c=s.charAt(i);",
+        "            if(mp.containsKey(c) && mp.get(c)>=st){",
+        "                st=mp.get(c)+1;",
+        "            }",
+        "            mp.put(c,i);",
+        "            mx=Math.max(mx,i-st+1);",
+        "        }",
+        "        System.out.println(mx);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Sliding window ensures characters stay unique.",
+      "Hash map gives quick lookup of latest positions.",
+      "Best complexity: O(N)."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "abcabcbb", "output": "3" }
+    ],
+    "tests_industry_standard": [
+      { "input": "pwwkew", "expected_output": "3" }
+    ],
+    "dry_run_explanation": [
+      "Substring: pwwkew → longest = 'wke' → length 3"
+    ]
+  },
+  {
+    "id": 307,
+    "category_id": 3,
+    "question_title": "Check String Rotation",
+    "question_description": "Given two strings S1 and S2, check whether S2 is a rotation of S1.",
+    "question_level": "Level 2",
+    "question_category": "String Problems",
+    "question_tags": ["rotation", "string"],
+    "question_theory": [
+      "If S2 is a rotation of S1, then S2 must be a substring of S1 concatenated with itself.",
+      "Example: S1 = ABCD → S1+S1 = ABCDABCD → CDAB is substring."
+    ],
+    "question_concept": [
+      "Check lengths first.",
+      "Concatenate S1 with itself.",
+      "Check if S2 appears inside."
+    ],
+    "question_explanation": [
+      "Substring search can be done using find() or KMP.",
+      "Here we use simple find for clarity."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){",
+        "    string a,b;",
+        "    cin>>a>>b;",
+        "    if(a.size()!=b.size()){",
+        "        cout<<\"No\";",
+        "        return 0;",
+        "    }",
+        "    string t=a+a;",
+        "    if(t.find(b)!=string::npos){",
+        "        cout<<\"Yes\";",
+        "    }else{",
+        "        cout<<\"No\";",
+        "    }",
+        "}"
+      ],
+      "python": [
+        "a=input()",
+        "b=input()",
+        "print(\"Yes\" if len(a)==len(b) and b in (a+a) else \"No\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String a=sc.next();",
+        "        String b=sc.next();",
+        "        if(a.length()!=b.length()){",
+        "            System.out.println(\"No\");",
+        "            return;",
+        "        }",
+        "        String t=a+a;",
+        "        System.out.println(t.contains(b)?\"Yes\":\"No\");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "O(N) for substring search in most languages.",
+      "Memory increased by creating concatenated string."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "ABCD\nCDAB", "output": "Yes" }
+    ],
+    "tests_industry_standard": [
+      { "input": "ABCD\nACBD", "expected_output": "No" }
+    ],
+    "dry_run_explanation": [
+      "t = 'ABCDABCD', b='CDAB' → substring → Yes"
+    ]
+  },
+  {
+    "id": 308,
+    "category_id": 3,
+    "question_title": "Compress String",
+    "question_description": "Given a string S, compress it such that each group of repeating characters is replaced by the character followed by the count of repetitions.",
+    "question_level": "Level 2",
+    "question_category": "String Problems",
+    "question_tags": ["string", "compression"],
+    "question_theory": [
+      "Compression reduces repeated characters using counts.",
+      "Example: 'aaabbc' → 'a3b2c1'.",
+      "We iterate and count continuous runs."
+    ],
+    "question_concept": [
+      "Traverse the string and count consecutive repeats.",
+      "Append character and count to result.",
+      "Reset count when character changes."
+    ],
+    "question_explanation": [
+      "Simple run-length encoding style compression.",
+      "Ensure final group is appended after loop completes."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){",
+        "    string s;",
+        "    cin>>s;",
+        "    string res=\"\";",
+        "    int c=1;",
+        "    for(int i=1;i<=s.size();i++){",
+        "        if(i<s.size() && s[i]==s[i-1]){",
+        "            c++;",
+        "        }else{",
+        "            res+=s[i-1];",
+        "            res+=to_string(c);",
+        "            c=1;",
+        "        }",
+        "    }",
+        "    cout<<res;",
+        "}"
+      ],
+      "python": [
+        "s=input()",
+        "res=\"\"",
+        "c=1",
+        "for i in range(1,len(s)+1):",
+        "    if i<len(s) and s[i]==s[i-1]: c+=1",
+        "    else:",
+        "        res+=s[i-1]+str(c)",
+        "        c=1",
+        "print(res)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[]a){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        StringBuilder res=new StringBuilder();",
+        "        int c=1;",
+        "        for(int i=1;i<=s.length();i++){",
+        "            if(i<s.length() && s.charAt(i)==s.charAt(i-1)){",
+        "                c++;",
+        "            }else{",
+        "                res.append(s.charAt(i-1));",
+        "                res.append(c);",
+        "                c=1;",
+        "            }",
+        "        }",
+        "        System.out.println(res);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "O(N) time, O(N) space worst case.",
+      "Used only simple string scans — no hashing needed."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "aaaabb", "output": "a4b2" }
+    ],
+    "tests_industry_standard": [
+      { "input": "abc", "expected_output": "a1b1c1" }
+    ],
+    "dry_run_explanation": [
+      "S='aabb' → a2b2"
+    ]
+  },
+  {
+    "id": 309,
+    "category_id": 3,
+    "question_title": "Remove Duplicate Characters",
+    "question_description": "Given a string S, remove repeating characters but keep the first occurrence.",
+    "question_level": "Level 2",
+    "question_category": "String Problems",
+    "question_tags": ["string", "hashing"],
+    "question_theory": [
+      "A frequency/visited check ensures only first occurrence stays.",
+      "ASCII visited array, no dynamic maps needed."
+    ],
+    "question_concept": [
+      "Traverse characters.",
+      "Use visited[] to check if character is already taken.",
+      "Append only if first time seen."
+    ],
+    "question_explanation": [
+      "This keeps ordering while removing duplicates efficiently."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int main(){",
+        "    string s;",
+        "    cin>>s;",
+        "    bool vis[256]={false};",
+        "    for(char c:s){",
+        "        if(!vis[(int)c]){",
+        "            cout<<c;",
+        "            vis[(int)c]=true;",
+        "        }",
+        "    }",
+        "}"
+      ],
+      "python": [
+        "s=input()",
+        "vis=[False]*256",
+        "res=\"\"",
+        "for ch in s:",
+        "    i=ord(ch)",
+        "    if not vis[i]:",
+        "        res+=ch",
+        "        vis[i]=True",
+        "print(res)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[]a){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        boolean vis[]=new boolean[256];",
+        "        String res=\"\";",
+        "        for(char c:s.toCharArray()){",
+        "            if(!vis[c]){",
+        "                res+=c;",
+        "                vis[c]=true;",
+        "            }",
+        "        }",
+        "        System.out.println(res);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Linear time: O(N) & constant extra memory.",
+      "Order preserved by conditionally appending."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "banana", "output": "ban" }
+    ],
+    "tests_industry_standard": [
+      { "input": "aaaa", "expected_output": "a" }
+    ],
+    "dry_run_explanation": [
+      "S='abcabc' → vis marks a,b,c only once → 'abc'"
+    ]
+  },
+  {
+    "id": 310,
+    "category_id": 3,
+    "question_title": "Valid Parentheses",
+    "question_description": "Determine if a string containing only brackets (){}[] is valid.",
+    "question_level": "Level 2",
+    "question_category": "String Problems",
+    "question_tags": ["stack"],
+    "question_theory": [
+      "Stack data structure handles matching pairs in order.",
+      "Push opening brackets, pop when matched.",
+      "If structure breaks or leftover exists → invalid."
+    ],
+    "question_concept": [
+      "Use stack.",
+      "If opening bracket → push.",
+      "If closing bracket → check top of stack.",
+      "Stack must be empty at end."
+    ],
+    "question_explanation": [
+      "Classic stack-based validation logic."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "#include<stack>",
+        "using namespace std;",
+        "bool match(char a,char b){",
+        "    return (a=='('&&b==')')||(a=='{'&&b=='}')||(a=='['&&b==']');",
+        "}",
+        "int main(){",
+        "    string s;",
+        "    cin>>s;",
+        "    stack<char> st;",
+        "    for(char c:s){",
+        "        if(c=='('||c=='{'||c=='['){",
+        "            st.push(c);",
+        "        }else{",
+        "            if(st.empty()||!match(st.top(),c)){",
+        "                cout<<\"No\";",
+        "                return 0;",
+        "            }",
+        "            st.pop();",
+        "        }",
+        "    }",
+        "    cout<<(st.empty()?\"Yes\":\"No\");",
+        "}"
+      ],
+      "python": [
+        "s=input()",
+        "stack=[]",
+        "pairs={')':'(','}':'{',']':'['}",
+        "for ch in s:",
+        "    if ch in '({[': stack.append(ch)",
+        "    else:",
+        "        if not stack or stack[-1]!=pairs[ch]: print(\"No\");break",
+        "        stack.pop()",
+        "else:",
+        "    print(\"Yes\" if not stack else \"No\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[]args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        Stack<Character> st=new Stack<>();",
+        "        for(char c:s.toCharArray()){",
+        "            if(c=='('||c=='{'||c=='['){",
+        "                st.push(c);",
+        "            }else{",
+        "                if(st.isEmpty()||",
+        "                    (c==')'&&st.pop()!='(')||",
+        "                    (c=='}'&&st.pop()!='{')||",
+        "                    (c==']'&&st.pop()!='[')){",
+        "                    System.out.println(\"No\");",
+        "                    return;",
+        "                }",
+        "            }",
+        "        }",
+        "        System.out.println(st.isEmpty()?\"Yes\":\"No\");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Stack ensures proper nesting order.",
+      "Time complexity: O(N)."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "()[]{}", "output": "Yes" }
+    ],
+    "tests_industry_standard": [
+      { "input": "(]", "expected_output": "No" }
+    ],
+    "dry_run_explanation": [
+      "Stack keeps pushing and popping in order"
+    ]
+  },
+  {
+    "id": 311,
+    "category_id": 3,
+    "question_title": "Longest Palindromic Substring",
+    "question_description": "Find the longest substring of S that is a palindrome.",
+    "question_level": "Level 3",
+    "question_category": "String Problems",
+    "question_tags": ["string", "palindrome"],
+    "question_theory": [
+      "A palindrome string reads same forward and backward.",
+      "Expand Around Center approach checks around each char or gap.",
+      "Complexity: O(N²), optimal for interviews."
+    ],
+    "question_concept": [
+      "Maintain best palindrome length and starting index.",
+      "Expand around (i,i) and (i,i+1) for odd & even centers.",
+      "Update max if longer found."
+    ],
+    "question_explanation": [
+      "Dynamic programming variant exists but expanding is simpler & efficient in practice."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "string expand(string &s,int l,int r){",
+        "    while(l>=0&&r<s.size()&&s[l]==s[r]){",
+        "        l--;",
+        "        r++;",
+        "    }",
+        "    return s.substr(l+1,r-l-1);",
+        "}",
+        "int main(){",
+        "    string s;",
+        "    cin>>s;",
+        "    string best=\"\";",
+        "    for(int i=0;i<s.size();i++){",
+        "        string a=expand(s,i,i);",
+        "        if(a.size()>best.size()){",
+        "            best=a;",
+        "        }",
+        "        string b=expand(s,i,i+1);",
+        "        if(b.size()>best.size()){",
+        "            best=b;",
+        "        }",
+        "    }",
+        "    cout<<best;",
+        "}"
+      ],
+      "python": [
+        "s=input()",
+        "def expand(l,r):",
+        "    while l>=0 and r<len(s) and s[l]==s[r]: l-=1; r+=1",
+        "    return s[l+1:r]",
+        "best=\"\"",
+        "for i in range(len(s)):",
+        "    a=expand(i,i)",
+        "    if len(a)>len(best): best=a",
+        "    b=expand(i,i+1)",
+        "    if len(b)>len(best): best=b",
+        "print(best)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static String expand(String s,int l,int r){",
+        "        while(l>=0&&r<s.length()&&s.charAt(l)==s.charAt(r)){",
+        "            l--;",
+        "            r++;",
+        "        }",
+        "        return s.substring(l+1,r);",
+        "    }",
+        "    public static void main(String[]args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        String best=\"\";",
+        "        for(int i=0;i<s.length();i++){",
+        "            String a=expand(s,i,i);",
+        "            if(a.length()>best.length()){",
+        "                best=a;",
+        "            }",
+        "            String b=expand(s,i,i+1);",
+        "            if(b.length()>best.length()){",
+        "                best=b;",
+        "            }",
+        "        }",
+        "        System.out.println(best);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Each expansion runs until mismatch → worst O(N²).",
+      "Much simpler than DP implementation."
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "babad", "output": "bab" }
+    ],
+    "tests_industry_standard": [
+      { "input": "cbbd", "expected_output": "bb" }
+    ],
+    "dry_run_explanation": [
+      "Check center at index 1 → 'bab'"
+    ]
+  },
+  {
+    "id": 312,
+    "category_id": 3,
+    "question_title": "Group Anagrams",
+    "question_description": "Group strings that are anagrams of each other.",
+    "question_level": "Level 3",
+    "question_category": "String Problems",
+    "question_tags": ["hashing", "anagram"],
+    "question_theory": [
+      "Anagrams share same sorted characters.",
+      "HashMap can map sorted key to list of strings.",
+      "This is a common interview hashing problem."
+    ],
+    "question_concept": [
+      "Read N strings.",
+      "Sort each string → use result as hash key.",
+      "Group strings in map using this key.",
+      "Output grouped lists."
+    ],
+    "question_explanation": [
+      "Sorting ensures anagram strings get same key.",
+      "Efficient & minimal memory technique."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "#include<unordered_map>",
+        "#include<vector>",
+        "#include<algorithm>",
+        "using namespace std;",
+        "int main(){",
+        "    int n;",
+        "    cin>>n;",
+        "    vector<string> v(n);",
+        "    for(int i=0;i<n;i++){",
+        "        cin>>v[i];",
+        "    }",
+        "    unordered_map<string,vector<string>> mp;",
+        "    for(string s:v){",
+        "        string t=s;",
+        "        sort(t.begin(),t.end());",
+        "        mp[t].push_back(s);",
+        "    }",
+        "    for(auto &x:mp){",
+        "        for(string s:x.second){",
+        "            cout<<s<<\" \";",
+        "        }",
+        "        cout<<\"\\n\";",
+        "    }",
+        "}"
+      ],
+      "python": [
+        "n=int(input())",
+        "words=[input() for _ in range(n)]",
+        "mp={}",
+        "for w in words:",
+        "    key=\"\".join(sorted(w))",
+        "    mp.setdefault(key,[]).append(w)",
+        "for g in mp.values():",
+        "    print(\" \".join(g))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    public static void main(String[]args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int n=sc.nextInt();",
+        "        String[] arr=new String[n];",
+        "        for(int i=0;i<n;i++){",
+        "            arr[i]=sc.next();",
+        "        }",
+        "        HashMap<String,ArrayList<String>> mp=new HashMap<>();",
+        "        for(String s:arr){",
+        "            char a[]=s.toCharArray();",
+        "            Arrays.sort(a);",
+        "            String key=new String(a);",
+        "            mp.putIfAbsent(key,new ArrayList<>());",
+        "            mp.get(key).add(s);",
+        "        }",
+        "        for(ArrayList<String> g:mp.values()){",
+        "            System.out.println(String.join(\" \",g));",
+        "        }",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Sorting each string: O(N * L log L)",
+      "Hashing groups efficiently."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\nact cat dog god tac",
+        "output": "act cat tac\ndog god"
+      }
+    ],
+    "tests_industry_standard": [
+      { "input": "3\nabc bca cba", "expected_output": "abc bca cba" }
+    ],
+    "dry_run_explanation": [
+      "Sorted keys map similar character sets together."
+    ]
+  }
+]
+

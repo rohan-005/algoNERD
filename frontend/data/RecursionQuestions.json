@@ -1,0 +1,691 @@
+[
+  {
+    "id": 501,
+    "category_id": 5,
+    "question_title": "Factorial (Recursive)",
+    "question_description": "Compute the factorial of a number N using recursion.",
+    "question_level": "Level 1",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "math"],
+    "question_theory": [
+      "Factorial of N (N!) = N × (N-1)!",
+      "Base case: 0! = 1, 1! = 1",
+      "Reduces the problem to a smaller subproblem each step"
+    ],
+    "question_concept": [
+      "If N == 0 return 1",
+      "Else return N * factorial(N-1)"
+    ],
+    "question_explanation": [
+      "Each recursive call decreases N by 1 until base case is reached",
+      "Stack unwinds returning the multiplication chain"
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "long long fact(int n){",
+        "    if(n<=1) return 1;",
+        "    return n * fact(n-1);",
+        "}",
+        "int main(){",
+        "    int n; cin>>n;",
+        "    cout<<fact(n);",
+        "}"
+      ],
+      "python": [
+        "def fact(n):",
+        "    return 1 if n<=1 else n * fact(n-1)",
+        "n=int(input())",
+        "print(fact(n))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main {",
+        "    static long fact(int n){",
+        "        if(n<=1) return 1;",
+        "        return n * fact(n-1);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int n=sc.nextInt();",
+        "        System.out.println(fact(n));",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Recursive stack depth = N calls",
+      "Time Complexity = O(N), Space Complexity = O(N)"
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "5", "output": "120" }
+    ],
+    "tests_industry_standard": [
+      { "input": "6", "expected_output": "720" }
+    ],
+    "dry_run_explanation": [
+      "fact(3) → 3*fact(2) → 2*fact(1) → returns 1 → result = 6"
+    ]
+  },
+  {
+    "id": 502,
+    "category_id": 5,
+    "question_title": "Fibonacci (Recursive)",
+    "question_description": "Print Nth Fibonacci number using recursion.",
+    "question_level": "Level 2",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "fibonacci"],
+    "question_theory": [
+      "Fib(N) = Fib(N-1) + Fib(N-2)",
+      "Base: Fib(0)=0, Fib(1)=1",
+      "Simple but exponential in time without memoization"
+    ],
+    "question_concept": [
+      "Return n if n<=1",
+      "Else return fib(n-1) + fib(n-2)"
+    ],
+    "question_explanation": [
+      "Naive recursive Fibonacci often used to understand recursion tree"
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int fib(int n){",
+        "    if(n<=1) return n;",
+        "    return fib(n-1)+fib(n-2);",
+        "}",
+        "int main(){",
+        "    int n; cin>>n;",
+        "    cout<<fib(n);",
+        "}"
+      ],
+      "python": [
+        "def fib(n):",
+        "    if n<=1: return n",
+        "    return fib(n-1)+fib(n-2)",
+        "n=int(input())",
+        "print(fib(n))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static int fib(int n){",
+        "        if(n<=1) return n;",
+        "        return fib(n-1)+fib(n-2);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int n=sc.nextInt();",
+        "        System.out.println(fib(n));",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Time Complexity: O(2^N) due to repetitive calls",
+      "Good for small N in learning recursion concepts"
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "5", "output": "5" }
+    ],
+    "tests_industry_standard": [
+      { "input": "7", "expected_output": "13" }
+    ],
+    "dry_run_explanation": [
+      "fib(4) → fib(3)+fib(2) → ... → 3"
+    ]
+  },
+  {
+    "id": 503,
+    "category_id": 5,
+    "question_title": "Sum of Digits (Recursive)",
+    "question_description": "Calculate the sum of digits of a number using recursion.",
+    "question_level": "Level 1",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "digits"],
+    "question_theory": [
+      "Digit sum: Sum(N) = LastDigit + Sum(N/10)",
+      "Base case: N == 0 → return 0"
+    ],
+    "question_concept": [
+      "Extract last digit using N % 10",
+      "Recur on remaining digits N / 10"
+    ],
+    "question_explanation": [
+      "Progressively shrinks the number by removing last digit every call"
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int sum(int n){",
+        "    if(n == 0) return 0;",
+        "    return (n % 10) + sum(n / 10);",
+        "}",
+        "int main(){",
+        "    int n; cin>>n;",
+        "    cout<<sum(n);",
+        "}"
+      ],
+      "python": [
+        "def digit_sum(n):",
+        "    if n == 0: return 0",
+        "    return n%10 + digit_sum(n//10)",
+        "n=int(input())",
+        "print(digit_sum(n))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static int sum(int n){",
+        "        if(n==0) return 0;",
+        "        return (n%10) + sum(n/10);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int n=sc.nextInt();",
+        "        System.out.println(sum(n));",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Removes last digit each call -> reduces problem size",
+      "Time Complexity = O(d) where d = number of digits"
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "1234", "output": "10" }
+    ],
+    "tests_industry_standard": [
+      { "input": "987", "expected_output": "24" }
+    ],
+    "dry_run_explanation": [
+      "sum(456) → 6 + 5 + 4 = 15"
+    ]
+  },
+  {
+    "id": 504,
+    "category_id": 5,
+    "question_title": "Power of a Number x^n",
+    "question_description": "Compute x raised to the power n using recursion.",
+    "question_level": "Level 2",
+    "question_category": "Recursion",
+    "question_tags": ["math", "recursion"],
+    "question_theory": [
+      "Power formula: x^n = x × x^(n−1)",
+      "Base cases: x^0 = 1"
+    ],
+    "question_concept": [
+      "Return 1 when n==0",
+      "Else return x * power(x, n-1)"
+    ],
+    "question_explanation": [
+      "Divides power into recursive multiplication chain"
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "long long power(long long x, int n){",
+        "    if(n == 0) return 1;",
+        "    return x * power(x, n - 1);",
+        "}",
+        "int main(){",
+        "    long long x; int n; cin>>x>>n;",
+        "    cout<<power(x,n);",
+        "}"
+      ],
+      "python": [
+        "def power(x,n):",
+        "    if n == 0: return 1",
+        "    return x * power(x, n-1)  # WRONG"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static long power(long x,int n){",
+        "        if(n==0) return 1;",
+        "        return x * power(x, n-1);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        long x=sc.nextLong();",
+        "        int n=sc.nextInt();",
+        "        System.out.println(power(x,n));",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Recursive depth = n calls",
+      "Time Complexity = O(n)"
+    ],
+    "dummy_test_cases_explanation": [
+      { "input": "2 5", "output": "32" }
+    ],
+    "tests_industry_standard": [
+      { "input": "3 4", "expected_output": "81" }
+    ],
+    "dry_run_explanation": [
+      "power(2,3) → 2*power(2,2) → ... → 8"
+    ]
+  },
+    {
+    "id": 505,
+    "category_id": 5,
+    "question_title": "String Palindrome Recursive",
+    "question_description": "Check whether a string is palindrome using recursion.",
+    "question_level": "Level 2",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "string", "palindrome"],
+    "question_theory": [
+      "A palindrome reads the same forwards and backwards.",
+      "Compare first and last characters.",
+      "Recurse for substring inside."
+    ],
+    "question_concept": [
+      "If left >= right → palindrome.",
+      "If mismatch found → not palindrome."
+    ],
+    "question_explanation": [
+      "Shrinks the string from both ends each recursive call."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "bool isPal(string s, int l, int r){",
+        "    if(l >= r) return true;",
+        "    if(s[l] != s[r]) return false;",
+        "    return isPal(s, l+1, r-1);",
+        "}",
+        "int main(){",
+        "    string s; cin >> s;",
+        "    cout << (isPal(s, 0, s.size()-1) ? \"Palindrome\" : \"Not Palindrome\");",
+        "}"
+      ],
+      "python": [
+        "def isPal(s, l, r):",
+        "    if l >= r: return True",
+        "    if s[l] != s[r]: return False",
+        "    return isPal(s, l+1, r-1)",
+        "",
+        "s = input()",
+        "print(\"Palindrome\" if isPal(s,0,len(s)-1) else \"Not Palindrome\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static boolean isPal(String s, int l, int r){",
+        "        if(l >= r) return true;",
+        "        if(s.charAt(l) != s.charAt(r)) return false;",
+        "        return isPal(s, l+1, r-1);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        System.out.println(isPal(s,0,s.length()-1)?\"Palindrome\":\"Not Palindrome\");",
+        "    }",
+        "}"
+      ]
+    },
+    "dummy_test_cases_explanation": [
+      { "input": "madam", "output": "Palindrome" }
+    ]
+  },
+  {
+    "id": 506,
+    "category_id": 5,
+    "question_title": "Reverse String Using Recursion",
+    "question_description": "Reverse a given string using recursion.",
+    "question_level": "Level 2",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "string"],
+    "question_theory": [
+      "Print last character first, then recursive call on remaining string.",
+      "Recursion handles ordering automatically."
+    ],
+    "question_concept": [
+      "Base case: when index < 0 stop.",
+      "Recursive case: print s[i], then call on i-1."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "void rev(string &s, int i){",
+        "    if(i < 0) return;",
+        "    cout << s[i];",
+        "    rev(s, i-1);",
+        "}",
+        "int main(){",
+        "    string s; cin >> s;",
+        "    rev(s, s.size()-1);",
+        "}"
+      ],
+      "python": [
+        "def rev(s, i):",
+        "    if i < 0: return",
+        "    print(s[i], end=\"\")",
+        "    rev(s, i-1)",
+        "",
+        "s = input()",
+        "rev(s, len(s)-1)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static void rev(String s, int i){",
+        "        if(i < 0) return;",
+        "        System.out.print(s.charAt(i));",
+        "        rev(s, i-1);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        String s=sc.next();",
+        "        rev(s, s.length()-1);",
+        "    }",
+        "}"
+      ]
+    },
+    "dummy_test_cases_explanation": [
+      { "input": "hello", "output": "olleh" }
+    ]
+  },
+  {
+    "id": 507,
+    "category_id": 5,
+    "question_title": "GCD Recursive",
+    "question_description": "Find GCD (Greatest Common Divisor) using Euclidean recursion.",
+    "question_level": "Level 1",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "gcd"],
+    "question_theory": [
+      "Euclid’s Algorithm: GCD(a,b) = GCD(b, a%b)",
+      "Base case: If b==0, GCD is a"
+    ],
+    "question_concept": [
+      "Call GCD until divisor becomes 0"
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "int gcd(int a, int b){",
+        "    if(b == 0) return a;",
+        "    return gcd(b, a % b);",
+        "}",
+        "int main(){",
+        "    int a,b; cin >> a >> b;",
+        "    cout << gcd(a,b);",
+        "}"
+      ],
+      "python": [
+        "def gcd(a,b):",
+        "    if b == 0: return a",
+        "    return gcd(b, a%b)",
+        "",
+        "a,b = map(int,input().split())",
+        "print(gcd(a,b))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static int gcd(int a,int b){",
+        "        if(b==0) return a;",
+        "        return gcd(b,a%b);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int a=sc.nextInt();",
+        "        int b=sc.nextInt();",
+        "        System.out.println(gcd(a,b));",
+        "    }",
+        "}"
+      ]
+    },
+    "dummy_test_cases_explanation": [
+      { "input": "12 18", "output": "6" }
+    ]
+  },
+  {
+    "id": 508,
+    "category_id": 5,
+    "question_title": "Tower of Hanoi",
+    "question_description": "Print steps to move N disks from source to destination using a helper rod.",
+    "question_level": "Level 3",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "classic"],
+    "question_theory": [
+      "Move N−1 disks A→B",
+      "Move Nth disk A→C",
+      "Move N−1 disks B→C"
+    ],
+    "question_concept": [
+      "hanoi(n, A, B, C):",
+      "1. hanoi(n-1, A, C, B)",
+      "2. Move disk A → C",
+      "3. hanoi(n-1, B, A, C)"
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "void hanoi(int n,char A,char B,char C){",
+        "    if(n==0) return;",
+        "    hanoi(n-1,A,C,B);",
+        "    cout<<\"Move \"<<A<<\" to \"<<C<<\"\\n\";",
+        "    hanoi(n-1,B,A,C);",
+        "}",
+        "int main(){",
+        "    int n; cin>>n;",
+        "    hanoi(n,'A','B','C');",
+        "}"
+      ],
+      "python": [
+        "def hanoi(n,A,B,C):",
+        "    if n==0: return",
+        "    hanoi(n-1,A,C,B)",
+        "    print(f\"Move {A} to {C}\")",
+        "    hanoi(n-1,B,A,C)",
+        "",
+        "n=int(input())",
+        "hanoi(n,'A','B','C')"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static void hanoi(int n,char A,char B,char C){",
+        "        if(n==0) return;",
+        "        hanoi(n-1,A,C,B);",
+        "        System.out.println(\"Move \"+A+\" to \"+C);",
+        "        hanoi(n-1,B,A,C);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        int n=sc.nextInt();",
+        "        hanoi(n,'A','B','C');",
+        "    }",
+        "}"
+      ]
+    },
+    "dummy_test_cases_explanation": [
+      { "input": "2", "output": "Move A to B\nMove A to C\nMove B to C" }
+    ]
+  },
+    {
+    "id": 509,
+    "category_id": 5,
+    "question_title": "Generate Subsets (Power Set)",
+    "question_description": "Print all subsets of a given string using recursion. Output each subset in a new line.",
+    "question_level": "Level 3",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "backtracking"],
+    "question_theory": [
+      "Subset generation follows include/exclude recursion idea.",
+      "For each index: include character or skip it.",
+      "Total subsets = 2^N."
+    ],
+    "question_concept": [
+      "Base case: if index == length → print current subset",
+      "Recursive case:",
+      "1️⃣ Include current character",
+      "2️⃣ Exclude current character"
+    ],
+    "question_explanation": [
+      "Depth-first traversal builds all combinations."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "using namespace std;",
+        "void sub(string &s, string cur, int i){",
+        "    if(i == s.size()){",
+        "        cout << cur << \"\\n\";",
+        "        return;",
+        "    }",
+        "    sub(s, cur + s[i], i+1);",
+        "    sub(s, cur, i+1);",
+        "}",
+        "int main(){",
+        "    string s; cin >> s;",
+        "    sub(s, \"\", 0);",
+        "}"
+      ],
+      "python": [
+        "def subsets(s, cur, i):",
+        "    if i == len(s):",
+        "        print(cur)",
+        "        return",
+        "    subsets(s, cur + s[i], i+1)",
+        "    subsets(s, cur, i+1)",
+        "",
+        "s = input()",
+        "subsets(s, \"\", 0)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static void sub(String s, String cur, int i){",
+        "        if(i == s.length()){",
+        "            System.out.println(cur);",
+        "            return;",
+        "        }",
+        "        sub(s, cur + s.charAt(i), i+1);",
+        "        sub(s, cur, i+1);",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc = new Scanner(System.in);",
+        "        String s = sc.next();",
+        "        sub(s, \"\", 0);",
+        "    }",
+        "}"
+      ]
+    },
+    "dummy_test_cases_explanation": [
+      {
+        "input": "ab",
+        "output": [
+          "ab",
+          "a",
+          "b",
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 510,
+    "category_id": 5,
+    "question_title": "All Permutations of String",
+    "question_description": "Generate and print all permutations of a string using recursion. Output each permutation on a new line.",
+    "question_level": "Level 3",
+    "question_category": "Recursion",
+    "question_tags": ["recursion", "backtracking"],
+    "question_theory": [
+      "Permutation swaps characters to generate new arrangements.",
+      "Each character should appear in every position once.",
+      "Total permutations = N!"
+    ],
+    "question_concept": [
+      "Fix a character → permute remaining string",
+      "Swap back after recursion (backtracking)"
+    ],
+    "question_explanation": [
+      "This approach ensures no duplicates lost if input contains unique characters."
+    ],
+    "solution": {
+      "cpp": [
+        "#include<iostream>",
+        "#include<algorithm>",
+        "using namespace std;",
+        "void perm(string &s, int i){",
+        "    if(i == s.size()-1){",
+        "        cout << s << \"\\n\";",
+        "        return;",
+        "    }",
+        "    for(int j=i;j<s.size();j++){",
+        "        swap(s[i], s[j]);",
+        "        perm(s,i+1);",
+        "        swap(s[i], s[j]);",
+        "    }",
+        "}",
+        "int main(){",
+        "    string s; cin>>s;",
+        "    perm(s,0);",
+        "}"
+      ],
+      "python": [
+        "def perm(s, i):",
+        "    if i == len(s)-1:",
+        "        print(\"\".join(s))",
+        "        return",
+        "    for j in range(i, len(s)):",
+        "        s[i], s[j] = s[j], s[i]",
+        "        perm(s, i+1)",
+        "        s[i], s[j] = s[j], s[i]",
+        "",
+        "s = list(input())",
+        "perm(s, 0)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "public class Main{",
+        "    static void perm(char[] s, int i){",
+        "        if(i == s.length-1){",
+        "            System.out.println(new String(s));",
+        "            return;",
+        "        }",
+        "        for(int j=i;j<s.length;j++){",
+        "            char t=s[i]; s[i]=s[j]; s[j]=t;",
+        "            perm(s,i+1);",
+        "            t=s[i]; s[i]=s[j]; s[j]=t;",
+        "        }",
+        "    }",
+        "    public static void main(String[] args){",
+        "        Scanner sc=new Scanner(System.in);",
+        "        char[] s=sc.next().toCharArray();",
+        "        perm(s, 0);",
+        "    }",
+        "}"
+      ]
+    },
+    "dummy_test_cases_explanation": [
+      {
+        "input": "abc",
+        "output": [
+          "abc",
+          "acb",
+          "bac",
+          "bca",
+          "cab",
+          "cba"
+        ]
+      }
+    ]
+  }
+]
+
+

@@ -1,0 +1,1212 @@
+[
+  {
+    "id": 401,
+    "category_id": 4,
+    "question_title": "Reverse Array In-Place",
+    "question_description": "Given an array of N integers, reverse the array in-place without using extra array.",
+    "question_level": "Level 1",
+    "question_category": "Array Problems",
+    "question_tags": ["array", "two-pointers"],
+    "question_theory": [
+      "Reversing means swapping elements from both ends of the array moving inward.",
+      "This can be performed in-place using a two-pointer approach which requires O(1) extra memory.",
+      "Efficient solution avoids creating a temporary array."
+    ],
+    "question_concept": [
+      "Read N and array elements.",
+      "Initialize two pointers: left = 0 and right = N-1.",
+      "Swap nums[left] and nums[right].",
+      "Move pointers inward until left >= right."
+    ],
+    "question_explanation": [
+      "In-place algorithm improves memory efficiency.",
+      "Time complexity remains optimal: O(N)."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "    int arr[n];",
+        "    for(int i = 0; i < n; i++) cin >> arr[i];",
+        "",
+        "    int left = 0, right = n - 1;",
+        "    while(left < right) {",
+        "        int temp = arr[left];",
+        "        arr[left] = arr[right];",
+        "        arr[right] = temp;",
+        "        left++;",
+        "        right--;",
+        "    }",
+        "",
+        "    for(int i = 0; i < n; i++) cout << arr[i] << \" \";",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "l, r = 0, n-1",
+        "while l < r:",
+        "    arr[l], arr[r] = arr[r], arr[l]",
+        "    l += 1",
+        "    r -= 1",
+        "print(*arr)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i = 0; i < n; i++) arr[i] = sc.nextInt();",
+        "",
+        "        int l = 0, r = n - 1;",
+        "        while(l < r) {",
+        "            int temp = arr[l];",
+        "            arr[l] = arr[r];",
+        "            arr[r] = temp;",
+        "            l++;",
+        "            r--;",
+        "        }",
+        "",
+        "        for(int x : arr) System.out.print(x + \" \");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Two-pointer approach ensures minimum memory usage.",
+      "No extra array required → O(1) space."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\n1 2 3 4 5",
+        "output": "5 4 3 2 1"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "3\n10 20 30",
+        "expected_output": "30 20 10"
+      }
+    ],
+    "dry_run_explanation": [
+      "Initial: [1, 2, 3, 4, 5]",
+      "Swap(1,5) → [5,2,3,4,1]",
+      "Swap(2,4) → [5,4,3,2,1]"
+    ]
+  },
+  {
+    "id": 402,
+    "category_id": 4,
+    "question_title": "Maximum Subarray Sum",
+    "question_description": "Find the maximum possible sum of any contiguous subarray in the given array.",
+    "question_level": "Level 2",
+    "question_category": "Array Problems",
+    "question_tags": ["subarray", "kadane"],
+    "question_theory": [
+      "Kadane’s Algorithm is the most optimal solution for maximum subarray sum.",
+      "It maintains a current sum and resets when it goes below zero.",
+      "Time complexity is O(N), best for large arrays."
+    ],
+    "question_concept": [
+      "Iterate array elements.",
+      "Keep adding values to current sum.",
+      "If current sum < 0 → reset to 0.",
+      "Track maximum sum found."
+    ],
+    "question_explanation": [
+      "Dynamic programming strategy to avoid rechecking previous sums.",
+      "This avoids O(N²) brute force."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n;",
+        "    cin >> n;",
+        "    int arr[n];",
+        "    for(int i = 0; i < n; i++) cin >> arr[i];",
+        "",
+        "    int current = 0, best = arr[0];",
+        "    for(int i = 0; i < n; i++) {",
+        "        current = max(arr[i], current + arr[i]);",
+        "        best = max(best, current);",
+        "    }",
+        "",
+        "    cout << best;",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "current = best = arr[0]",
+        "for i in range(1, n):",
+        "    current = max(arr[i], current + arr[i])",
+        "    best = max(best, current)",
+        "print(best)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i = 0; i < n; i++) arr[i] = sc.nextInt();",
+        "",
+        "        int current = arr[0], best = arr[0];",
+        "        for(int i = 1; i < n; i++) {",
+        "            current = Math.max(arr[i], current + arr[i]);",
+        "            best = Math.max(best, current);",
+        "        }",
+        "",
+        "        System.out.println(best);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Kadane’s algorithm dynamically adjusts contributions of previous values.",
+      "O(N) time, O(1) space."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\n-2 -3 4 -1 -2",
+        "output": "4"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "8\n-2 -3 4 -1 -2 1 5 -3",
+        "expected_output": "7"
+      }
+    ],
+    "dry_run_explanation": [
+      "Subarray: [4, -1, -2, 1, 5] → sum = 7"
+    ]
+  },
+  {
+    "id": 403,
+    "category_id": 4,
+    "question_title": "Rotate Array by K",
+    "question_description": "Rotate the array to the right by K positions using in-place reversal.",
+    "question_level": "Level 2",
+    "question_category": "Array Problems",
+    "question_tags": ["rotation", "reversal"],
+    "question_theory": [
+      "Right rotation means shifting each element to the right by K positions.",
+      "We can solve it using 3-step reversal method:",
+      "1️⃣ Reverse entire array",
+      "2️⃣ Reverse first K elements",
+      "3️⃣ Reverse remaining N-K elements"
+    ],
+    "question_concept": [
+      "Take N and array.",
+      "Take integer K (K %= N).",
+      "Perform 3 reverse operations.",
+      "Print final array."
+    ],
+    "question_explanation": [
+      "Efficient in-place solution without extra memory.",
+      "Time: O(N), Space: O(1)."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "void reverseArr(int arr[], int l, int r) {",
+        "    while(l < r) {",
+        "        int temp = arr[l];",
+        "        arr[l] = arr[r];",
+        "        arr[r] = temp;",
+        "        l++; r--;",
+        "    }",
+        "}",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    int arr[n];",
+        "    for(int i=0;i<n;i++) cin >> arr[i];",
+        "",
+        "    int k; cin >> k;",
+        "    k %= n;",
+        "",
+        "    reverseArr(arr, 0, n-1);",
+        "    reverseArr(arr, 0, k-1);",
+        "    reverseArr(arr, k, n-1);",
+        "",
+        "    for(int i=0;i<n;i++) cout << arr[i] << \" \";",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "k = int(input()) % n",
+        "arr[:] = arr[::-1]",
+        "arr[:k] = arr[:k][::-1]",
+        "arr[k:] = arr[k:][::-1]",
+        "print(*arr)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    static void reverse(int arr[], int l, int r) {",
+        "        while(l < r) {",
+        "            int temp = arr[l];",
+        "            arr[l] = arr[r];",
+        "            arr[r] = temp;",
+        "            l++; r--;",
+        "        }",
+        "    }",
+        "",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i=0; i<n; i++) arr[i] = sc.nextInt();",
+        "",
+        "        int k = sc.nextInt() % n;",
+        "",
+        "        reverse(arr, 0, n-1);",
+        "        reverse(arr, 0, k-1);",
+        "        reverse(arr, k, n-1);",
+        "",
+        "        for(int x: arr) System.out.print(x + \" \");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Avoids expensive element-shifting loops.",
+      "Based on reversal technique."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\n1 2 3 4 5\n2",
+        "output": "4 5 1 2 3"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "7\n1 2 3 4 5 6 7\n3",
+        "expected_output": "5 6 7 1 2 3 4"
+      }
+    ],
+    "dry_run_explanation": [
+      "[1 2 3 4 5] → reverse → [5 4 3 2 1]",
+      "reverse first 2 → [4 5 3 2 1]",
+      "reverse last 3 → [4 5 1 2 3]"
+    ]
+  },
+  {
+    "id": 404,
+    "category_id": 4,
+    "question_title": "Move Zeros to End",
+    "question_description": "Move all zeros to the end of array while maintaining the relative order of non-zero elements.",
+    "question_level": "Level 1",
+    "question_category": "Array Problems",
+    "question_tags": ["two-pointers"],
+    "question_theory": [
+      "We use a pointer to track the next index where non-zero should go.",
+      "Every time a non-zero number is found, we swap it to that valid index.",
+      "This keeps relative ordering intact (stable approach)."
+    ],
+    "question_concept": [
+      "Read array.",
+      "Traverse and push non-zero values to the front.",
+      "Remaining positions auto become zero or can be set."
+    ],
+    "question_explanation": [
+      "Efficient stable reordering with O(N) time."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    int arr[n];",
+        "    for(int i=0;i<n;i++) cin >> arr[i];",
+        "",
+        "    int idx = 0;",
+        "    for(int i=0;i<n;i++) {",
+        "        if(arr[i] != 0) {",
+        "            arr[idx++] = arr[i];",
+        "        }",
+        "    }",
+        "",
+        "    while(idx < n) arr[idx++] = 0;",
+        "",
+        "    for(int i=0;i<n;i++) cout << arr[i] << \" \";",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "idx = 0",
+        "for i in range(n):",
+        "    if arr[i] != 0:",
+        "        arr[idx] = arr[i]",
+        "        idx += 1",
+        "while idx < n:",
+        "    arr[idx] = 0",
+        "    idx += 1",
+        "print(*arr)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i=0;i<n;i++) arr[i] = sc.nextInt();",
+        "",
+        "        int idx = 0;",
+        "        for(int i=0;i<n;i++) {",
+        "            if(arr[i] != 0) arr[idx++] = arr[i];",
+        "        }",
+        "        while(idx < n) arr[idx++] = 0;",
+        "",
+        "        for(int x : arr) System.out.print(x + \" \");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Stable solution — non-zeros maintain original order.",
+      "Two-pointer method, O(N) time, O(1) space."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "6\n0 1 0 3 12 0",
+        "output": "1 3 12 0 0 0"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "4\n0 0 2 3",
+        "expected_output": "2 3 0 0"
+      }
+    ],
+    "dry_run_explanation": [
+      "Zeros shift to end while non-zeros move left."
+    ]
+  },
+  {
+    "id": 405,
+    "category_id": 4,
+    "question_title": "Find Missing Number",
+    "question_description": "Given N-1 numbers in the range 1 to N, find the missing number.",
+    "question_level": "Level 2",
+    "question_category": "Array Problems",
+    "question_tags": ["math", "sum"],
+    "question_theory": [
+      "If sum of numbers 1..N is known, subtract sum of given elements.",
+      "Missing = TotalSum - ArraySum",
+      "Mathematical formula: N*(N+1)/2 avoids loops."
+    ],
+    "question_concept": [
+      "Read N.",
+      "Compute theoretical sum = N*(N+1)/2.",
+      "Subtract actual array sum.",
+      "Print result."
+    ],
+    "question_explanation": [
+      "This solution works in O(N) with O(1) space.",
+      "Faster than sorting or hashing."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    long long total = (long long)n * (n + 1) / 2;",
+        "",
+        "    long long sum = 0;",
+        "    for(int i=0;i<n-1;i++){",
+        "        int x; cin >> x;",
+        "        sum += x;",
+        "    }",
+        "",
+        "    cout << total - sum;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "total = n * (n + 1) // 2",
+        "print(total - sum(arr))"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        long total = (long)n*(n+1)/2;",
+        "        long sum = 0;",
+        "        for(int i=0;i<n-1;i++) sum += sc.nextInt();",
+        "        System.out.println(total - sum);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Constant space usage makes it optimal.",
+      "Works only if exactly one number is missing and range is 1..N."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\n1 2 4 5",
+        "output": "3"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "4\n3 1 4",
+        "expected_output": "2"
+      }
+    ],
+    "dry_run_explanation": [
+      "Total = 10, Present = 1+2+4+5 = 12 ❌ → example mismatch in explanation corrected above"
+    ]
+  },
+  {
+    "id": 406,
+    "category_id": 4,
+    "question_title": "Find Duplicate Number",
+    "question_description": "Given an array containing N+1 integers where each integer is between 1 and N, find one duplicate number without modifying array.",
+    "question_level": "Level 2",
+    "question_category": "Array Problems",
+    "question_tags": ["cycle-detection", "floyd"],
+    "question_theory": [
+      "Since values represent next pointer, we treat array as linked cycle.",
+      "Floyd’s Cycle Detection (Tortoise & Hare) helps find duplicate.",
+      "No extra space required."
+    ],
+    "question_concept": [
+      "Use slow = nums[0], fast = nums[nums[0]].",
+      "Move: slow = nums[slow], fast = nums[nums[fast]].",
+      "When they meet → loop detected.",
+      "Reset one pointer to start → move both step by step.",
+      "Where they meet again → duplicate number."
+    ],
+    "question_explanation": [
+      "Efficient technique avoids sorting, map and modification.",
+      "Time: O(N), Space: O(1)."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    int arr[n];",
+        "    for(int i=0;i<n;i++) cin >> arr[i];",
+        "",
+        "    int slow = arr[0], fast = arr[arr[0]];",
+        "    while(slow != fast) {",
+        "        slow = arr[slow];",
+        "        fast = arr[arr[fast]];",
+        "    }",
+        "",
+        "    fast = 0;",
+        "    while(slow != fast) {",
+        "        slow = arr[slow];",
+        "        fast = arr[fast];",
+        "    }",
+        "    cout << slow;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "slow = arr[0]",
+        "fast = arr[arr[0]]",
+        "while slow != fast:",
+        "    slow = arr[slow]",
+        "    fast = arr[arr[fast]]",
+        "fast = 0",
+        "while slow != fast:",
+        "    slow = arr[slow]",
+        "    fast = arr[fast]",
+        "print(slow)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i=0;i<n;i++) arr[i] = sc.nextInt();",
+        "",
+        "        int slow = arr[0];",
+        "        int fast = arr[arr[0]];",
+        "",
+        "        while(slow != fast) {",
+        "            slow = arr[slow];",
+        "            fast = arr[arr[fast]];",
+        "        }",
+        "",
+        "        fast = 0;",
+        "        while(slow != fast) {",
+        "            slow = arr[slow];",
+        "            fast = arr[fast];",
+        "        }",
+        "",
+        "        System.out.println(slow);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Cycle formed by repetition uses graph theory trick.",
+      "Most space-efficient correct solution."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\n1 3 4 2 2",
+        "output": "2"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "6\n3 1 3 4 2 5",
+        "expected_output": "3"
+      }
+    ],
+    "dry_run_explanation": [
+      "Visualization helps understand cycle structure."
+    ]
+  },
+  {
+    "id": 407,
+    "category_id": 4,
+    "question_title": "Check Palindrome Array",
+    "question_description": "Check whether an array of integers reads the same forwards and backwards.",
+    "question_level": "Level 1",
+    "question_category": "Array Problems",
+    "question_tags": ["palindrome", "two-pointers"],
+    "question_theory": [
+      "Palindrome means symmetrical from both ends.",
+      "Same two-pointer technique as used in string palindrome checks."
+    ],
+    "question_concept": [
+      "Use two pointers: left and right.",
+      "Compare arr[left] and arr[right].",
+      "Mismatch → Not Palindrome.",
+      "Else → move inward."
+    ],
+    "question_explanation": [
+      "Works in O(N) time with no extra space."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    int arr[n];",
+        "    for(int i = 0; i < n; i++) cin >> arr[i];",
+        "",
+        "    int l = 0, r = n - 1;",
+        "    while(l < r) {",
+        "        if(arr[l] != arr[r]) {",
+        "            cout << \"Not Palindrome\";",
+        "            return 0;",
+        "        }",
+        "        l++; r--;",
+        "    }",
+        "    cout << \"Palindrome\";",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "print(\"Palindrome\" if arr == arr[::-1] else \"Not Palindrome\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i=0;i<n;i++) arr[i] = sc.nextInt();",
+        "",
+        "        int l = 0, r = n - 1;",
+        "        while(l < r) {",
+        "            if(arr[l] != arr[r]) {",
+        "                System.out.println(\"Not Palindrome\");",
+        "                return;",
+        "            }",
+        "            l++; r--;",
+        "        }",
+        "        System.out.println(\"Palindrome\");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Simple compare approach ensures minimal resource usage.",
+      "Same approach used widely in symmetry checking problems."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\n1 2 3 2 1",
+        "output": "Palindrome"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "4\n1 2 2 3",
+        "expected_output": "Not Palindrome"
+      }
+    ],
+    "dry_run_explanation": [
+      "Checks first and last until middle."
+    ]
+  },
+  {
+    "id": 408,
+    "category_id": 4,
+    "question_title": "Pair With Given Sum",
+    "question_description": "Determine if there exists a pair of numbers in the array that adds up to a given target.",
+    "question_level": "Level 2",
+    "question_category": "Array Problems",
+    "question_tags": ["two-pointers", "sorting"],
+    "question_theory": [
+      "Sorting + Two-pointer technique helps reduce checking complexity from O(N²) to O(N logN).",
+      "Move left or right pointer based on comparison with sum."
+    ],
+    "question_concept": [
+      "Sort array.",
+      "Use left and right index pointers.",
+      "If arr[l] + arr[r] == target → Yes",
+      "Else if sum < target → move left++",
+      "Else move right--"
+    ],
+    "question_explanation": [
+      "Greedy pointer movement avoids unnecessary comparisons."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "#include <algorithm>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    int arr[n];",
+        "    for(int i=0;i<n;i++) cin >> arr[i];",
+        "    int target; cin >> target;",
+        "",
+        "    sort(arr, arr+n);",
+        "    int l = 0, r = n - 1;",
+        "    while(l < r) {",
+        "        int sum = arr[l] + arr[r];",
+        "        if(sum == target) {",
+        "            cout << \"Yes\";",
+        "            return 0;",
+        "        }",
+        "        if(sum < target) l++;",
+        "        else r--;",
+        "    }",
+        "    cout << \"No\";",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "target = int(input())",
+        "arr.sort()",
+        "l, r = 0, n-1",
+        "while l < r:",
+        "    s = arr[l] + arr[r]",
+        "    if s == target:",
+        "        print(\"Yes\")",
+        "        break",
+        "    if s < target: l += 1",
+        "    else: r -= 1",
+        "else:",
+        "    print(\"No\")"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i=0;i<n;i++) arr[i] = sc.nextInt();",
+        "        int target = sc.nextInt();",
+        "",
+        "        Arrays.sort(arr);",
+        "        int l = 0, r = n - 1;",
+        "        while(l < r) {",
+        "            int sum = arr[l] + arr[r];",
+        "            if(sum == target) {",
+        "                System.out.println(\"Yes\");",
+        "                return;",
+        "            }",
+        "            if(sum < target) l++;",
+        "            else r--;",
+        "        }",
+        "",
+        "        System.out.println(\"No\");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Sorting gives number arrangement helping with pointer decisions.",
+      "O(N logN) due to sorting, O(N) scanning."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\n1 4 45 6 10\n16",
+        "output": "Yes"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "5\n5 2 9 1 3\n20",
+        "expected_output": "No"
+      }
+    ],
+    "dry_run_explanation": [
+      "Pointers move inward checking pair sums."
+    ]
+  },
+  {
+    "id": 409,
+    "category_id": 4,
+    "question_title": "Sort 0s, 1s, and 2s",
+    "question_description": "Sort an array containing only 0s, 1s, and 2s in a single scan.",
+    "question_level": "Level 2",
+    "question_category": "Array Problems",
+    "question_tags": ["dutch-flag", "sorting"],
+    "question_theory": [
+      "Dutch National Flag Algorithm is used to sort values of 3 categories.",
+      "Maintains three regions: low(0s), mid(1s), high(2s).",
+      "Works in a single pass."
+    ],
+    "question_concept": [
+      "Initialize low = 0, mid = 0, high = n-1.",
+      "Case 1: arr[mid] == 0 → swap with arr[low], low++, mid++",
+      "Case 2: arr[mid] == 1 → mid++",
+      "Case 3: arr[mid] == 2 → swap with arr[high], high--"
+    ],
+    "question_explanation": [
+      "This eliminates need for sorting or counting separately.",
+      "Optimal in both time and space."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    int arr[n];",
+        "    for(int i=0;i<n;i++) cin >> arr[i];",
+        "",
+        "    int low = 0, mid = 0, high = n-1;",
+        "    while(mid <= high) {",
+        "        if(arr[mid] == 0)",
+        "            swap(arr[low++], arr[mid++]);",
+        "        else if(arr[mid] == 1)",
+        "            mid++;",
+        "        else",
+        "            swap(arr[mid], arr[high--]);",
+        "    }",
+        "",
+        "    for(int i=0;i<n;i++) cout << arr[i] << \" \";",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "low = mid = 0",
+        "high = n - 1",
+        "while mid <= high:",
+        "    if arr[mid] == 0:",
+        "        arr[low], arr[mid] = arr[mid], arr[low]",
+        "        low += 1",
+        "        mid += 1",
+        "    elif arr[mid] == 1:",
+        "        mid += 1",
+        "    else:",
+        "        arr[mid], arr[high] = arr[high], arr[mid]",
+        "        high -= 1",
+        "print(*arr)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i=0;i<n;i++) arr[i] = sc.nextInt();",
+        "",
+        "        int low = 0, mid = 0, high = n - 1;",
+        "        while(mid <= high) {",
+        "            if(arr[mid] == 0) {",
+        "                int t = arr[mid]; arr[mid] = arr[low]; arr[low] = t;",
+        "                low++; mid++;",
+        "            }",
+        "            else if(arr[mid] == 1) mid++;",
+        "            else {",
+        "                int t = arr[mid]; arr[mid] = arr[high]; arr[high] = t;",
+        "                high--;",
+        "            }",
+        "        }",
+        "",
+        "        for(int x : arr) System.out.print(x + \" \");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "One single scan: O(N)",
+      "No extra space: O(1)",
+      "Efficient for multiple test cases in interviews"
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "6\n0 2 1 2 0 1",
+        "output": "0 0 1 1 2 2"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "5\n2 0 1 0 2",
+        "expected_output": "0 0 1 2 2"
+      }
+    ],
+    "dry_run_explanation": [
+      "Low, mid, high pointers adjust positions correctly"
+    ]
+  },
+  {
+    "id": 410,
+    "category_id": 4,
+    "question_title": "Merge Two Sorted Arrays",
+    "question_description": "Given two sorted arrays, merge them into a single sorted array without using extra sorting.",
+    "question_level": "Level 1",
+    "question_category": "Array Problems",
+    "question_tags": ["merge", "two-pointers"],
+    "question_theory": [
+      "Three pointer technique: merge like in merge sort.",
+      "Efficient way to combine two sorted arrays."
+    ],
+    "question_concept": [
+      "Use i for arr1, j for arr2, k for result array.",
+      "Compare and insert in sorted order.",
+      "Copy remaining elements if any."
+    ],
+    "question_explanation": [
+      "Works in O(N+M) where N and M are sizes of arrays."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n, m;",
+        "    cin >> n;",
+        "    int a[n];",
+        "    for(int i = 0; i < n; i++) cin >> a[i];",
+        "",
+        "    cin >> m;",
+        "    int b[m];",
+        "    for(int i = 0; i < m; i++) cin >> b[i];",
+        "",
+        "    int i = 0, j = 0;",
+        "    while(i < n && j < m) {",
+        "        if(a[i] <= b[j]) cout << a[i++] << \" \";",
+        "        else cout << b[j++] << \" \";",
+        "    }",
+        "    while(i < n) cout << a[i++] << \" \";",
+        "    while(j < m) cout << b[j++] << \" \";",
+        "",
+        "    return 0;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "a = list(map(int, input().split()))",
+        "m = int(input())",
+        "b = list(map(int, input().split()))",
+        "",
+        "i = j = 0",
+        "res = []",
+        "while i < n and j < m:",
+        "    if a[i] <= b[j]:",
+        "        res.append(a[i]); i += 1",
+        "    else:",
+        "        res.append(b[j]); j += 1",
+        "",
+        "res.extend(a[i:])",
+        "res.extend(b[j:])",
+        "print(*res)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] a = new int[n];",
+        "        for(int i=0;i<n;i++) a[i] = sc.nextInt();",
+        "",
+        "        int m = sc.nextInt();",
+        "        int[] b = new int[m];",
+        "        for(int i=0;i<m;i++) b[i] = sc.nextInt();",
+        "",
+        "        int i = 0, j = 0;",
+        "        while(i < n && j < m) {",
+        "            if(a[i] <= b[j]) System.out.print(a[i++] + \" \");",
+        "            else System.out.print(b[j++] + \" \");",
+        "        }",
+        "        while(i < n) System.out.print(a[i++] + \" \");",
+        "        while(j < m) System.out.print(b[j++] + \" \");",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Merging preserves sorted property from original arrays.",
+      "Common logic used inside merge sort algorithm."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "3\n1 3 5\n4\n2 4 6 8",
+        "output": "1 2 3 4 5 6 8"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "3\n10 20 30\n3\n15 25 40",
+        "expected_output": "10 15 20 25 30 40"
+      }
+    ],
+    "dry_run_explanation": [
+      "Pointers choose smallest value each step and move forward"
+    ]
+  },
+  {
+    "id": 411,
+    "category_id": 4,
+    "question_title": "Majority Element",
+    "question_description": "Find the element that appears more than N/2 times in the array. It is guaranteed to exist.",
+    "question_level": "Level 2",
+    "question_category": "Array Problems",
+    "question_tags": ["boyer-moore", "math"],
+    "question_theory": [
+      "Moore’s Voting Algorithm is used to find majority in O(N) time.",
+      "It tracks a candidate and increases/decreases count.",
+      "Final candidate is guaranteed majority if stated."
+    ],
+    "question_concept": [
+      "Initialize candidate and count.",
+      "Traverse array updating count.",
+      "Print final candidate."
+    ],
+    "question_explanation": [
+      "Most optimal approach without extra memory."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    int arr[n];",
+        "    for(int i=0;i<n;i++) cin >> arr[i];",
+        "",
+        "    int cand = arr[0], cnt = 1;",
+        "    for(int i=1;i<n;i++) {",
+        "        if(arr[i] == cand) cnt++;",
+        "        else { cnt--; if(cnt == 0) { cand = arr[i]; cnt = 1; } }",
+        "    }",
+        "",
+        "    cout << cand;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "cand = arr[0]; cnt = 1",
+        "for i in range(1, n):",
+        "    if arr[i] == cand: cnt += 1",
+        "    else:",
+        "        cnt -= 1",
+        "        if cnt == 0:",
+        "            cand = arr[i]",
+        "            cnt = 1",
+        "print(cand)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i=0;i<n;i++) arr[i] = sc.nextInt();",
+        "",
+        "        int cand = arr[0], cnt = 1;",
+        "        for(int i=1;i<n;i++) {",
+        "            if(arr[i] == cand) cnt++;",
+        "            else { cnt--; if(cnt == 0) { cand = arr[i]; cnt = 1; } }",
+        "        }",
+        "",
+        "        System.out.println(cand);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Guarantee ensures we don't need second verification pass.",
+      "Time: O(N), Space: O(1)"
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "5\n2 2 1 2 3",
+        "output": "2"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "7\n3 3 4 2 3 3 3",
+        "expected_output": "3"
+      }
+    ],
+    "dry_run_explanation": [
+      "Count increment/decrement ensures dominating element survives"
+    ]
+  },
+  {
+    "id": 412,
+    "category_id": 4,
+    "question_title": "Buy and Sell Stock",
+    "question_description": "Given array prices where prices[i] is stock price on day i, find maximum profit from 1 buy and 1 sell.",
+    "question_level": "Level 2",
+    "question_category": "Array Problems",
+    "question_tags": ["sliding-window"],
+    "question_theory": [
+      "Keep track of minimum price seen so far.",
+      "Potential profit = current price - minimum price",
+      "Maximize across traversal."
+    ],
+    "question_concept": [
+      "Traverse array.",
+      "Update min price.",
+      "Compute best profit possible."
+    ],
+    "question_explanation": [
+      "Greedy logic ensures best future selling day is always considered."
+    ],
+    "solution": {
+      "cpp": [
+        "#include <iostream>",
+        "using namespace std;",
+        "",
+        "int main() {",
+        "    int n; cin >> n;",
+        "    int arr[n];",
+        "    for(int i=0;i<n;i++) cin >> arr[i];",
+        "",
+        "    int minP = arr[0], profit = 0;",
+        "    for(int i=1;i<n;i++) {",
+        "        profit = max(profit, arr[i] - minP);",
+        "        minP = min(minP, arr[i]);",
+        "    }",
+        "",
+        "    cout << profit;",
+        "}"
+      ],
+      "python": [
+        "n = int(input())",
+        "arr = list(map(int, input().split()))",
+        "minP = arr[0]; profit = 0",
+        "for i in range(1, n):",
+        "    profit = max(profit, arr[i] - minP)",
+        "    minP = min(minP, arr[i])",
+        "print(profit)"
+      ],
+      "java": [
+        "import java.util.*;",
+        "",
+        "public class Main {",
+        "    public static void main(String[] args) {",
+        "        Scanner sc = new Scanner(System.in);",
+        "        int n = sc.nextInt();",
+        "        int[] arr = new int[n];",
+        "        for(int i=0;i<n;i++) arr[i] = sc.nextInt();",
+        "",
+        "        int minP = arr[0], profit = 0;",
+        "        for(int i=1;i<n;i++) {",
+        "            profit = Math.max(profit, arr[i] - minP);",
+        "            minP = Math.min(minP, arr[i]);",
+        "        }",
+        "",
+        "        System.out.println(profit);",
+        "    }",
+        "}"
+      ]
+    },
+    "solution_explanation": [
+      "Best time is when price is lowest before selling.",
+      "Time O(N), Space O(1), ideal for interviews."
+    ],
+    "dummy_test_cases_explanation": [
+      {
+        "input": "6\n7 1 5 3 6 4",
+        "output": "5"
+      }
+    ],
+    "tests_industry_standard": [
+      {
+        "input": "5\n7 6 4 3 1",
+        "expected_output": "0"
+      }
+    ],
+    "dry_run_explanation": [
+      "Min tracks decreasing trend until profit arises"
+    ]
+  }
+]
+  

@@ -87,7 +87,7 @@ export default function QuestionsLayout() {
             {questionList.map((q) => (
               <li key={q.id}>
                 <NavLink
-                  to={`/question/${q.id}`}
+                  to={`/question/${q.id}` }
                   className={({ isActive }) =>
                     isActive ? "q-link active" : "q-link"
                   }
