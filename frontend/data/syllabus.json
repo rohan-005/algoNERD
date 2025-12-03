@@ -1,0 +1,287 @@
+[
+  {
+    "category_id": 1,
+    "category_name": "Pattern Printing",
+    "detail_file": "PatternQuestions.json",
+    "questions": [
+      { "id": 101, "title": "Square Star Pattern", "difficulty": "Level 1", "tags": ["pattern", "loops"], "is_completed": false },
+      { "id": 102, "title": "Inverted Pyramid Star Pattern", "difficulty": "Level 1", "tags": ["pattern", "pyramid"], "is_completed": false },
+      { "id": 103, "title": "Pyramid Star Pattern", "difficulty": "Level 1", "tags": ["pattern", "pyramid"], "is_completed": false },
+      { "id": 104, "title": "Diamond Star Pattern", "difficulty": "Level 2", "tags": ["pattern", "diamond"], "is_completed": false },
+      { "id": 105, "title": "Hollow Square Star Pattern", "difficulty": "Level 2", "tags": ["pattern", "hollow"], "is_completed": false },
+      { "id": 106, "title": "Butterfly Star Pattern", "difficulty": "Level 3", "tags": ["pattern", "mirror"], "is_completed": false },
+      { "id": 107, "title": "Downward Triangle Star Pattern", "difficulty": "Level 1", "tags": ["pattern", "triangle"], "is_completed": false },
+      { "id": 108, "title": "Hollow Diamond Star Pattern", "difficulty": "Level 3", "tags": ["pattern", "hollow", "diamond"], "is_completed": false },
+      { "id": 109, "title": "Cross Star Pattern", "difficulty": "Level 2", "tags": ["pattern", "cross"], "is_completed": false },
+      { "id": 110, "title": "Hollow Pyramid Star Pattern", "difficulty": "Level 2", "tags": ["pattern", "hollow", "pyramid"], "is_completed": false },
+      { "id": 111, "title": "Number Pyramid Pattern", "difficulty": "Level 2", "tags": ["pattern", "numbers"], "is_completed": false },
+      { "id": 112, "title": "Floyd's Triangle Pattern", "difficulty": "Level 2", "tags": ["pattern", "numbers"], "is_completed": false },
+      { "id": 113, "title": "Alphabet Pyramid Pattern", "difficulty": "Level 2", "tags": ["pattern", "characters"], "is_completed": false },
+      { "id": 114, "title": "Pascal's Triangle Pattern", "difficulty": "Level 3", "tags": ["pattern", "math"], "is_completed": false },
+      { "id": 115, "title": "Zig-Zag Star Pattern", "difficulty": "Level 3", "tags": ["pattern", "zigzag"], "is_completed": false }
+    ]
+  },
+  {
+    "category_id": 2,
+    "category_name": "Computational Logic",
+    "detail_file": "ComputationalProgramming.json",
+    "questions": [
+      { "id": 201, "title": "Check Prime Number", "difficulty": "Level 1", "tags": ["prime"], "is_completed": false },
+      { "id": 202, "title": "Find GCD of Two Numbers", "difficulty": "Level 1", "tags": ["gcd"], "is_completed": false },
+      { "id": 203, "title": "Find GCD and LCM", "difficulty": "Level 1", "tags": ["gcd", "lcm"], "is_completed": false },
+      { "id": 204, "title": "Armstrong Number Check", "difficulty": "Level 2", "tags": ["digits"], "is_completed": false },
+      { "id": 205, "title": "Count Digits of Number", "difficulty": "Level 1", "tags": ["digits"], "is_completed": false },
+      { "id": 206, "title": "Sum of Natural Numbers", "difficulty": "Level 1", "tags": ["series"], "is_completed": false },
+      { "id": 207, "title": "Perfect Square Check", "difficulty": "Level 1", "tags": ["math"], "is_completed": false },
+      { "id": 208, "title": "Factorial Iterative", "difficulty": "Level 1", "tags": ["factorial"], "is_completed": false },
+      { "id": 209, "title": "Palindrome Number Check", "difficulty": "Level 1", "tags": ["palindrome"], "is_completed": false },
+      { "id": 210, "title": "Fibonacci Iterative", "difficulty": "Level 1", "tags": ["fibonacci"], "is_completed": false },
+      { "id": 211, "title": "Power of 2 Check", "difficulty": "Level 2", "tags": ["bit-manipulation"], "is_completed": false },
+      { "id": 212, "title": "Prime Factorization", "difficulty": "Level 2", "tags": ["prime"], "is_completed": false },
+      { "id": 213, "title": "Sum of Digits", "difficulty": "Level 1", "tags": ["digits"], "is_completed": false },
+      { "id": 214, "title": "Digital Root", "difficulty": "Level 2", "tags": ["digits"], "is_completed": false },
+      { "id": 215, "title": "Decimal to Binary Conversion", "difficulty": "Level 1", "tags": ["binary"], "is_completed": false },
+      { "id": 216, "title": "Trailing Zeros in Factorial", "difficulty": "Level 2", "tags": ["factorial"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 3,
+    "category_name": "String Problems",
+    "detail_file": "StringQuestions.json",
+    "questions": [
+      { "id": 301, "title": "Reverse a String", "difficulty": "Level 1", "tags": ["reverse", "string"], "is_completed": false },
+      { "id": 302, "title": "Check Palindrome String", "difficulty": "Level 1", "tags": ["palindrome"], "is_completed": false },
+      { "id": 303, "title": "Anagram Check", "difficulty": "Level 2", "tags": ["anagram"], "is_completed": false },
+      { "id": 304, "title": "First Non-Repeating Character", "difficulty": "Level 2", "tags": ["hashing"], "is_completed": false },
+      { "id": 305, "title": "Count Vowels and Consonants", "difficulty": "Level 1", "tags": ["string"], "is_completed": false },
+      { "id": 306, "title": "Longest Substring Without Repeating Characters", "difficulty": "Level 3", "tags": ["string", "sliding-window"], "is_completed": false },
+      { "id": 307, "title": "Check String Rotation", "difficulty": "Level 2", "tags": ["rotation", "string"], "is_completed": false },
+      { "id": 308, "title": "Compress String", "difficulty": "Level 2", "tags": ["string", "compression"], "is_completed": false },
+      { "id": 309, "title": "Remove Duplicate Characters", "difficulty": "Level 2", "tags": ["hashing"], "is_completed": false },
+      { "id": 310, "title": "Valid Parentheses", "difficulty": "Level 2", "tags": ["stack"], "is_completed": false },
+      { "id": 311, "title": "Longest Palindromic Substring", "difficulty": "Level 3", "tags": ["palindrome"], "is_completed": false },
+      { "id": 312, "title": "Group Anagrams", "difficulty": "Level 3", "tags": ["hashing"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 4,
+    "category_name": "Array Problems",
+    "detail_file": "ArrayQuestions.json",
+    "questions": [
+      { "id": 401, "title": "Reverse Array In-Place", "difficulty": "Level 1", "tags": ["array"], "is_completed": false },
+      { "id": 402, "title": "Maximum Subarray Sum", "difficulty": "Level 2", "tags": ["subarray"], "is_completed": false },
+      { "id": 403, "title": "Rotate Array by K", "difficulty": "Level 2", "tags": ["rotation"], "is_completed": false },
+      { "id": 404, "title": "Move Zeros to End", "difficulty": "Level 1", "tags": ["two-pointers"], "is_completed": false },
+      { "id": 405, "title": "Find Missing Number", "difficulty": "Level 2", "tags": ["math"], "is_completed": false },
+      { "id": 406, "title": "Find Duplicate Number", "difficulty": "Level 2", "tags": ["cycle-detection"], "is_completed": false },
+      { "id": 407, "title": "Check Palindrome Array", "difficulty": "Level 1", "tags": ["palindrome"], "is_completed": false },
+      { "id": 408, "title": "Pair With Given Sum", "difficulty": "Level 2", "tags": ["two-pointers"], "is_completed": false },
+      { "id": 409, "title": "Sort 0s, 1s, 2s", "difficulty": "Level 2", "tags": ["dutch-flag"], "is_completed": false },
+      { "id": 410, "title": "Merge Two Sorted Arrays", "difficulty": "Level 1", "tags": ["merge"], "is_completed": false },
+      { "id": 411, "title": "Majority Element", "difficulty": "Level 2", "tags": ["boyer-moore"], "is_completed": false },
+      { "id": 412, "title": "Buy and Sell Stock", "difficulty": "Level 2", "tags": ["sliding-window"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 5,
+    "category_name": "Recursion",
+    "detail_file": "RecursionQuestions.json",
+    "questions": [
+      { "id": 501, "title": "Factorial (Recursive)", "difficulty": "Level 1", "tags": ["recursion"], "is_completed": false },
+      { "id": 502, "title": "Fibonacci (Recursive)", "difficulty": "Level 2", "tags": ["recursion"], "is_completed": false },
+      { "id": 503, "title": "Sum of Digits (Recursive)", "difficulty": "Level 1", "tags": ["digits"], "is_completed": false },
+      { "id": 504, "title": "Power of a Number x^n", "difficulty": "Level 2", "tags": ["recursion"], "is_completed": false },
+      { "id": 505, "title": "String Palindrome Recursive", "difficulty": "Level 2", "tags": ["string"], "is_completed": false },
+      { "id": 506, "title": "Reverse String Using Recursion", "difficulty": "Level 2", "tags": ["string"], "is_completed": false },
+      { "id": 507, "title": "GCD Recursive", "difficulty": "Level 1", "tags": ["gcd"], "is_completed": false },
+      { "id": 508, "title": "Tower of Hanoi", "difficulty": "Level 3", "tags": ["classic"], "is_completed": false },
+      { "id": 509, "title": "Generate Subsets (Power Set)", "difficulty": "Level 3", "tags": ["backtracking"], "is_completed": false },
+      { "id": 510, "title": "All Permutations of String", "difficulty": "Level 3", "tags": ["backtracking"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 6,
+    "category_name": "Linked List",
+    "detail_file": "LinkedListQuestions.json",
+    "questions": [
+      { "id": 601, "title": "Reverse Linked List", "difficulty": "Level 2", "tags": ["linked-list"], "is_completed": false },
+      { "id": 602, "title": "Detect Loop", "difficulty": "Level 2", "tags": ["cycle"], "is_completed": false },
+      { "id": 603, "title": "Find Middle Node", "difficulty": "Level 1", "tags": ["two-pointers"], "is_completed": false },
+      { "id": 604, "title": "Merge Two Sorted Lists", "difficulty": "Level 2", "tags": ["merge"], "is_completed": false },
+      { "id": 605, "title": "Remove Nth Node from End", "difficulty": "Level 2", "tags": ["two-pointers"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 7,
+    "category_name": "Stack",
+    "detail_file": "StackQuestions.json",
+    "questions": [
+      { "id": 701, "title": "Implement Stack Using Array", "difficulty": "Level 1", "tags": ["stack"], "is_completed": false },
+      { "id": 702, "title": "Next Greater Element", "difficulty": "Level 2", "tags": ["monotonic"], "is_completed": false },
+      { "id": 703, "title": "Min Stack", "difficulty": "Level 2", "tags": ["stack", "min-stack"], "is_completed": false },
+      { "id": 704, "title": "Evaluate Postfix Expression", "difficulty": "Level 2", "tags": ["stack"], "is_completed": false },
+      { "id": 705, "title": "Balanced Parentheses", "difficulty": "Level 1", "tags": ["stack"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 8,
+    "category_name": "Queue",
+    "detail_file": "QueueQuestions.json",
+    "questions": [
+      { "id": 801, "title": "Implement Queue Using Array", "difficulty": "Level 1", "tags": ["queue"], "is_completed": false },
+      { "id": 802, "title": "Circular Queue", "difficulty": "Level 2", "tags": ["queue", "circular"], "is_completed": false },
+      { "id": 803, "title": "Queue Using Stack", "difficulty": "Level 2", "tags": ["queue"], "is_completed": false },
+      { "id": 804, "title": "Implement Dequeue", "difficulty": "Level 2", "tags": ["queue"], "is_completed": false },
+      { "id": 805, "title": "Sliding Window Maximum", "difficulty": "Level 3", "tags": ["queue", "deque"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 9,
+    "category_name": "Tree",
+    "detail_file": "TreeQuestions.json",
+    "questions": [
+      { "id": 901, "title": "Binary Tree Traversals", "difficulty": "Level 2", "tags": ["tree"], "is_completed": false },
+      { "id": 902, "title": "Level Order Traversal", "difficulty": "Level 2", "tags": ["bfs"], "is_completed": false },
+      { "id": 903, "title": "Height of Binary Tree", "difficulty": "Level 2", "tags": ["recursion"], "is_completed": false },
+      { "id": 904, "title": "Count Leaf Nodes", "difficulty": "Level 1", "tags": ["tree"], "is_completed": false },
+      { "id": 905, "title": "Check Balanced Binary Tree", "difficulty": "Level 3", "tags": ["tree", "recursion"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 10,
+    "category_name": "Graph",
+    "detail_file": "GraphQuestions.json",
+    "questions": [
+      { "id": 1001, "title": "Graph BFS Traversal", "difficulty": "Level 2", "tags": ["bfs"], "is_completed": false },
+      { "id": 1002, "title": "Graph DFS Traversal", "difficulty": "Level 2", "tags": ["dfs"], "is_completed": false },
+      { "id": 1003, "title": "Cycle Detection in Graph", "difficulty": "Level 3", "tags": ["graph"], "is_completed": false },
+      { "id": 1004, "title": "Number of Islands", "difficulty": "Level 3", "tags": ["dfs"], "is_completed": false },
+      { "id": 1005, "title": "Topological Sort", "difficulty": "Level 3", "tags": ["graph"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 11,
+    "category_name": "Dynamic Programming",
+    "detail_file": "DPQuestions.json",
+    "questions": [
+      { "id": 1101, "title": "0/1 Knapsack Problem", "difficulty": "Level 3", "tags": ["dp"], "is_completed": false },
+      { "id": 1102, "title": "Longest Increasing Subsequence", "difficulty": "Level 3", "tags": ["dp"], "is_completed": false },
+      { "id": 1103, "title": "Coin Change Problem", "difficulty": "Level 3", "tags": ["dp"], "is_completed": false },
+      { "id": 1104, "title": "Edit Distance", "difficulty": "Level 3", "tags": ["dp"], "is_completed": false },
+      { "id": 1105, "title": "Climbing Stairs", "difficulty": "Level 2", "tags": ["dp"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 12,
+    "category_name": "Sorting",
+    "detail_file": "SortingQuestions.json",
+    "questions": [
+      { "id": 1201, "title": "Bubble Sort", "difficulty": "Level 1", "tags": ["sorting"], "is_completed": false },
+      { "id": 1202, "title": "Selection Sort", "difficulty": "Level 1", "tags": ["sorting"], "is_completed": false },
+      { "id": 1203, "title": "Insertion Sort", "difficulty": "Level 1", "tags": ["sorting"], "is_completed": false },
+      { "id": 1204, "title": "Merge Sort", "difficulty": "Level 2", "tags": ["sorting"], "is_completed": false },
+      { "id": 1205, "title": "Quick Sort", "difficulty": "Level 3", "tags": ["sorting"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 13,
+    "category_name": "Searching",
+    "detail_file": "SearchingQuestions.json",
+    "questions": [
+      { "id": 1301, "title": "Linear Search", "difficulty": "Level 1", "tags": ["search"], "is_completed": false },
+      { "id": 1302, "title": "Binary Search", "difficulty": "Level 2", "tags": ["search"], "is_completed": false },
+      { "id": 1303, "title": "Search in Rotated Sorted Array", "difficulty": "Level 3", "tags": ["binary-search"], "is_completed": false },
+      { "id": 1304, "title": "First and Last Occurrence", "difficulty": "Level 2", "tags": ["binary-search"], "is_completed": false },
+      { "id": 1305, "title": "Peak Element", "difficulty": "Level 2", "tags": ["binary-search"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 14,
+    "category_name": "Bit Manipulation",
+    "detail_file": "BitManipulationQuestions.json",
+    "questions": [
+      { "id": 1401, "title": "Count Set Bits", "difficulty": "Level 1", "tags": ["bit"], "is_completed": false },
+      { "id": 1402, "title": "Check Power of Two", "difficulty": "Level 1", "tags": ["bit"], "is_completed": false },
+      { "id": 1403, "title": "Find Unique Element", "difficulty": "Level 2", "tags": ["bit", "xor"], "is_completed": false },
+      { "id": 1404, "title": "Reverse Bits", "difficulty": "Level 2", "tags": ["bit"], "is_completed": false },
+      { "id": 1405, "title": "Two Numbers Added Using Bitwise", "difficulty": "Level 3", "tags": ["bit"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 15,
+    "category_name": "Backtracking",
+    "detail_file": "BacktrackingQuestions.json",
+    "questions": [
+      { "id": 1501, "title": "N-Queens", "difficulty": "Level 3", "tags": ["backtracking"], "is_completed": false },
+      { "id": 1502, "title": "Rat in a Maze", "difficulty": "Level 3", "tags": ["backtracking"], "is_completed": false },
+      { "id": 1503, "title": "Word Search", "difficulty": "Level 3", "tags": ["dfs", "backtracking"], "is_completed": false },
+      { "id": 1504, "title": "Sudoku Solver", "difficulty": "Level 3", "tags": ["backtracking"], "is_completed": false },
+      { "id": 1505, "title": "Subsets II (No Duplicates)", "difficulty": "Level 3", "tags": ["backtracking"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 16,
+    "category_name": "Hashing",
+    "detail_file": "HashingQuestions.json",
+    "questions": [
+      { "id": 1601, "title": "Frequency of Elements", "difficulty": "Level 1", "tags": ["hash"], "is_completed": false },
+      { "id": 1602, "title": "Two Sum", "difficulty": "Level 1", "tags": ["hash"], "is_completed": false },
+      { "id": 1603, "title": "Intersection of Arrays", "difficulty": "Level 1", "tags": ["hash"], "is_completed": false },
+      { "id": 1604, "title": "Longest Consecutive Sequence", "difficulty": "Level 3", "tags": ["hash"], "is_completed": false },
+      { "id": 1605, "title": "Substring with All Characters", "difficulty": "Level 3", "tags": ["hash"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 17,
+    "category_name": "Number Theory",
+    "detail_file": "NumberTheoryQuestions.json",
+    "questions": [
+      { "id": 1701, "title": "Prime Sieve", "difficulty": "Level 2", "tags": ["number-theory"], "is_completed": false },
+      { "id": 1702, "title": "Modular Exponentiation", "difficulty": "Level 3", "tags": ["number-theory"], "is_completed": false },
+      { "id": 1703, "title": "GCD Extended Euclid", "difficulty": "Level 3", "tags": ["number-theory"], "is_completed": false },
+      { "id": 1704, "title": "Euler Totient Function", "difficulty": "Level 3", "tags": ["number-theory"], "is_completed": false },
+      { "id": 1705, "title": "Count Primes", "difficulty": "Level 2", "tags": ["number-theory"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 18,
+    "category_name": "Sliding Window",
+    "detail_file": "SlidingWindowQuestions.json",
+    "questions": [
+      { "id": 1801, "title": "Longest Subarray Sum K", "difficulty": "Level 3", "tags": ["sliding-window"], "is_completed": false },
+      { "id": 1802, "title": "Longest Repeating Character Replacement", "difficulty": "Level 3", "tags": ["sliding-window"], "is_completed": false },
+      { "id": 1803, "title": "Maximum Sum Subarray of Size K", "difficulty": "Level 2", "tags": ["sliding-window"], "is_completed": false },
+      { "id": 1804, "title": "Minimum Window Substring", "difficulty": "Level 3", "tags": ["sliding-window"], "is_completed": false },
+      { "id": 1805, "title": "Count of Anagram Substrings", "difficulty": "Level 3", "tags": ["sliding-window"], "is_completed": false }
+    ]
+  },
+
+  {
+    "category_id": 19,
+    "category_name": "Greedy",
+    "detail_file": "GreedyQuestions.json",
+    "questions": [
+      { "id": 1901, "title": "Activity Selection Problem", "difficulty": "Level 3", "tags": ["greedy"], "is_completed": false },
+      { "id": 1902, "title": "Fractional Knapsack", "difficulty": "Level 3", "tags": ["greedy"], "is_completed": false },
+      { "id": 1903, "title": "Min Number of Platforms Required", "difficulty": "Level 3", "tags": ["greedy"], "is_completed": false },
+      { "id": 1904, "title": "Huffman Coding", "difficulty": "Level 3", "tags": ["greedy"], "is_completed": false },
+      { "id": 1905, "title": "Gas Station Problem", "difficulty": "Level 3", "tags": ["greedy"], "is_completed": false }
+    ]
+  }
+]

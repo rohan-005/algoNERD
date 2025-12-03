@@ -6,67 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Syllabus() {
   const navigate = useNavigate();
-
-  const syllabusData = [
-    {
-      category: "Pattern Questions",
-      points: [
-        { id: 101, q: "Right Triangle Star Pattern" },
-        { id: 102, q: "Number Pyramid" },
-        { id: 103, q: "Diamond Shape Pattern" },
-        { id: 104, q: "Hollow Rectangle" },
-        { id: 105, q: "Butterfly Pattern" },
-      ],
-    },
-    {
-      category: "Arrays",
-      points: [
-        { id: 201, q: "Max & Min in Array" },
-        { id: 202, q: "Reverse Array" },
-        { id: 203, q: "Move Zeros to End" },
-        { id: 204, q: "Kadane’s Algorithm" },
-        { id: 205, q: "Two-Sum Concept" },
-      ],
-    },
-    {
-      category: "Strings",
-      points: [
-        { id: 301, q: "Palindrome Check" },
-        { id: 302, q: "Count Frequency of Characters" },
-        { id: 303, q: "Anagram Check" },
-        { id: 304, q: "Pattern Matching Basics" },
-        { id: 305, q: "String Compression" },
-      ],
-    },
-    {
-      category: "Searching & Sorting",
-      points: [
-        { id: 401, q: "Binary Search" },
-        { id: 402, q: "Bubble Sort" },
-        { id: 403, q: "Merge Sort" },
-        { id: 404, q: "Quick Sort" },
-        { id: 405, q: "Sort Colors (DNF)" },
-      ],
-    },
-    {
-      category: "Linked List",
-      points: [
-        { id: 501, q: "Insert & Delete" },
-        { id: 502, q: "Reverse Linked List" },
-        { id: 503, q: "Detect Loop – Floyd’s Algo" },
-        { id: 504, q: "Middle of Linked List" },
-      ],
-    },
-    {
-      category: "Dynamic Programming",
-      points: [
-        { id: 601, q: "Fibonacci (Memo + Tabulation)" },
-        { id: 602, q: "Knapsack 0/1" },
-        { id: 603, q: "Longest Common Subsequence" },
-        { id: 604, q: "Coin Change" },
-      ],
-    },
-  ];
+  const [syllabusData, setSyllabusData] = useState([]);
+  const [completed, setCompleted] = useState({});
 
   const menuItems = [
     { label: "Home", link: "/" },
@@ -81,9 +22,12 @@ export default function Syllabus() {
     { label: "LinkedIn", link: "https://linkedin.com" },
   ];
 
-  const [completed, setCompleted] = useState({});
-
   useEffect(() => {
+    fetch("/data/syllabus.json")
+      .then(res => res.json())
+      .then(data => setSyllabusData(data))
+      .catch(err => console.error("Error loading syllabus:", err));
+
     const savedData = localStorage.getItem("completedQuestions");
     if (savedData) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -112,32 +56,28 @@ export default function Syllabus() {
         <StaggeredMenu items={menuItems} socialItems={socialItems} />
       </div>
 
-      {/* HERO */}
       <section className="syllabus-hero">
         <h1 className="syllabus-title">
-          Master <span className="highlight">DSA</span> From Basics 
+          Master <span className="highlight">DSA</span> From Basics
         </h1>
         <p className="syllabus-sub">
           From Patterns → DP, build real coding confidence step-by-step.
         </p>
 
-        {/* Clear Progress Button */}
         <button className="clear-btn" onClick={clearAll}>
           Clear All Progress ❌
         </button>
       </section>
 
-      {/* CONTENT GRID */}
       <section className="syllabus-content">
         {syllabusData.map((block, idx) => (
           <div className="syllabus-card" key={idx}>
-            <h2 className="syllabus-card-title">{block.category}</h2>
+            <h2 className="syllabus-card-title">{block.category_name}</h2>
 
             <ul className="point-list">
-              {block.points.map((item, i) => (
+              {block.questions.map((item, i) => (
                 <li key={i} className="point-item">
                   <div className="problem-link">
-                    {/* Checkbox only manages completion */}
                     <input
                       type="checkbox"
                       checked={!!completed[item.id]}
@@ -145,12 +85,11 @@ export default function Syllabus() {
                       className="checkbox-style"
                     />
 
-                    {/* Clickable question text to open */}
                     <span
                       onClick={() => handleClick(item.id)}
                       className="question-text"
                     >
-                      ➤ {item.q}
+                      ➤ {item.title}
                     </span>
                   </div>
                 </li>
@@ -158,6 +97,12 @@ export default function Syllabus() {
             </ul>
           </div>
         ))}
+
+        {/* 📌 Footer Coming Soon Message */}
+        <div className="syllabus-coming-soon syllabus-card">
+          🚀 More questions & categories will be released soon... Stay tuned!
+        </div>
+
       </section>
     </div>
   );

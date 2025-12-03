@@ -109,6 +109,19 @@ html, body {
 .syllabus-card:hover::before {
   opacity: 1;
 }
+.syllabus-coming-soon {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  /* margin-top: 30px; */
+  padding: 15px;
+  font-weight: 600;
+  /* opacity: 0.85; */
+  
+}
+
 .clear-btn {
   margin-top: 20px;
   background: transparent;
